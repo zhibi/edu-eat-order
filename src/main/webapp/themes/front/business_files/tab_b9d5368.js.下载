@@ -1,0 +1,1 @@
+define("waimai:widget/menu/tab/tab",function(){});

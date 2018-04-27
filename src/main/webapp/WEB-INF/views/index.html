@@ -2,291 +2,98 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title>在线点餐</title>
-    <link rel="stylesheet" href="/themes/front/home.css">
+    <link rel="stylesheet" type="text/css" href="/themes/front/index_files/main_a79c03f.css">
+    <link rel="stylesheet" type="text/css" href="/themes/front/index_files/cartAlert_69d76b3.css">
+    <link rel="stylesheet" type="text/css" href="/themes/front/index_files/common_4840c98.css">
+    <link rel="stylesheet" type="text/css" href="/themes/front/index_files/citybar_2daccc1.css">
+    <link rel="stylesheet" type="text/css" href="/themes/front/index_files/landing_26d4e9b.css">
+    <link rel="stylesheet" type="text/css" href="/themes/front/index_files/muti_60d05dd.css">
+    <link rel="stylesheet" type="text/css" href="/themes/front/index_files/registerDialog_77e55d3.css">
+    <link rel="stylesheet" type="text/css" href="/themes/front/index_files/userInfo_11c5a6b.css">
+    <link rel="stylesheet" type="text/css" href="/themes/front/index_files/search_cae56fa.css">
+    <link rel="stylesheet" type="text/css" href="/themes/front/index_files/addressEditDialog_be19f67.css">
+    <link rel="stylesheet" type="text/css" href="/themes/front/index_files/search_b1f3d15.css">
+    <link rel="stylesheet" type="text/css" href="/themes/front/index_files/nav_92fb35c.css">
+    <link rel="stylesheet" type="text/css" href="/themes/front/index_files/shoplist_b2c246e.css">
+    <link rel="stylesheet" type="text/css" href="/themes/front/index_files/shopcard_93f9a30.css">
+    <link rel="stylesheet" type="text/css" href="/themes/front/index_files/dishcard_d331747.css">
+    <link rel="stylesheet" type="text/css" href="/themes/front/index_files/backtop_e064524.css">
+    <link rel="stylesheet" type="text/css" href="/themes/front/index_files/footer_bf9a09d.css">
+
 </head>
-<body style="">
+<body>
+<#include "include/header.html"/>
 
-<div class="wrapper">
+<div id="content" class="clearfix" style="min-height: 610px;">
+    <style type="text/css">
+        /*widget.sg*/
+        input::-ms-clear {
+            display: none;
+        }
 
-    <div class="page-header clearfix">
-        <div class="top-nav">
-            <div class="topnav-wrap">
-                <div class="fr welcome">
-    <span id="dis-login" class="top-disloginbar fl">
-        <a class="j-register register-btn fl">注册</a>
-        <span class="lg-divide fl">|</span>
-        <a class="j-login login-btn fl">登录</a>
-    </span>
-                </div>
+        .filter-search .f-input {
+            line-height: 30px;
+        }
+    </style>
 
-
-            </div>
+    <div class="main">
+        <div class="filter-category clearfix">
+            <div class="acrossLine"></div>
+            <ul class="clearfix">
+                <li class="active">菜品分类</li>
+            </ul>
         </div>
-        <div class="middle-nav">
-            <div class="middlenav-wrap clearfix">
+        <section id="f_panel" class="filter-section clearfix">
+            <div class="filter-up clearfix">
+                <ul class="filter-cates clearfix">
+                    <li class="cate-item  item-index-0" data-id="0" data-name="全部">
+                        <div class="item-text">全部</div>
+                    </li>
+                    <li class="cate-item  item-index-1 f-selected" data-id="17" data-name="快食简餐">
 
-                <div class="desire fl">
-                    <a href="#" class="ca-lightgrey"><span>首页</span></a>
-                    <a href="#" class="ca-lightgrey" rel="nofollow"><span>我的订单</span></a>
-                </div>
-                <div class="search-box fr">
-                    <input type="text" class="header-search fl" placeholder="搜索商家，美食">
-                    <a href="javascript:;" class="doSearch fr"></a>
-                </div>
+                        <div class="item-text">快食简餐</div>
+                    </li>
+                </ul>
             </div>
-        </div>
-    </div>
-    <div class="page-wrap">
-        <div class="inner-wrap">
-            <div class="inner-bg">
-                <div class="rest-banner">
-                    <div class="imgsort-wrapper">
-                        <span class="imgsort-filter-title">商家分类</span>
-                        <ul class="clearfix imgsort-content">
-                            <li class="fl selected">
-                                <a href="#" data-cate="cate_all"
-                                   class="imgsort-list" title="全部">
-                                    <span class="imgsort-info">全部</span>
-                                </a>
-                            </li>
-                            <li class="fl ">
-                                <a class="imgsort-list" title="美食"
-                                   href="#" data-cate="910">
-                                    <span class="imgsort-info">美食</span>
-                                </a>
-                            </li>
-                            <li class="fl">
-                                <a class="imgsort-list" title="正餐优选"
-                                   href="#" data-cate="950">
-                                    <span class="imgsort-info">正餐优选</span>
-                                </a>
-                            </li>
-                            <li class="fl">
-                                <a class="imgsort-list" title="超市" href="#"
-                                   data-cate="20">
-                                    <span class="imgsort-info">超市</span>
-                                </a>
-                            </li>
-                            <li class="fl">
-                                <a class="imgsort-list" title="精选小吃"
-                                   href="#" data-cate="100180">
-                                    <span class="imgsort-info">精选小吃</span>
-                                </a>
-                            </li>
-                            <li class="fl">
-                                <a class="imgsort-list" title="鲜果购"
-                                   href="#" data-cate="21">
-                                    <span class="imgsort-info">鲜果购</span>
-                                </a>
-                            </li>
-                            <li class="fl">
-                                <a class="imgsort-list" title="下午茶"
-                                   href="#" data-cate="940">
-                                    <span class="imgsort-info">下午茶</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="divider"></div>
-
-                </div>
-                <div class="rest-list">
-                    <ul class="list clearfix">
-                        <li class="fl rest-li">
-                            <div class="j-rest-outer rest-outer transition">
-                                <div data-title="比萨到(常营店)"
-                                     data-bulletin="各位小主，我们标配餐具是手套哦，如需其他餐具可在备注里添加哦。目前营业时间为早9:00-夜间02:00。给您带来的不便敬请谅解。最新推出：外带比萨馅料双倍不加价的活动，双倍馅料更美味，详情可到店咨询或人工客服哦~"
-                                     class="restaurant">
-                                    <a class="rest-atag" href="#"
-                                       target="_blank" data-pos="1">
-                                        <div class="top-content">
-                                            <div class="preview">
-                                                <img class="scroll-loading"
-                                                     src="/themes/front/image/f759d7c09982a7c64be03c30c39da4ed440805.png"
-                                                     data-max-width="208" data-max-height="156">
-                                                <div class="rest-tags"></div>
-                                            </div>
-                                            <div class="content">
-                                                <div class="name">
-                                                    <span>比萨到(常营店)</span>
-                                                </div>
-                                                <div class="rank clearfix">
-                  <span class="star-ranking fl">
-                    <!-- 5颗星60px长度，算此时星级的长度 -->
-                      <!-- 算出空白填充的部分长度 -->
-                    <span class="star-score" style="width: 71px"></span></span>
-                                                    <span class="score-num fl">4.9分</span>
-                                                </div>
-                                                <div class="price">
-                                                    <span class="start-price">起送:￥0</span>
-                                                    <span class="send-price">配送费:￥7</span>
-                                                    <span class="send-time"><i class="icon i-poi-timer"></i>30分钟</span>
-                                                </div>
-                                            </div>
-                                            <div class="clear"></div>
-                                        </div>
-                                    </a>
-                                </div>
+        </section>
+        <section class="shop-list" id="shop-list">
+            <div class="list-wrap">
+                <div class="list clearfix">
+                    <ul class="shopcards-list">
+                        <li class="list-item shopcard  online">
+                            <div class="shopimg">
+                                <img width="228" height="140" alt="DQ冰淇淋（合生汇店）"
+                                     src="http://img.waimai.baidu.com/pb/f87d340e58ad3905d5fef6026fdac6cdc3">
                             </div>
-                        </li>
-                        <li class="fl rest-li">
-                            <div class="j-rest-outer rest-outer transition">
-                                <div data-title="比萨到(常营店)"
-                                     data-bulletin="各位小主，我们标配餐具是手套哦，如需其他餐具可在备注里添加哦。目前营业时间为早9:00-夜间02:00。给您带来的不便敬请谅解。最新推出：外带比萨馅料双倍不加价的活动，双倍馅料更美味，详情可到店咨询或人工客服哦~"
-                                     class="restaurant">
-                                    <a class="rest-atag" href="#"
-                                       target="_blank" data-pos="1">
-                                        <div class="top-content">
-                                            <div class="preview">
-                                                <img class="scroll-loading"
-                                                     src="/themes/front/image/f759d7c09982a7c64be03c30c39da4ed440805.png"
-                                                     data-max-width="208" data-max-height="156">
-                                                <div class="rest-tags"></div>
-                                            </div>
-                                            <div class="content">
-                                                <div class="name">
-                                                    <span>比萨到(常营店)</span>
-                                                </div>
-                                                <div class="rank clearfix">
-                  <span class="star-ranking fl">
-                    <!-- 5颗星60px长度，算此时星级的长度 -->
-                      <!-- 算出空白填充的部分长度 -->
-                    <span class="star-score" style="width: 71px"></span></span>
-                                                    <span class="score-num fl">4.9分</span>
-                                                </div>
-                                                <div class="price">
-                                                    <span class="start-price">起送:￥0</span>
-                                                    <span class="send-price">配送费:￥7</span>
-                                                    <span class="send-time"><i class="icon i-poi-timer"></i>30分钟</span>
-                                                </div>
-                                            </div>
-                                            <div class="clear"></div>
-                                        </div>
-                                    </a>
-                                </div>
+                            <div class="title" title="DQ冰淇淋（合生汇店）"> DQ冰淇淋<span class="cert-icon"><img
+                                    src="/themes/front/index_files/certificated_s.png"></span>
                             </div>
-                        </li>
-                        <li class="fl rest-li">
-                            <div class="j-rest-outer rest-outer transition">
-                                <div data-title="比萨到(常营店)"
-                                     data-bulletin="各位小主，我们标配餐具是手套哦，如需其他餐具可在备注里添加哦。目前营业时间为早9:00-夜间02:00。给您带来的不便敬请谅解。最新推出：外带比萨馅料双倍不加价的活动，双倍馅料更美味，详情可到店咨询或人工客服哦~"
-                                     class="restaurant">
-                                    <a class="rest-atag" href="#"
-                                       target="_blank" data-pos="1">
-                                        <div class="top-content">
-                                            <div class="preview">
-                                                <img class="scroll-loading"
-                                                     src="/themes/front/image/f759d7c09982a7c64be03c30c39da4ed440805.png"
-                                                     data-max-width="208" data-max-height="156">
-                                                <div class="rest-tags"></div>
-                                            </div>
-                                            <div class="content">
-                                                <div class="name">
-                                                    <span>比萨到(常营店)</span>
-                                                </div>
-                                                <div class="rank clearfix">
-                  <span class="star-ranking fl">
-                    <!-- 5颗星60px长度，算此时星级的长度 -->
-                      <!-- 算出空白填充的部分长度 -->
-                    <span class="star-score" style="width: 71px"></span></span>
-                                                    <span class="score-num fl">4.9分</span>
-                                                </div>
-                                                <div class="price">
-                                                    <span class="start-price">起送:￥0</span>
-                                                    <span class="send-price">配送费:￥7</span>
-                                                    <span class="send-time"><i class="icon i-poi-timer"></i>30分钟</span>
-                                                </div>
-                                            </div>
-                                            <div class="clear"></div>
-                                        </div>
-                                    </a>
-                                </div>
+                            <div class="info s-info clearfix">
+                                <div class="f-col f-star star-control" data-star="4.8"><span class="rate">                    <span
+                                        class="rate-inner" style="width:69.12px"></span>                </span></div>
+                                <div class="f-col f-sale"> 合生汇店</div>
                             </div>
-                        </li>
-                        <li class="fl rest-li">
-                            <div class="j-rest-outer rest-outer transition">
-                                <div data-title="比萨到(常营店)"
-                                     data-bulletin="各位小主，我们标配餐具是手套哦，如需其他餐具可在备注里添加哦。目前营业时间为早9:00-夜间02:00。给您带来的不便敬请谅解。最新推出：外带比萨馅料双倍不加价的活动，双倍馅料更美味，详情可到店咨询或人工客服哦~"
-                                     class="restaurant">
-                                    <a class="rest-atag" href="#"
-                                       target="_blank" data-pos="1">
-                                        <div class="top-content">
-                                            <div class="preview">
-                                                <img class="scroll-loading"
-                                                     src="/themes/front/image/f759d7c09982a7c64be03c30c39da4ed440805.png"
-                                                     data-max-width="208" data-max-height="156">
-                                                <div class="rest-tags"></div>
-                                            </div>
-                                            <div class="content">
-                                                <div class="name">
-                                                    <span>比萨到(常营店)</span>
-                                                </div>
-                                                <div class="rank clearfix">
-                  <span class="star-ranking fl">
-                    <!-- 5颗星60px长度，算此时星级的长度 -->
-                      <!-- 算出空白填充的部分长度 -->
-                    <span class="star-score" style="width: 71px"></span></span>
-                                                    <span class="score-num fl">4.9分</span>
-                                                </div>
-                                                <div class="price">
-                                                    <span class="start-price">起送:￥0</span>
-                                                    <span class="send-price">配送费:￥7</span>
-                                                    <span class="send-time"><i class="icon i-poi-timer"></i>30分钟</span>
-                                                </div>
-                                            </div>
-                                            <div class="clear"></div>
-                                        </div>
-                                    </a>
+                            <div class="info f-info clearfix">
+                                <div class="f-col f-price"><span class="item-label">售价:</span> <span class="item-value">¥20</span>
                                 </div>
-                            </div>
-                        </li>
-                        <li class="rest-separate j-rest-separate"></li>
-                        <li class="fl rest-li">
-                            <div class="j-rest-outer rest-outer transition">
-                                <div data-title="比萨到(常营店)"
-                                     data-bulletin="各位小主，我们标配餐具是手套哦，如需其他餐具可在备注里添加哦。目前营业时间为早9:00-夜间02:00。给您带来的不便敬请谅解。最新推出：外带比萨馅料双倍不加价的活动，双倍馅料更美味，详情可到店咨询或人工客服哦~"
-                                     class="restaurant">
-                                    <a class="rest-atag" href="#"
-                                       target="_blank" data-pos="1">
-                                        <div class="top-content">
-                                            <div class="preview">
-                                                <img class="scroll-loading"
-                                                     src="/themes/front/image/f759d7c09982a7c64be03c30c39da4ed440805.png"
-                                                     data-max-width="208" data-max-height="156">
-                                                <div class="rest-tags"></div>
-                                            </div>
-                                            <div class="content">
-                                                <div class="name">
-                                                    <span>比萨到(常营店)</span>
-                                                </div>
-                                                <div class="rank clearfix">
-                  <span class="star-ranking fl">
-                    <!-- 5颗星60px长度，算此时星级的长度 -->
-                      <!-- 算出空白填充的部分长度 -->
-                    <span class="star-score" style="width: 71px"></span></span>
-                                                    <span class="score-num fl">4.9分</span>
-                                                </div>
-                                                <div class="price">
-                                                    <span class="start-price">起送:￥0</span>
-                                                    <span class="send-price">配送费:￥7</span>
-                                                    <span class="send-time"><i class="icon i-poi-timer"></i>30分钟</span>
-                                                </div>
-                                            </div>
-                                            <div class="clear"></div>
-                                        </div>
-                                    </a>
+                                <div class="f-col f-cost"><span class="item-label">配送:</span> <span class="item-value">¥6</span>
                                 </div>
+                                <div class="f-col f-time"> 44分钟</div>
                             </div>
+                            <div class="feature"></div>
                         </li>
                     </ul>
                 </div>
+                <div class="loading hide">
+                    <img src="/themes/front/index_files/load-more_3e34c85.gif" width="32" height="32">
+                </div>
             </div>
+        </section>
 
-        </div>
     </div>
 
 </div>
-
 </body>
 </html>

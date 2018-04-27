@@ -1,0 +1,1 @@
+define("waimai:widget/menu/basicinfo/basicinfo",function(i,a,n){n.exports={init:function(i){var a=i.shop_logo;if(a){var n=$(".b-img img");n.attr("src",n.data("src"))}}}});
