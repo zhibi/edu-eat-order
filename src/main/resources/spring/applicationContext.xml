@@ -10,17 +10,11 @@
        http://www.springframework.org/schema/task
        http://www.springframework.org/schema/task/spring-task.xsd">
 
-    <!-- 控件注入 -->
 
-    <context:component-scan base-package="school">
-        <context:include-filter type="annotation"
-                                expression="org.springframework.stereotype.Component" />
-    </context:component-scan>
-
-    <context:property-placeholder location="classpath:*.properties" />
+    <context:property-placeholder location="classpath:db.properties" />
 
     <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
-        <!-- Connection Product -->
+        <!-- Connection Info -->
         <property name="driverClassName" value="${db.driver}" />
         <property name="url" value="${db.url}" />
         <property name="username" value="${db.username}" />
@@ -39,10 +33,10 @@
         <property name="testWhileIdle" value="${druid.testWhileIdle}" />
         <property name="testOnBorrow" value="${druid.testOnBorrow}" />
         <property name="testOnReturn" value="${druid.testOnReturn}" />
-        <!-- 配置监控统计拦截的filters -->
-        <property name="filters" value="stat" />
     </bean>
 
+    <!-- 开启注解定时任务 -->
+    <task:annotation-driven />
 
     <import resource="applicationContext-dao.xml" />
     <import resource="applicationContext-service.xml" />

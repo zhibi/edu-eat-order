@@ -8,9 +8,10 @@
 		<property name="dataSource" ref="dataSource" />
 		<property name="mapperLocations">
 			<array>
-				<value>classpath:mapper/**/*.xml</value>
+				<value>classpath:mapper/*.xml</value>
 			</array>
 		</property>
+		<property name="typeAliasesPackage" value="com.school.food.domain.*" />
 		<property name="plugins">
 			<array>
 				<bean class="com.github.pagehelper.PageHelper"></bean>
@@ -19,7 +20,7 @@
 	</bean>
 
 	<bean class="tk.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage" value="school.mapper" />
+		<property name="basePackage" value="com.school.food.mapper" />
 		<property name="markerInterface" value="tk.mybatis.mapper.common.Mapper"/>
 	</bean>
 </beans>
