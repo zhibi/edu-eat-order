@@ -72,4 +72,13 @@ public class AdminController extends AdminBaseController {
         session.removeAttribute(SESSION_ADMIN);
         return Response.ok("business");
     }
+
+    /**
+     * 商家个人信息
+     * @return
+     */
+    @RequestMapping("info")
+    public String info(){
+        return "admin/info";
+    }
 }
