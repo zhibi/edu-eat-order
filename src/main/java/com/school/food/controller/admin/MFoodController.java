@@ -3,24 +3,20 @@ package com.school.food.controller.admin;
 import com.github.pagehelper.PageInfo;
 import com.school.food.domain.Category;
 import com.school.food.domain.Food;
-import com.school.food.domain.FoodImg;
 import com.school.food.mapper.CategoryMapper;
 import com.school.food.model.FoodModel;
-import com.school.food.service.FoodImgService;
 import com.school.food.service.FoodService;
 import com.school.support.base.AdminBaseController;
 import com.school.support.base.Page;
 import com.school.support.example.Example;
 import com.school.support.example.ExampleType;
 import com.school.support.exception.MessageException;
-import com.school.support.response.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Date;
@@ -36,8 +32,6 @@ public class MFoodController extends AdminBaseController {
     @Autowired
     private FoodService foodService;
     @Autowired
-    private FoodImgService foodImgService;
-    @Autowired
     private CategoryMapper categoryMapper;
 
     @RequestMapping("list")
@@ -45,7 +39,10 @@ public class MFoodController extends AdminBaseController {
         Example example = Example.getInstance()
                 .addParam("f.name", foodModel.getName(), ExampleType.Operation.LIKE)
                 .addOrder("f.addtime");
-        PageInfo<FoodModel> pageInfo = foodService.selectModel(example,  page);
+        if (!sessionAdmin().getUsername().equals("admin")) {
+            example.addParam("f.businessid", sessionAdmin().getId());
+        }
+        PageInfo<FoodModel> pageInfo = foodService.selectModel(example, page);
         setModelAttribute(model, pageInfo);
         return "admin/food/list";
     }
@@ -67,65 +64,42 @@ public class MFoodController extends AdminBaseController {
         if (null == food) {
             throw new MessageException("该餐品不存在");
         }
-        List<FoodImg> foodImgs = foodImgService.selectByFood(id);
         model.addAttribute(food);
-        model.addAttribute(foodImgs);
 
         List<Category> categoryList = categoryMapper.selectAll();
-        model.addAttribute("categoryList",categoryList);
+        model.addAttribute("categoryList", categoryList);
         return "admin/food/detail";
     }
 
     @RequestMapping("updateFood")
-    public String updateFood(Food food, @RequestParam MultipartFile[] icons, MultipartFile img) {
-        saveFoodImg(food, icons, img);
+    public String updateFood(Food food, @RequestParam MultipartFile icons) {
+        saveFoodImg(food, icons);
         return redirect("detail/" + food.getId());
     }
 
-    @RequestMapping("removeImg")
-    @ResponseBody
-    public Response<String> removeImg(Integer id) {
-        foodImgService.deleteByPK(id);
-        return Response.ok("");
-    }
 
     @RequestMapping("add")
     public String add(Model model) {
         List<Category> categoryList = categoryMapper.selectAll();
-        model.addAttribute("categoryList",categoryList);
+        model.addAttribute("categoryList", categoryList);
         return "admin/food/add";
     }
 
     @RequestMapping("save")
-    public String save(Food food, @RequestParam MultipartFile[] icons, MultipartFile img) {
+    public String save(Food food, @RequestParam MultipartFile icons) {
         food.setAddtime(new Date());
         food.setTimes(0);
+        food.setBusinessid(sessionAdmin().getId());
+        food.setSort(0);
         foodService.insertSelective(food);
-        saveFoodImg(food, icons, img);
+        saveFoodImg(food, icons);
         return redirect("detail/" + food.getId());
     }
 
-    private void saveFoodImg(Food food, MultipartFile[] icons, MultipartFile img) {
-        if (icons.length > 0) {
-            for (MultipartFile file : icons) {
-                if (!file.isEmpty()) {
-                    FoodImg foodImg = new FoodImg();
-                    foodImg.setAddtime(new Date());
-                    foodImg.setFoodId(food.getId());
-                    foodImg.setName(file.getOriginalFilename());
+    private void saveFoodImg(Food food, MultipartFile icons) {
 
-                    foodImg.setPath(saveFile(file));
-
-                    foodImgService.insertSelective(foodImg);
-                    food.setIcon(foodImg.getPath());
-                }
-            }
-        }
-        if (null != img && !img.isEmpty()) {
-
-            food.setIcon(saveFile(img));
-
-
+        if (!icons.isEmpty()) {
+            food.setIcon(saveFile(icons));
         }
         foodService.updateByPKSelective(food);
     }

@@ -64,25 +64,12 @@
                                             </div>
 
                                             <div class="form-group has-info">
-                                                <label class="col-xs-12 col-sm-3 control-label no-padding-right">添加展示图</label>
+                                                <label class="col-xs-12 col-sm-3 control-label no-padding-right">展示图</label>
                                                 <div class="col-xs-12 col-sm-5">
-                                                    <input type="file" id="icon" class="width-100" name="icons" multiple/>
+                                                    <input type="file" id="icon" class="width-100" name="icons"/>
                                                 </div>
                                             </div>
 
-                                            <div class="form-group has-info">
-                                                <label class="col-xs-12 col-sm-3 control-label no-padding-right">描述</label>
-                                                <div class="col-xs-12 col-sm-5">
-														<textarea class="autosize-transition form-control" name="descript"></textarea>
-                                                </div>
-                                            </div>
-
-                                            <div class="form-group has-info">
-                                                <div class="col-xs-1"></div>
-                                                <div class="col-xs-12 col-sm-10">
-                                                    <textarea id="editor" name="content" style="width: 100%;"></textarea>
-                                                </div>
-                                            </div>
                                             <hr/>
                                             <div class="row-fluid wizard-actions">
                                                 <button class="btn" type="reset">重置</button>
@@ -104,8 +91,7 @@
 </body>
 <#include "../include/resource-script.ftl"/>
 <script type="text/javascript">
-    uploadMostFile("icon");
-    uploadFile("img",null);
+    uploadFile("icon",null);
 
 
 </script>

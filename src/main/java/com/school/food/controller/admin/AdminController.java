@@ -10,6 +10,7 @@ import com.school.support.exception.TipException;
 import com.school.support.response.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -21,8 +22,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class AdminController extends AdminBaseController {
 
-    @Autowired
-    private UserService userService;
     @Autowired
     private BusinessService businessService;
 
@@ -62,13 +61,13 @@ public class AdminController extends AdminBaseController {
         if (!pwd.equals(pwd2)) {
             throw new MessageException("两次密码不一样");
         }
-        User user = sessionAdmin();
-        user = userService.selectByPK(user.getId());
-        if (!user.getPassword().equalsIgnoreCase(password)) {
+        Business business = sessionAdmin();
+        business = businessService.selectByPK(business.getId());
+        if (!business.getPassword().equalsIgnoreCase(password)) {
             throw new MessageException("原密码不对");
         }
-        user.setPassword(password);
-        userService.updateByPKSelective(user);
+        business.setPassword(password);
+        businessService.updateByPKSelective(business);
         session.removeAttribute(SESSION_ADMIN);
         return Response.ok("business");
     }
@@ -78,7 +77,9 @@ public class AdminController extends AdminBaseController {
      * @return
      */
     @RequestMapping("info")
-    public String info(){
+    public String info(Model model){
+        Business business = businessService.selectByPK(sessionAdmin().getId());
+        model.addAttribute(business);
         return "admin/info";
     }
 }

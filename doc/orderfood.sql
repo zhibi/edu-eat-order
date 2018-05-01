@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50639
 File Encoding         : 65001
 
-Date: 2018-04-28 16:08:12
+Date: 2018-05-02 06:11:41
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -29,13 +29,15 @@ CREATE TABLE `business` (
   `phone` varchar(255) DEFAULT NULL,
   `free` varchar(255) DEFAULT NULL,
   `address` varchar(255) DEFAULT NULL,
+  `icon` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of business
 -- ----------------------------
-INSERT INTO `business` VALUES ('1', 'admin', '1234', null, null, null, null, null, null);
+INSERT INTO `business` VALUES ('1', 'admin', '1234', null, null, null, null, null, null, null);
+INSERT INTO `business` VALUES ('2', 'b1', '1234', '1.sddd\r\n2.dasdas\r\n3。打撒所多', '测试商家', '2018-05-02 03:23:37', '15302074359', '20.0', '北京小胡同', null);
 
 -- ----------------------------
 -- Table structure for category
@@ -45,11 +47,14 @@ CREATE TABLE `category` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of category
 -- ----------------------------
+INSERT INTO `category` VALUES ('1', '盖饭');
+INSERT INTO `category` VALUES ('3', '稀饭');
+INSERT INTO `category` VALUES ('4', '饮料');
 
 -- ----------------------------
 -- Table structure for food
@@ -68,15 +73,14 @@ CREATE TABLE `food` (
   `name` varchar(255) DEFAULT NULL,
   `price` decimal(10,2) DEFAULT NULL,
   `times` int(11) DEFAULT '0',
+  `businessid` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of food
 -- ----------------------------
-INSERT INTO `food` VALUES ('1', '鼎折覆餗发发生的方式大概是5', '99', '刚放电饭锅电饭锅电饭锅电饭锅5', '干果', '2', '2017-03-09 08:51:04', '1', 'jpg/6/1/6287b7f359a1476cbae4952405cd1a61.jpg', '破洞男裤2', '27.00', '0');
-INSERT INTO `food` VALUES ('2', '<img src=\"/data/jpg/4/4/42f78fcf511a42818d95260fd4cb4dc4.jpg\" alt=\"\" />', null, 'fdsdfs3', '盖饭', '9', '2017-03-17 19:51:06', '1', 'jpg/b/0/b231a318b9d2414399b43ee965419a40.jpg', 'sss3', '26.00', '0');
-INSERT INTO `food` VALUES ('3', 'dasdasda', null, 'dsds', '炒菜', null, '2017-03-28 21:02:17', '1', 'jpg/c/2/c6a6e7a6db1b41e7bc51f866e8cba822.jpg', '123', '333.00', '0');
+INSERT INTO `food` VALUES ('4', null, '99', null, '稀饭', '0', '2018-05-02 03:56:54', '1', '/data/c6e2fc9b-421e-44a0-a0f1-59d60bdad308.JPG', '测试', '888.00', '0', '2');
 
 -- ----------------------------
 -- Table structure for orders
@@ -96,15 +100,14 @@ CREATE TABLE `orders` (
   `sendtime` datetime DEFAULT NULL,
   `receivetime` datetime DEFAULT NULL,
   `ids` varchar(255) DEFAULT NULL,
+  `phone` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of orders
 -- ----------------------------
-INSERT INTO `orders` VALUES ('9', 'f8f002e1703281515745694', '2017-03-28 19:33:28', '273.00', '1', 'e', '8', '2017-03-28 19:33:28', 'q', 'w', null, null, '1,2,');
-INSERT INTO `orders` VALUES ('10', 'ee282b11703291099707389', '2017-03-29 20:04:11', '445.00', '1', '456', '8', '2017-03-29 20:04:11', '123', '345', null, null, '5,4,3,');
-INSERT INTO `orders` VALUES ('11', '9e9efe71-7c45-47b2-a968-ae0bd1deb342', '2018-04-14 05:09:55', '28.00', '1', '1', '10', '2018-04-14 05:09:55', 'fffw', '1', null, null, '6,');
+INSERT INTO `orders` VALUES ('12', '0816730d-4549-42a7-bf80-0cc0dd9a03ca', '2018-05-02 05:35:21', '1778.00', '1', '4', '8', '2018-05-02 05:35:21', '1', '3', null, null, '7,', '2');
 
 -- ----------------------------
 -- Table structure for order_item
@@ -119,17 +122,12 @@ CREATE TABLE `order_item` (
   `status` int(255) DEFAULT '0',
   `addtime` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of order_item
 -- ----------------------------
-INSERT INTO `order_item` VALUES ('1', '2', '236', '9', '8', '1', '2017-03-27 19:47:28');
-INSERT INTO `order_item` VALUES ('2', '1', '27', '1', '8', '1', '2017-03-27 19:23:09');
-INSERT INTO `order_item` VALUES ('3', '1', '81', '3', '8', '1', '2017-03-29 20:03:01');
-INSERT INTO `order_item` VALUES ('4', '3', '333', '1', '8', '1', '2017-03-29 20:03:26');
-INSERT INTO `order_item` VALUES ('5', '2', '26', '1', '8', '1', '2017-03-29 20:03:28');
-INSERT INTO `order_item` VALUES ('6', '1', '27', '1', '10', '1', '2018-04-14 05:09:34');
+INSERT INTO `order_item` VALUES ('7', '4', '1776', '2', '8', '1', '2018-05-02 05:12:31');
 
 -- ----------------------------
 -- Table structure for user
@@ -148,5 +146,5 @@ CREATE TABLE `user` (
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES ('8', '15302074359', 'admin', '1234', '1', '2017-03-09 08:41:26');
+INSERT INTO `user` VALUES ('8', '15302074359', 'test', '1234', '1', '2017-03-09 08:41:26');
 INSERT INTO `user` VALUES ('10', '17346512586', '执笔2', '1234', '1', '2018-04-14 04:54:41');

@@ -1,6 +1,7 @@
 package com.school.support.base;
 
 
+import com.school.food.domain.Business;
 import com.school.food.domain.User;
 
 /**
@@ -8,8 +9,8 @@ import com.school.food.domain.User;
  */
 public abstract class AdminBaseController extends BaseController {
 
-    protected User sessionAdmin() {
-        return (User) session.getAttribute(SESSION_ADMIN);
+    protected Business sessionAdmin() {
+        return (Business) session.getAttribute(SESSION_ADMIN);
     }
 
 }

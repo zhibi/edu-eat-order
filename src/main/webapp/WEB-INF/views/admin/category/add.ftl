@@ -1,10 +1,13 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <#include "../include/resource-head.ftl"/>
-<#assign active='configList'/>
+<#assign active='categoryAdd'/>
 <body>
+<#include "../include/common-top.ftl"/>
 <div class="main-container" id="main-container">
     <div class="main-container-inner">
+    <#include "../include/common-menu.ftl"/>
+        <div class="main-content">
             <div class="page-content">
                 <div class="col-xs-12">
                     <div class="row-fluid">

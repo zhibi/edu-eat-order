@@ -1,9 +1,12 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <#include "../include/resource-head.ftl"/>
+<#assign active='categoryList'/>
 <body>
 <div class="main-container" id="main-container">
     <div class="main-container-inner">
+    <#include "../include/common-menu.ftl"/>
+        <div class="main-content">
             <div class="page-content">
                 <div class="row">
                     <div class="col-xs-12">

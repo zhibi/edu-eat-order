@@ -27,7 +27,7 @@
     <link rel="stylesheet" type="text/css" href="/themes/front/pay_files/commit_21af7b1.css">
     <link rel="stylesheet" type="text/css" href="/themes/front/pay_files/verifyphone_ce8c9cf.css">
     <link rel="stylesheet" type="text/css" href="/themes/front/pay_files/address_be19f67.css">
-
+<script src="/themes/jquery-1.4.4.min.js"></script>
 </head>
 <body>
 
@@ -35,56 +35,40 @@
 <div id="content" class="clearfix" style="min-height: 610px;">
     <div class="main">
         <section class="breadcrumb">
-            <a href="/">首页</a>
-            <i>&gt;</i>
-            <a href="/">大懒龙（双子店）</a><i>&gt;</i>
             <span>确认订单</span>
         </section>
         <div class="main-l">
             <div class="empty clearfix"></div>
             <section id="commit_cart" class="cart-section fl">
                 <div class="cart" data-node="cart">
-                    <div class="title">
-                        <div onclick="javascript:window.location='';">
-                            <i></i>
-                            <span>返回购物车修改</span>
-                        </div>
-                    </div>
                     <div class="cart-panel">
                         <table>
                             <thead class="cart-head">
                             <tr>
                                 <td class="item-name">菜品</td>
-                                <td class="item-price">单价</td>
                                 <td class="item-count">份数</td>
                                 <td class="item-price-all">金额</td>
+                                <td class="item-price-all">操作</td>
                                 <td class="item-takeplace"></td>
                             </tr>
                             </thead>
                             <tbody class="item-list">
+                            <#list modelList as item>
                             <tr class="item " data-stockid="" id="cartItem_1735513608">
-                                <td class="item-name">蜜汁脆皮鸡饭</td>
-                                <td class="item-price">¥37.99</td>
-                                <td class="item-count"><input type="hidden" value="1735513608"><span class="item-count">1</span>
-                                </td>
-                                <td class="item-price-all">¥37.99</td>
+                                <td class="item-name">${item.foodName}</td>
+                                <td class="item-count">${item.count}</td>
+                                <td class="item-price">¥${item.price!}</td>
+                                <td class="item-price"><a href="/order/delItem/${item.id}">删除</a></td>
                                 <td class="item-takeplace"></td>
                             </tr>
-                            </tbody>
-                        </table>
-                        <table class="collect">
-                            <tbody>
-                            <tr class="item" data-node="sendPrice" style="">
-                                <td class="item-name" colspan="3">配送费</td>
-                                <td class="item-price-all">¥<span id="sendFee">4</span></td>
-                                <td class="item-takeplace"></td>
-                            </tr>
+                            </#list>
+
                             </tbody>
                         </table>
                         <div class="bottom-div">
 
                             <div class="order-msg">
-                                总价：<span class="order-total">¥<span id="total_money">44.99</span></span>
+                                总价：<span class="order-total">¥<span id="total_money">${money!0}</span></span>
                                 <p data-node="discountMsg" style="display: none;"></p>
                             </div>
                             <div class="clearfix"></div>
@@ -95,76 +79,76 @@
                 <div class="cart-bottom"></div>
             </section>
             <section class="delivery fl" id="delivery">
-                <input type="hidden" value="0" data-node="left-check-count-down">
-                <input type="hidden" value="" data-node="left-check-vercode">
-                <ul class="delivery-ul">
-                    <li class="addr-list-li">
-                        <div class="addr-detail new-address-section">
-                            <table class="addr-table" border="0">
-                                <tbody>
-                                <tr>
-                                    <td valign="top"><span
-                                            class="l-label">姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名</span></td>
-                                    <td><input type="hidden" value="" name="adrr_id">
-                                        <div class="form-group">
-                                            <div class="input-control"><input type="text" name="user_name"
-                                                                              placeholder="您的姓名" value=""
-                                                                              class="placeholder-con"> <span
-                                                    class="star">*</span></div>
-                                            <div class="error-msg v-hide"></div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td valign="top"><span
-                                            class="l-label">电&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;话</span></td>
-                                    <td>
-                                        <div class="form-group">
-                                            <div class="input-control"><input type="text" name="user_phone"
-                                                                              placeholder="11位手机号" value=""
-                                                                              class="placeholder-con"> <span
-                                                    class="star">*</span></div>
-                                            <div class="error-msg v-hide"></div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td valign="top"><span
-                                            class="l-label">位&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;置</span></td>
-                                    <td>
-                                        <div class="form-group">
-                                            <div class="input-control poi_address"><i class="addr-icon-input"></i>
-                                                <input type="text" name="sug_address" placeholder="请输入小区、大厦或学校"
-                                                       value="" class="placeholder-con poi_address"> <span
-                                                        class="star">*</span>
+                <form action="/order/pay" method="post">
+                    <ul class="delivery-ul">
+                        <li class="addr-list-li">
+                            <div class="addr-detail new-address-section">
+                                <table class="addr-table" border="0">
+                                    <tbody>
+                                    <tr>
+                                        <td valign="top"><span
+                                                class="l-label">姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名</span></td>
+                                        <td>
+                                            <div class="form-group">
+                                                <div class="input-control"><input type="text" name="receiveuser"
+                                                                                  placeholder="您的姓名" value=""
+                                                                                  class="placeholder-con"> <span
+                                                        class="star">*</span></div>
+                                                <div class="error-msg v-hide"></div>
                                             </div>
-                                            <div class="error-msg v-hide"></div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td valign="top"><span class="l-label">备注</span></td>
-                                    <td>
-                                        <div class="form-group">
-                                            <div class="input-control"><input type="text" name="detail_address"
-                                                                              class="placeholder-con">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td valign="top"><span
+                                                class="l-label">电&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;话</span></td>
+                                        <td>
+                                            <div class="form-group">
+                                                <div class="input-control"><input type="text" name="phone"
+                                                                                  placeholder="11位手机号" value=""
+                                                                                  class="placeholder-con"> <span
+                                                        class="star">*</span></div>
+                                                <div class="error-msg v-hide"></div>
                                             </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="delivery-lable">
-                            <span class="lable"></span>
-                        </div>
-                        <div class="delivery-input hide delivery-btn" style="display: block;">
-                            <span id="orderSubmit"><h2>确认下单</h2></span>
-                        </div>
-                    </li>
-                </ul>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td valign="top"><span
+                                                class="l-label">位&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;置</span></td>
+                                        <td>
+                                            <div class="form-group">
+                                                <div class="input-control ">
+                                                    <input type="text" name="receiveaddress" placeholder="请输入小区、大厦或学校"
+                                                           value="" class="placeholder-con poi_address"> <span
+                                                            class="star">*</span>
+                                                </div>
+                                                <div class="error-msg v-hide"></div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td valign="top"><span class="l-label">备注</span></td>
+                                        <td>
+                                            <div class="form-group">
+                                                <div class="input-control"><input type="text" name="remark"
+                                                                                  class="placeholder-con">
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="delivery-lable">
+                                <span class="lable"></span>
+                            </div>
+                            <div class="delivery-input hide delivery-btn" style="display: block;">
+                                <span id="orderSubmit" onclick="$('form').submit()"><h2>确认下单</h2></span>
+                            </div>
+                        </li>
+                    </ul>
+                </form>
             </section>
             <div class="empty clearfix"></div>
         </div>

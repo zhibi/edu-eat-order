@@ -21,7 +21,7 @@
                                 <div class="widget-main">
                                     <div class="step-content row-fluid position-relative">
                                         <form class="form-horizontal" action="/admin/food/updateFood" method="post"
-                                              enctype="multipart/form-data" onsubmit="return form_submit()">
+                                              enctype="multipart/form-data" >
                                             <input type="hidden" name="id" value="${food.id!}"/>
                                             <div class="form-group has-info">
                                                 <label class="col-xs-12 col-sm-3 control-label no-padding-right">餐品名称</label>
@@ -73,41 +73,12 @@
 
                                             <div class="form-group has-info">
                                                 <label class="col-xs-12 col-sm-3 control-label no-padding-right">展示图</label>
-                                                <div class="col-xs-12 col-sm-6">
-                                                    <#if foodImgList??>
-                                                        <#list foodImgList as item>
-                                                            <div class="col-sm-3">
-                                                                <img src="/data/${item.path!}" width="120px" height="120px">
-                                                                <a class="btn btn-primary btn-sm" onclick="removeImg('${item.id}')">移除</a>
-                                                            </div>
-                                                        </#list>
-                                                    </#if>
-                                                </div>
-                                            </div>
-
-                                            <div class="form-group has-info">
-                                                <label class="col-xs-12 col-sm-3 control-label no-padding-right">添加展示图</label>
                                                 <div class="col-xs-12 col-sm-5">
-                                                    <input type="file" id="icon" class="width-100" name="icons" multiple/>
+                                                    <input type="file" id="icon" class="width-100" name="icons"/>
                                                 </div>
                                             </div>
 
-                                            <div class="form-group has-info">
-                                                <label
-                                                        class="col-xs-12 col-sm-3 control-label no-padding-right">描述</label>
-                                                <div class="col-xs-12 col-sm-5">
-														<textarea class="autosize-transition form-control"
-                                                                  name="descript">${food.descript!}</textarea>
-                                                </div>
-                                            </div>
 
-                                            <div class="form-group has-info">
-                                                <div class="col-xs-1"></div>
-                                                <div class="col-xs-12 col-sm-10">
-                                                    <textarea id="editor" name="content"
-                                                              style="width: 100%;">${food.content}</textarea>
-                                                </div>
-                                            </div>
                                             <hr/>
                                             <div class="row-fluid wizard-actions">
                                                 <button class="btn" type="reset">重置</button>
@@ -129,20 +100,7 @@
 </body>
 <#include "../include/resource-script.ftl"/>
 <script type="text/javascript">
-    uploadMostFile("icon");
-    uploadFile("img",<#if food.filePath??>"/data/${food.filePath!}"<#else>null</#if>);
-
-
-    function removeImg(id){
-        $.getJSON("/admin/food/removeImg?id="+id,function(result){
-            if(result.code == 200){
-                alert("移除成功");
-                location.reload();
-            }else{
-                alert(result.message);
-            }
-        })
-    }
+    uploadFile("icon",<#if food.icon??>"${food.icon!}"<#else>null</#if>);
 
 </script>
 </html>

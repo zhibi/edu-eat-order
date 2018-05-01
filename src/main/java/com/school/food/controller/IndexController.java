@@ -1,21 +1,20 @@
 package com.school.food.controller;
 
 import com.github.pagehelper.PageInfo;
+import com.school.food.domain.Business;
 import com.school.food.domain.Category;
 import com.school.food.domain.Food;
 import com.school.food.domain.User;
 import com.school.food.mapper.CategoryMapper;
 import com.school.food.model.FoodModel;
+import com.school.food.service.BusinessService;
 import com.school.food.service.FoodService;
 import com.school.food.service.UserService;
 import com.school.support.base.BaseController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import com.school.support.base.Page;
 import com.school.support.exception.MessageException;
 import com.school.support.example.Example;
@@ -35,12 +34,17 @@ public class IndexController extends BaseController {
     private UserService userService;
     @Autowired
     private CategoryMapper categoryMapper;
+    @Autowired
+    private BusinessService businessService;
 
     @RequestMapping({"/","index"})
-    public String index(Model model) {
+    public String index(Model model,@RequestParam(defaultValue = "") String name,String category) {
         Example example = Example.getInstance()
                 .addOrder("sort", ExampleType.OrderType.DESC);
-        PageInfo<FoodModel> pageInfo = foodService.selectModel(example, new Page(20));
+        example.addParam("f.status",1);
+        example.addParam("(f.name like '%"+name+"%' or b.name like '%"+name+"%')");
+        example.addParam("f.category",category);
+        PageInfo<FoodModel> pageInfo = foodService.selectModel(example, new Page(40));
         model.addAttribute("list", pageInfo.getList());
 
         List<Category> categoryList = categoryMapper.selectAll();
@@ -96,5 +100,26 @@ public class IndexController extends BaseController {
     public String logout(){
         session.removeAttribute(SESSION_USER);
         return redirect("index");
+    }
+
+    /**
+     * 详情
+     * @param id
+     * @param model
+     * @return
+     */
+    @RequestMapping("detail/{id}")
+    public String detail(@PathVariable Integer id,Model model){
+        Business business = businessService.selectByPK(id);
+        model.addAttribute(business);
+
+        Example example = Example.getInstance()
+                .addOrder("sort", ExampleType.OrderType.DESC);
+        example.addParam("businessid",id);
+        example.addParam("status",1);
+        List<Food> foodList = foodService.selectByExample(example);
+
+        model.addAttribute("foodList",foodList);
+        return "business";
     }
 }

@@ -25,7 +25,7 @@ public class Food implements Serializable {
 
     private String category;
 
-    private String sort;
+    private Integer sort;
 
     private Date addtime;
 
@@ -90,11 +90,11 @@ public class Food implements Serializable {
         this.category = category;
     }
 
-    public String getSort() {
+    public Integer getSort() {
         return sort;
     }
 
-    public void setSort(String sort) {
+    public void setSort(Integer sort) {
         this.sort = sort;
     }
 

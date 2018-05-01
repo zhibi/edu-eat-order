@@ -7,13 +7,13 @@ import com.school.food.domain.Food;
  */
 public class FoodModel extends Food {
 
-    private Integer collect;
+    private String  businessName;
 
-    public Integer getCollect() {
-        return collect;
+    public String getBusinessName() {
+        return businessName;
     }
 
-    public void setCollect(Integer collect) {
-        this.collect = collect;
+    public void setBusinessName(String businessName) {
+        this.businessName = businessName;
     }
 }

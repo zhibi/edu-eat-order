@@ -1,12 +1,12 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
-<#include "include/resource-head.ftl"/>
-<#assign active='userList'/>
+<#include "../include/resource-head.ftl"/>
+<#assign active='businessList'/>
 <body>
-<#include "include/common-top.ftl"/>
+<#include "../include/common-top.ftl"/>
 <div class="main-container" id="main-container">
     <div class="main-container-inner">
-    <#include "include/common-menu.ftl"/>
+    <#include "../include/common-menu.ftl"/>
         <div class="main-content">
             <div class="page-content">
                 <div class="col-xs-12">
@@ -70,6 +70,12 @@
                                                 </div>
                                             </div>
 
+                                            <div class="form-group has-info">
+                                                <label class="col-xs-12 col-sm-3 control-label no-padding-right">展示图</label>
+                                                <div class="col-xs-12 col-sm-5">
+                                                    <input type="file" id="icon" class="width-100" name="icons"/>
+                                                </div>
+                                            </div>
 
                                             <hr/>
                                             <div class="row-fluid wizard-actions">
@@ -90,6 +96,10 @@
     </div>
     <!-- /.main-container -->
 </body>
-<#include "include/resource-script.ftl"/>
+<#include "../include/resource-script.ftl"/>
+<script type="text/javascript">
+    uploadFile("icon",<#if business.icon??>"${business.icon!}"<#else>null</#if>);
+
+</script>
 </html>
 

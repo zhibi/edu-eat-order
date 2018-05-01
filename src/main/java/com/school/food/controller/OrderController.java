@@ -31,7 +31,6 @@ import java.util.List;
  */
 @RequestMapping("order")
 @Controller
-@LoginInfo(true)
 public class OrderController extends BaseController {
 
     @Autowired
@@ -43,25 +42,24 @@ public class OrderController extends BaseController {
 
     @RequestMapping("saveItem")
     @ResponseBody
-    public Response<String> saveItem(Integer footId, Integer num) throws Exception {
+    public Response<String> saveItem(Integer footId) throws Exception {
         Food food = foodService.selectByPK(footId);
         if (null == food || food.getStatus() == 0) {
             throw new MessageException("该餐品不存在或者已下架");
         }
-        num = num == null ? 0 : num;
         OrderItem orderItem = new OrderItem();
         orderItem.setUserId(sessionUser().getId());
         orderItem.setFoodId(footId);
         orderItem.setStatus(0);
         OrderItem temp = orderItemService.selectOne(orderItem);
         if (null != temp) {
-            temp.setCount(temp.getCount() + num);
-            temp.setPrice(temp.getPrice() + num * food.getPrice());
+            temp.setCount(temp.getCount() + 1);
+            temp.setPrice(temp.getPrice() + 1 * food.getPrice());
             temp.setAddtime(new Date());
             orderItemService.updateByPKSelective(temp);
         } else {
             orderItem.setFoodId(footId);
-            orderItem.setCount(num);
+            orderItem.setCount(1);
             orderItem.setPrice(food.getPrice());
             orderItem.setAddtime(new Date());
             orderItemService.insert(orderItem);
@@ -74,11 +72,15 @@ public class OrderController extends BaseController {
         Example example = Example.getInstance()
                 .addOrder("o.addtime", ExampleType.OrderType.DESC)
                 .addParam("o.user_id", sessionUser().getId())
-                .addParam("o.status", 0)
-                ;
+                .addParam("o.status", 0);
         List<OrderItemModel> modelList = orderItemService.selectModel(example);
-        model.addAttribute(modelList);
-        return "member/my-car";
+        model.addAttribute("modelList",modelList);
+        double money = 0;
+        for(OrderItemModel itemModel : modelList) {
+            money += itemModel.getPrice();
+        }
+        model.addAttribute("money",money);
+        return "pay";
     }
 
     @RequestMapping("delItem/{id}")
@@ -91,7 +93,7 @@ public class OrderController extends BaseController {
     public String pay(Order order){
         order.setUserId(sessionUser().getId());
         orderService.pay(order);
-        return redirect("myOrder");
+        return refresh();
     }
 
     @RequestMapping("myOrder")
@@ -99,26 +101,12 @@ public class OrderController extends BaseController {
         Example example = Example.getInstance()
                 .addOrder("o.addtime", ExampleType.OrderType.DESC)
                 .addParam("o.user_id", sessionUser().getId())
-                .addOrder("o.status")
-                ;
+                .addOrder("o.status");
         List<OrderModel> modelList = orderService.selectModel(example);
-        model.addAttribute(modelList);
-        return "member/my-order";
-    }
 
-    @RequestMapping("detail/{id}")
-    public String detail(@PathVariable Integer id,Model model){
-        Example example = Example.getInstance()
-                .addParam("o.user_id", sessionUser().getId())
-                .addParam("o.id",id)
-                ;
-        List<OrderModel> modelList = orderService.selectModel(example);
-        if(modelList.size() >0){
-            model.addAttribute("orderModel",modelList.get(0));
-        }else{
-            throw new MessageException("该订单不存在");
-        }
-        return "order/detail";
+
+        model.addAttribute("modelList",modelList);
+        return "order";
     }
 
 }

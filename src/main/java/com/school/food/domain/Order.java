@@ -53,12 +53,21 @@ public class Order implements Serializable {
 
     @Column(name = "Receiveaddress")
     private String receiveaddress;
+    private String phone;
 
     private Date sendtime;
 
     private Date receivetime;
 
     private String ids;
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
 
     public String getIds() {
         return ids;

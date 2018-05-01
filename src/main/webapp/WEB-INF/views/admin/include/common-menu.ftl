@@ -16,6 +16,9 @@
                     <li id="foodList">
                         <a href="/admin/food/list"><i class="icon-leaf"></i>菜品列表</a>
                     </li>
+                    <li id="foodAdd">
+                        <a href="/admin/food/add"><i class="icon-leaf"></i>添加菜品</a>
+                    </li>
                 </ul>
             </li>
 
@@ -27,7 +30,7 @@
                 </a>
                 <ul class="submenu">
                     <li id="noticeAdd">
-                        <a href="/admin/business/info"><i class="icon-plus"></i>个人信息</a>
+                        <a href="/admin/info"><i class="icon-plus"></i>商家信息</a>
                     </li>
 
                 </ul>
@@ -81,10 +84,10 @@
                         <b class="arrow icon-angle-down"></b>
                     </a>
                     <ul class="submenu">
-                        <li id="noticeList">
+                        <li id="businessList">
                             <a href="/admin/business/list"><i class="icon-leaf"></i>商家列表</a>
                         </li>
-                        <li id="noticeAdd">
+                        <li id="businessAdd">
                             <a href="/admin/business/add"><i class="icon-plus"></i>添加商家</a>
                         </li>
 
@@ -101,6 +104,22 @@
                     <ul class="submenu">
                         <li id="orderList">
                             <a href="/admin/order/list"><i class="icon-leaf"></i>所有订单</a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="#" class="dropdown-toggle">
+                        <i class="icon-desktop"></i>
+                        <span class="menu-text">分类管理</span>
+                        <b class="arrow icon-angle-down"></b>
+                    </a>
+                    <ul class="submenu">
+                        <li id="categoryList">
+                            <a href="/admin/category/list"><i class="icon-leaf"></i>分类列表</a>
+                        </li>
+                        <li id="categoryAdd">
+                            <a href="/admin/category/add"><i class="icon-leaf"></i>添加分类</a>
                         </li>
                     </ul>
                 </li>

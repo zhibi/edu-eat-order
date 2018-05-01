@@ -45,6 +45,10 @@
                                         <span>${orderModel.receiveuser!}</span>
                                     </div>
                                     <div class="step-content row-fluid position-relative">
+                                        <label class="label label-info">联系方式:</label>&nbsp;&nbsp;&nbsp;
+                                        <span>${orderModel.phone!}</span>
+                                    </div>
+                                    <div class="step-content row-fluid position-relative">
                                         <label class="label label-danger">收货备注:</label>&nbsp;&nbsp;&nbsp;
                                         <span>${orderModel.remark!}</span>
                                     </div>

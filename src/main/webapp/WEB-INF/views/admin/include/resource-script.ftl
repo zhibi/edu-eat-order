@@ -103,10 +103,6 @@ $(".double").onlyDouble();
         var password = $('input[name="password"]').val();
         var pwd = $('input[name="pwd"]').val();
         var pwd2 = $('input[name="pwd2"]').val();
-        if(password.length == 0){
-            alert("请输入原密码");
-            return;
-        }
         if(pwd.length == 0){
             alert("请输入新密码");
             return;

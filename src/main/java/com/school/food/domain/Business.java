@@ -25,9 +25,27 @@ public class Business implements Serializable {
     private String password;
     private String phone;
     private String address;
+    private String notice;
     private String name;
     private Date addtime;
     private Double free;
+    private String icon;
+
+    public String getIcon() {
+        return icon;
+    }
+
+    public void setIcon(String icon) {
+        this.icon = icon;
+    }
+
+    public String getNotice() {
+        return notice;
+    }
+
+    public void setNotice(String notice) {
+        this.notice = notice;
+    }
 
     public String getPhone() {
         return phone;
