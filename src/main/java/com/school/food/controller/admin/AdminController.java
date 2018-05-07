@@ -55,6 +55,13 @@ public class AdminController extends AdminBaseController {
         return redirect("/");
     }
 
+    /**
+     * 修改密码
+     * @param password
+     * @param pwd
+     * @param pwd2
+     * @return
+     */
     @RequestMapping("modifyPwd")
     @ResponseBody
     public Response<String> modifyPwd(String password, String pwd, String pwd2) {
@@ -66,7 +73,7 @@ public class AdminController extends AdminBaseController {
         if (!business.getPassword().equalsIgnoreCase(password)) {
             throw new MessageException("原密码不对");
         }
-        business.setPassword(password);
+        business.setPassword(pwd);
         businessService.updateByPKSelective(business);
         session.removeAttribute(SESSION_ADMIN);
         return Response.ok("business");

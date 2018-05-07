@@ -85,6 +85,12 @@ public class MFoodController extends AdminBaseController {
         return "admin/food/add";
     }
 
+    /**
+     * 添加商品
+     * @param food
+     * @param icons
+     * @return
+     */
     @RequestMapping("save")
     public String save(Food food, @RequestParam MultipartFile icons) {
         food.setAddtime(new Date());

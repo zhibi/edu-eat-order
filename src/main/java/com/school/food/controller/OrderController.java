@@ -51,6 +51,7 @@ public class OrderController extends BaseController {
         orderItem.setUserId(sessionUser().getId());
         orderItem.setFoodId(footId);
         orderItem.setStatus(0);
+        orderItem.setScore(0);
         OrderItem temp = orderItemService.selectOne(orderItem);
         if (null != temp) {
             temp.setCount(temp.getCount() + 1);
@@ -93,9 +94,14 @@ public class OrderController extends BaseController {
     public String pay(Order order){
         order.setUserId(sessionUser().getId());
         orderService.pay(order);
-        return refresh();
+        return "redirect:myOrder";
     }
 
+    /**
+     * 我的订单
+     * @param model
+     * @return
+     */
     @RequestMapping("myOrder")
     public String myOrder(Model model){
         Example example = Example.getInstance()
@@ -107,6 +113,21 @@ public class OrderController extends BaseController {
 
         model.addAttribute("modelList",modelList);
         return "order";
+    }
+
+    /**
+     * 为食物打分
+     * @return
+     */
+    @RequestMapping("score")
+    public String score(Integer orderItemId,Integer score){
+        OrderItem orderItem = orderItemService.selectByPK(orderItemId);
+        orderItem.setScore(score);
+        orderItemService.updateByPK(orderItem);
+        Food food = foodService.selectByPK(orderItem.getFoodId());
+        food.setSort(food.getSort() + score);
+        foodService.updateByPKSelective(food);
+        return refresh();
     }
 
 }

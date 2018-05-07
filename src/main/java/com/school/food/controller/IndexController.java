@@ -89,6 +89,7 @@ public class IndexController extends BaseController {
         if(null != temp){
             throw new MessageException("该手机号已经注册");
         }
+        user.setUsername(user.getPhone());
         user.setAddtime(new Date());
         user.setStatus(1);
         userService.insertSelective(user);

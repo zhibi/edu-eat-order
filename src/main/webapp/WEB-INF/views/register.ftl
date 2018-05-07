@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>登录</title>
+    <title>注册</title>
     <!-- CSS -->
     <link rel="stylesheet" href="/themes/front/assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="/themes/front/assets/font-awesome/css/font-awesome.min.css">
@@ -20,7 +20,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-8 col-sm-offset-2 text">
-                    <h1><strong>Bootstrap</strong> Login Form</h1>
+                    <h1>注册会员</h1>
                     <div class="description">
                         <p>
                             This is a free responsive login form made with Bootstrap.
@@ -33,8 +33,8 @@
                 <div class="col-sm-6 col-sm-offset-3 form-box">
                     <div class="form-top">
                         <div class="form-top-left">
-                            <h3>Login to our site</h3>
-                            <p>Enter your username and password to log on:</p>
+                            <h3>会员注册</h3>
+                            <p>Enter your username and password to log in:</p>
                         </div>
                         <div class="form-top-right">
                             <i class="fa fa-lock"></i>
@@ -44,12 +44,12 @@
                         <form role="form" action="" method="post" class="login-form">
                             <div class="form-group">
                                 <label class="sr-only" for="form-username">Username</label>
-                                <input type="text" name="form-username" placeholder="Username..."
+                                <input type="text" name="phone" placeholder="Username..."
                                        class="form-username form-control" id="form-username">
                             </div>
                             <div class="form-group">
                                 <label class="sr-only" for="form-password">Password</label>
-                                <input type="password" name="form-password" placeholder="Password..."
+                                <input type="password" name="password" placeholder="Password..."
                                        class="form-password form-control" id="form-password">
                             </div>
                             <button type="submit" class="btn">Sign in!</button>

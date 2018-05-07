@@ -59,9 +59,9 @@ public class OrderServiceImpl extends BaseServiceImpl<Order> implements OrderSer
                 orderItemMapper.updateByPrimaryKeySelective(orderItem);
                 total += orderItem.getPrice();
                 ids.append(orderItem.getId()).append(",");
-                Food food = foodMapper.selectByPrimaryKey(orderItem.getFoodId());
+               /* Food food = foodMapper.selectByPrimaryKey(orderItem.getFoodId());
                 food.setSort(food.getSort()+orderItem.getCount());
-                foodMapper.updateByPrimaryKey(food);
+                foodMapper.updateByPrimaryKey(food);*/
             }
             order.setIds(ids.toString());
             order.setAddtime(new Date());

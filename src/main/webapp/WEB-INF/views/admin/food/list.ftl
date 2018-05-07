@@ -32,6 +32,7 @@
                                     <th>分类</th>
                                     <th>原价</th>
                                     <th>价格</th>
+                                    <th>分数</th>
                                     <th>添加时间</th>
                                     <th>操作</th>
                                 </tr>
@@ -43,6 +44,7 @@
                                     <td>${item.category}</td>
                                     <td>${item.oldprice!0?string('#0.00')}</td>
                                     <td>${item.price?string('#0.00')}</td>
+                                    <td>${item.sort?string('#0')}分</td>
                                     <td>${item.addtime?string('yyyy-MM-dd HH:mm:ss')}</td>
                                     <td>
                                         <div class="visible-md visible-lg hidden-sm hidden-xs btn-group">

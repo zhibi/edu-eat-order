@@ -65,11 +65,22 @@
                             <table>
                                 <tbody>
                                     <#list item.orderItemModelList as im>
-
                                     <tr data-node="dishes">
                                         <td data-node="dish" data-origin="${im.foodName}">${im.foodName}</td>
                                         <td>${im.count}</td>
                                         <td class="text-right">￥${im.price}</td>
+                                        <td>
+                                            <#if im.score gt 0>
+                                                ${im.score!0}分
+                                            <#else >
+                                            <form action="/order/score" method="post">
+                                                <input type="hidden" name="orderItemId" value="${im.id}">
+                                                <input type="number" name="score" min="1" value="1" style=" border: 1px solid #CECECE;width: 50%;">
+                                                <input type="submit" value="打分">
+                                            </form>
+                                            </#if>
+
+                                        </td>
                                     </tr>
                                     </#list>
                                 </tbody>
