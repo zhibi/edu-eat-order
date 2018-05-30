@@ -7,9 +7,7 @@ import com.school.support.base.Page;
 import com.school.support.service.BaseService;
 import com.school.support.example.Example;
 
-/**
-* The class create by 执笔 on generate.
-*/
+
 public interface FoodService extends BaseService<Food> {
 
     PageInfo<FoodModel> selectModel(Example example, Page page);

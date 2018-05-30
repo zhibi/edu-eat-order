@@ -79,39 +79,35 @@
         <div class="main-l">
             <section class="menu-tab clearfix">
                 <ul>
-                    <li class="txt curr"><a href="/">菜单</a></li>
-                    <li class="txt  "><a href="/comment/${business.id}">评论</a></li>
+                    <li class="txt "><a href="/detail/${business.id!}">菜单</a></li>
+                    <li class="txt  curr"><a href="/">评论</a></li>
                 </ul>
             </section>
-            <section class="menu-list">
-                <div class="list-wrap" id="menu_2">
-                    <div class="list-status">
-                        <span class="title">热销</span></div>
-                    <div class="list clearfix">
-                        <ul>
-                        <#list foodList as item>
-                            <li class="list-item" data-sid="item_2101442878" orderlimit="">
-                                <figure class="headimg fl">
-                                    <div class="bg-img"
-                                         style="background: url('${item.icon}') center center no-repeat;background-size:cover;-webkit-background-size:cover;-o-background-size:cover;-moz-background-size:cover;-ms-background-size:cover;"></div>
-                                </figure>
-                                <div class="info fl">
-                                    <h3 data-title="${item.name}">${item.name}</h3>
-                                    <div class="m-price"><strong>¥${item.price}</strong></div>
-                                </div>
-                                <div class="m-sel-icon" unselectable="on">
-                                    <div class="select-con" >
-                                        <strong class="minusfrcart" data-node="minusfrcart"></strong>
-                                        <strong class="select_count">0</strong>
-                                        <strong class="addtocart dishSelectElem" data-node="addtocart" onclick="add('${item.id}')"></strong>
-                                    </div>
-                                </div>
-                            </li>
-                        </#list>
+            <section class="comment-list" id="comment-list">
+                <div class="comment-con" data-node="commCon">
 
-                        </ul>
-                    </div>
-                </div>
+                    <#list commentList as item>
+                        <div class="list clearfix">
+                            <div class="top-section"><span class="user-name">${item.user!}</span>
+                                <span class="fr">${item.addtime?string('yyyy-MM-dd HH:mm:ss')}</span></div>
+                            <div class="mid-section"><p>${item.content!}</p></div>
+
+                        </div>
+                    </#list>
+
+                    <form action="/comment/send" method="post">
+                        <input type="hidden" name="businessid" value="${business.id}">
+                        <textarea name="content" cols="150" rows="8"></textarea>
+                        <input type="submit" style="    padding: 9px 20px;
+    font-size: 20px;
+    color: white;
+
+    font-weight: bolder;
+    background-color: #ff2d4b;
+    margin-top: 89px;" value="发表">
+                    </form>
+
+
             </section>
         </div>
         <div class="side">
@@ -123,7 +119,9 @@
             <section class="cart-section cart-fix" id="cart-section">
                 <div class="menu-cart menu-cart-box-shadow">
                     <div class="cart-bar pointer">
-                        <span class="cart-desc submit fr" id="cartSubmit" style="" <#if sessionUser??>onclick="location.href ='/order/myCar'"<#else>onclick="alert('请登录')"</#if>>选好了</span>
+                        <span class="cart-desc submit fr" id="cartSubmit" style=""
+                              <#if sessionUser??>onclick="location.href ='/order/myCar'"
+                              <#else>onclick="alert('请登录')"</#if>>选好了</span>
                     </div>
                 </div>
             </section>
@@ -134,13 +132,15 @@
 </body>
 <script src="/themes/jquery-1.4.4.min.js"></script>
 <script>
-    function add(id){
+    function add(id) {
         <#if sessionUser??>
-            $.getJSON("/order/saveItem",{footId:id},function(result){
-                if(result.code === 200) alert("添加成功");
-                else {alert(result.message);}
+            $.getJSON("/order/saveItem", {footId: id}, function (result) {
+                if (result.code === 200) alert("添加成功");
+                else {
+                    alert(result.message);
+                }
             });
-            <#else>
+        <#else>
         alert("请登录");
         </#if>
 

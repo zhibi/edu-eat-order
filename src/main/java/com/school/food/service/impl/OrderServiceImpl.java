@@ -25,9 +25,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
-/**
- * The class create by 执笔 on generate.
- */
+
 @Service
 @Transactional
 public class OrderServiceImpl extends BaseServiceImpl<Order> implements OrderService {

@@ -7,9 +7,7 @@ import com.school.support.example.Example;
 
 import java.util.List;
 
-/**
-* The class create by 执笔 on generate.
-*/
+
 public interface OrderItemService extends BaseService<OrderItem> {
 
     List<OrderItemModel> selectModel(Example example);

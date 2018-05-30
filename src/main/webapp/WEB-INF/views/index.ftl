@@ -70,11 +70,18 @@
                                 </div>
                                 <div class="title" >${item.name}<span class="cert-icon"><img
                                         src="/themes/front/index_files/certificated_s.png"></span>
+
+                                    <span class="f-col f-sale">&nbsp;&nbsp;${item.businessName!}</span>
                                 </div>
-                                <div class="info s-info clearfix">
-                                    <div class="f-col f-star star-control" data-star="4.8"><span class="rate">                    <span
-                                            class="rate-inner" style="width:69.12px"></span>                </span></div>
-                                    <div class="f-col f-sale">${item.businessName!}</div>
+                                <div class="info f-info clearfix">
+                                    <div class="f-col f-price" style="    width: 90px;">
+                                        <span class="item-label">平均评分:</span> <span class="item-value">${(item.aver!0)?string("#0.00")}分</span>
+                                    </div>
+
+                                    <div class="f-col f-cost" style="    width: 90px;">
+                                        <span class="item-label">&nbsp;&nbsp;&nbsp;&nbsp;评论条数:</span> <span class="item-value">${item.comment!0}条</span>
+                                    </div>
+
                                 </div>
                                 <div class="info f-info clearfix">
                                     <div class="f-col f-price"><span class="item-label">原价:</span> <span class="item-value">¥${item.oldprice!}</span>

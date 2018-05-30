@@ -13,9 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import com.school.support.example.Example;
 
-/**
-* The class create by 执笔 on generate.
-*/
+
 @Service
 @Transactional
 public class FoodServiceImpl extends BaseServiceImpl<Food> implements FoodService {

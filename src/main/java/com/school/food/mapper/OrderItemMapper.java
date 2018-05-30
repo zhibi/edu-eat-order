@@ -8,9 +8,7 @@ import com.school.support.example.Example;
 
 import java.util.List;
 
-/**
-* Created by 执笔 on generate.
-*/
+
 public interface OrderItemMapper extends Mapper<OrderItem>{
 
     List<OrderItemModel> selectModel(@Param("example") Example example);

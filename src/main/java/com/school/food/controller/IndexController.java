@@ -1,25 +1,22 @@
 package com.school.food.controller;
 
 import com.github.pagehelper.PageInfo;
-import com.school.food.domain.Business;
-import com.school.food.domain.Category;
-import com.school.food.domain.Food;
-import com.school.food.domain.User;
+import com.school.food.domain.*;
 import com.school.food.mapper.CategoryMapper;
+import com.school.food.mapper.CommentMapper;
 import com.school.food.model.FoodModel;
 import com.school.food.service.BusinessService;
 import com.school.food.service.FoodService;
 import com.school.food.service.UserService;
 import com.school.support.base.BaseController;
+import com.school.support.base.Page;
+import com.school.support.example.Example;
+import com.school.support.example.ExampleType;
+import com.school.support.exception.MessageException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import com.school.support.base.Page;
-import com.school.support.exception.MessageException;
-import com.school.support.example.Example;
-import com.school.support.example.ExampleType;
-
 
 import java.util.Date;
 import java.util.List;
@@ -36,19 +33,21 @@ public class IndexController extends BaseController {
     private CategoryMapper categoryMapper;
     @Autowired
     private BusinessService businessService;
+    @Autowired
+    private CommentMapper commentMapper;
 
-    @RequestMapping({"/","index"})
-    public String index(Model model,@RequestParam(defaultValue = "") String name,String category) {
+    @RequestMapping({"/", "index"})
+    public String index(Model model, @RequestParam(defaultValue = "") String name, String category) {
         Example example = Example.getInstance()
                 .addOrder("sort", ExampleType.OrderType.DESC);
-        example.addParam("f.status",1);
-        example.addParam("(f.name like '%"+name+"%' or b.name like '%"+name+"%')");
-        example.addParam("f.category",category);
+        example.addParam("f.status", 1);
+        example.addParam("(f.name like '%" + name + "%' or b.name like '%" + name + "%')");
+        example.addParam("f.category", category);
         PageInfo<FoodModel> pageInfo = foodService.selectModel(example, new Page(40));
         model.addAttribute("list", pageInfo.getList());
 
         List<Category> categoryList = categoryMapper.selectAll();
-        session.setAttribute("categoryList",categoryList);
+        session.setAttribute("categoryList", categoryList);
         return "index";
     }
 
@@ -84,9 +83,9 @@ public class IndexController extends BaseController {
 
 
     @RequestMapping(value = "register", method = RequestMethod.POST)
-    public String register(User user){
+    public String register(User user) {
         User temp = userService.selectByPhone(user.getPhone());
-        if(null != temp){
+        if (null != temp) {
             throw new MessageException("该手机号已经注册");
         }
         user.setUsername(user.getPhone());
@@ -98,29 +97,43 @@ public class IndexController extends BaseController {
     }
 
     @RequestMapping("logout")
-    public String logout(){
+    public String logout() {
         session.removeAttribute(SESSION_USER);
         return redirect("index");
     }
 
     /**
      * 详情
+     *
      * @param id
      * @param model
      * @return
      */
     @RequestMapping("detail/{id}")
-    public String detail(@PathVariable Integer id,Model model){
+    public String detail(@PathVariable Integer id, Model model) {
         Business business = businessService.selectByPK(id);
         model.addAttribute(business);
 
         Example example = Example.getInstance()
                 .addOrder("sort", ExampleType.OrderType.DESC);
-        example.addParam("businessid",id);
-        example.addParam("status",1);
+        example.addParam("businessid", id);
+        example.addParam("status", 1);
         List<Food> foodList = foodService.selectByExample(example);
 
-        model.addAttribute("foodList",foodList);
+        model.addAttribute("foodList", foodList);
         return "business";
+    }
+
+    @RequestMapping("comment/{id}")
+    public String comment(@PathVariable Integer id, Model model) {
+        Business business = businessService.selectByPK(id);
+        model.addAttribute(business);
+
+        Example example = Example.getInstance().addParam("businessid", id).addOrder("addtime", ExampleType.OrderType.DESC);
+
+        List<Comment> commentList = commentMapper.selectByExample(example);
+
+        model.addAttribute("commentList", commentList);
+        return "business-comment";
     }
 }

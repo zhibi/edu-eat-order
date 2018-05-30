@@ -36,7 +36,7 @@
     </sql>
 
     <select id="selectModel" resultType="com.school.food.model.FoodModel">
-        SELECT f.*,b.name businessname  from food f
+        SELECT f.*,b.name businessname,b.comment  from food f
         LEFT JOIN business b on b.id = f.businessid
         <if test="example != null">
             <include refid="Example_Where_Clause"/>

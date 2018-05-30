@@ -10,10 +10,7 @@ import javax.persistence.GenerationType;
 import java.util.*;
 
 
-/**
-* The class create by 执笔 on generate.
-* The class generate create by order
-*/
+
 @Table(name="orders")
 public class Order implements Serializable {
 

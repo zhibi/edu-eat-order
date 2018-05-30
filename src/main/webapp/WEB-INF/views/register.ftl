@@ -23,8 +23,7 @@
                     <h1>注册会员</h1>
                     <div class="description">
                         <p>
-                            This is a free responsive login form made with Bootstrap.
-                            Download it on <a href="#"><strong>AZMIND</strong></a>, customize and use it as you like!
+                            
                         </p>
                     </div>
                 </div>
@@ -34,7 +33,7 @@
                     <div class="form-top">
                         <div class="form-top-left">
                             <h3>会员注册</h3>
-                            <p>Enter your username and password to log in:</p>
+                            <p>请输入账号密码:</p>
                         </div>
                         <div class="form-top-right">
                             <i class="fa fa-lock"></i>

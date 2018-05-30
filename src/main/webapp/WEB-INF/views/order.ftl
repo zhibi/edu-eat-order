@@ -75,7 +75,7 @@
                                             <#else >
                                             <form action="/order/score" method="post">
                                                 <input type="hidden" name="orderItemId" value="${im.id}">
-                                                <input type="number" name="score" min="1" value="1" style=" border: 1px solid #CECECE;width: 50%;">
+                                                <input type="number" name="score" min="1" max="5" value="1" style=" border: 1px solid #CECECE;width: 50%;">
                                                 <input type="submit" value="打分">
                                             </form>
                                             </#if>

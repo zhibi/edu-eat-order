@@ -1,19 +1,14 @@
 package com.school.food.domain;
 
-import java.io.Serializable;
-import java.util.Date;
-import javax.persistence.Table;
-import javax.persistence.Id;
-import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import java.io.Serializable;
+import java.util.Date;
 
 
-/**
-* The class create by 执笔 on generate.
-* The class generate create by business
-*/
-@Table(name="business")
+@Table(name = "business")
 public class Business implements Serializable {
 
     @Id
@@ -30,6 +25,17 @@ public class Business implements Serializable {
     private Date addtime;
     private Double free;
     private String icon;
+
+    private Integer comment;
+
+
+    public Integer getComment() {
+        return comment;
+    }
+
+    public void setComment(Integer comment) {
+        this.comment = comment;
+    }
 
     public String getIcon() {
         return icon;
@@ -87,7 +93,7 @@ public class Business implements Serializable {
         this.free = free;
     }
 
-    public Integer getId(){
+    public Integer getId() {
         return id;
     }
 
@@ -95,7 +101,7 @@ public class Business implements Serializable {
         this.id = id;
     }
 
-    public String getUsername(){
+    public String getUsername() {
         return username;
     }
 
@@ -103,7 +109,7 @@ public class Business implements Serializable {
         this.username = username;
     }
 
-    public String getPassword(){
+    public String getPassword() {
         return password;
     }
 

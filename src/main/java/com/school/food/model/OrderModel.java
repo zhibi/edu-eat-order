@@ -4,9 +4,7 @@ import com.school.food.domain.Order;
 
 import java.util.List;
 
-/**
- * Created by 执笔 on 2017/3/28.
- */
+
 public class OrderModel extends Order {
 
     private String username;

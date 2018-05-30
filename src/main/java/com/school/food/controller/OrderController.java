@@ -26,9 +26,7 @@ import com.school.support.response.Response;
 import java.util.Date;
 import java.util.List;
 
-/**
- * Created by 执笔 on 2017/3/23.
- */
+
 @RequestMapping("order")
 @Controller
 public class OrderController extends BaseController {
@@ -125,7 +123,9 @@ public class OrderController extends BaseController {
         orderItem.setScore(score);
         orderItemService.updateByPK(orderItem);
         Food food = foodService.selectByPK(orderItem.getFoodId());
+        food.setTimes(food.getTimes()+1);//评论次数
         food.setSort(food.getSort() + score);
+        food.setAver((double) (food.getSort()/food.getTimes()));
         foodService.updateByPKSelective(food);
         return refresh();
     }

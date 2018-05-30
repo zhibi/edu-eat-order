@@ -20,7 +20,7 @@
                             <div class="widget-body">
                                 <div class="widget-main">
                                     <div class="step-content row-fluid position-relative">
-                                        <form class="form-horizontal" action="/admin/business/update" method="post" >
+                                        <form enctype="multipart/form-data" class="form-horizontal" action="/admin/business/update" method="post" >
                                             <input type="hidden" name="id" value="${business.id!}"/>
                                             <div class="form-group has-info">
                                                 <label class="col-xs-12 col-sm-3 control-label no-padding-right">登录名</label>

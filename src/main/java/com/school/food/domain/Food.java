@@ -8,10 +8,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 
-/**
- * The class create by 执笔 on generate.
- * The class generate create by food
- */
+
 @Table(name = "food")
 public class Food implements Serializable {
 
@@ -41,6 +38,18 @@ public class Food implements Serializable {
 
     private Double oldprice;
     private Integer businessid;
+
+    private Double aver;//平均分
+
+
+    public Double getAver() {
+        return aver;
+    }
+
+    public void setAver(Double aver) {
+        this.aver = aver;
+    }
+
 
     public Integer getBusinessid() {
         return businessid;

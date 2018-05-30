@@ -12,9 +12,7 @@ import com.school.support.example.Example;
 
 import java.util.List;
 
-/**
-* The class create by 执笔 on generate.
-*/
+
 @Service
 @Transactional
 public class OrderItemServiceImpl extends BaseServiceImpl<OrderItem> implements OrderItemService {

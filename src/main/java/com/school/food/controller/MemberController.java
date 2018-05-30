@@ -11,9 +11,7 @@ import com.school.support.annocation.request.LoginInfo;
 import com.school.support.exception.MessageException;
 import com.school.support.response.Response;
 
-/**
- * Created by 执笔 on 2017/3/7.
- */
+
 @RequestMapping("member")
 @Controller
 @LoginInfo(true)

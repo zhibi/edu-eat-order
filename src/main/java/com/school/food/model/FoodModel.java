@@ -2,12 +2,19 @@ package com.school.food.model;
 
 import com.school.food.domain.Food;
 
-/**
- * Created by 执笔 on 2017/3/19.
- */
+
 public class FoodModel extends Food {
 
     private String  businessName;
+    private Integer comment;
+
+    public Integer getComment() {
+        return comment;
+    }
+
+    public void setComment(Integer comment) {
+        this.comment = comment;
+    }
 
     public String getBusinessName() {
         return businessName;

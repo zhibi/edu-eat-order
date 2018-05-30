@@ -9,9 +9,7 @@ import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
-/**
- * Created by 执笔 on 2017/3/15.
- */
+
 public class WebConfigListener implements ServletContextListener {
 
     private Logger logger = LoggerFactory.getLogger(WebConfigListener.class);
@@ -21,5 +19,11 @@ public class WebConfigListener implements ServletContextListener {
         ServletContext servletContext = sce.getServletContext();
         WebApplicationContext webApplicationContext = WebApplicationContextUtils.findWebApplicationContext(servletContext);
     }
+
+	@Override
+	public void contextDestroyed(ServletContextEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
 
 }

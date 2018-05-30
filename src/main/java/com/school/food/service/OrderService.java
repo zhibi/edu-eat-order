@@ -10,9 +10,7 @@ import com.school.support.example.Example;
 
 import java.util.List;
 
-/**
-* The class create by 执笔 on generate.
-*/
+
 public interface OrderService extends BaseService<Order>,Constant {
 
     void pay(Order order);

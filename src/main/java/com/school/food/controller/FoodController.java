@@ -17,9 +17,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-/**
- * Created by 执笔 on 2017/3/5.
- */
+
 @RequestMapping("food")
 @Controller
 public class FoodController extends BaseController {

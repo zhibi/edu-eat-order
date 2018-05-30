@@ -9,10 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 
 
-/**
-* The class create by 执笔 on generate.
-* The class generate create by order_item
-*/
+
 @Table(name="order_item")
 public class OrderItem implements Serializable {
 

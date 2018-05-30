@@ -7,9 +7,7 @@ import com.school.support.example.Example;
 
 import java.util.List;
 
-/**
-* Created by 执笔 on generate.
-*/
+
 public interface OrderMapper extends Mapper<Order>{
 
     List<OrderModel> selectModel(Example example);

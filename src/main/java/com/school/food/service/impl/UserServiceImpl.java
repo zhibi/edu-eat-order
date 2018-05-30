@@ -8,9 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-/**
-* The class create by 执笔 on generate.
-*/
+
 @Service
 @Transactional
 public class UserServiceImpl extends BaseServiceImpl<User> implements UserService {

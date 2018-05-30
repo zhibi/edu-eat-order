@@ -2,9 +2,7 @@ package com.school.food.model;
 
 import com.school.food.domain.OrderItem;
 
-/**
- * Created by 执笔 on 2017/3/24.
- */
+
 public class OrderItemModel extends OrderItem {
 
     private String foodName;

@@ -6,8 +6,8 @@ import java.util.Enumeration;
 public class ParamUtils {
 
     /**
-     * @Author 执笔
-     * @Date 2016年1月7日 下午10:22:06
+     * @Author 
+     * @Date 
      * @Todo 把参数转换为字符串
      * @param request
      * @return String
