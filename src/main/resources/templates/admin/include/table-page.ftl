@@ -8,20 +8,24 @@
 <div class="page pull-right">
     <!-- 分页插件 -->
     <ul class="pagination">
-        <li <#if !pageInfo.hasPreviousPage>class="disabled"</#if>>
-            <a <#if pageInfo.hasPreviousPage> href="${requestUrl}&pageNum=${pageInfo.prePage}" </#if>>
-                <i class="icon-double-angle-left"></i>
+        <#if pageInfo.hasPreviousPage>
+            <li class="disabled">
+            <a  href="${requestUrl}&pageNum=${pageInfo.prePage}">
+            <i class="icon-double-angle-left"></i>
             </a>
-        </li>
-    <#list pageInfo.navigatepageNums as num>
-        <li <#if pageInfo.pageNum == num>class="active"</#if>>
-            <a <#if pageInfo.pageNum != num>href="${requestUrl}&pageNum=${num}" </#if>>${num}</a>
-        </li>
-    </#list>
-        <li <#if !pageInfo.hasNextPage>class="disabled"</#if>>
-            <a <#if pageInfo.hasNextPage> href="${requestUrl}&pageNum=${pageInfo.nextPage}" </#if>>
-                <i class="icon-double-angle-right"></i>
+            </li>
+        </#if>
+        <#list pageInfo.navigatepageNums as num>
+            <li <#if pageInfo.pageNum == num>class="active"</#if>>
+        <a <#if pageInfo.pageNum != num>href="${requestUrl}&pageNum=${num}" </#if>>${num}</a>
+            </li>
+        </#list>
+        <#if pageInfo.hasNextPage>
+            <li class="disabled">
+            <a href="${requestUrl}&pageNum=${pageInfo.nextPage}" >
+            <i class="icon-double-angle-right"></i>
             </a>
-        </li>
+            </li>
+        </#if>
     </ul>
 </div>

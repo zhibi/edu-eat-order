@@ -26,10 +26,9 @@ public class CommentController extends BaseController {
     @RequestMapping("send")
     public String send(Comment comment) {
         comment.setAddtime(new Date());
-        comment.setUserid(sessionUser().getId());
-        comment.setUser(sessionUser().getUsername());
+        comment.setUserId(sessionUser().getId());
         commentMapper.insertSelective(comment);
-        Business business = businessMapper.selectByPrimaryKey(comment.getBusinessid());
+        Business business = businessMapper.selectByPrimaryKey(comment.getBusinessId());
         business.setComment(business.getComment() + 1);
         businessMapper.updateByPrimaryKeySelective(business);
         return refresh();

@@ -58,8 +58,9 @@ public abstract class BaseController implements Constant {
     protected void setModelAttribute(Model model, Object... attributes) {
         if (attributes != null && attributes.length > 0) {
             for (Object object : attributes) {
-                if (null != object)
+                if (null != object) {
                     model.addAttribute(object);
+                }
             }
         }
         model.addAttribute("requestUrl", request.getRequestURI() + "?" + ParamUtils.params2String(request));
@@ -93,6 +94,7 @@ public abstract class BaseController implements Constant {
      */
     protected String prompt(String message) {
         request.setAttribute(Constant.ERROR_MESSAGE, message);
+        request.setAttribute(Constant.BACK_RUL, request.getHeader("Referer"));
         return "error";
     }
 }

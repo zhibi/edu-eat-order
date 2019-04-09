@@ -33,4 +33,11 @@ public class BaseServiceImpl<E extends Mapper<T>, T extends BasePageDTO> impleme
     }
 
 
+    /**
+     * 开始分页
+     * @param dto
+     */
+    protected void stratPage(BasePageDTO dto){
+        PageHelper.startPage(dto.getPageNum(), dto.getPageSize());
+    }
 }
