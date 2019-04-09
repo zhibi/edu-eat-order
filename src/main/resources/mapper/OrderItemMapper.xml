@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.school.food.mapper.OrderItemMapper">
+<mapper namespace="edu.eat.order.mapper.OrderItemMapper">
 
     <sql id="Example_Where_Clause">
         <where>
@@ -34,7 +34,7 @@
             </foreach>
         </where>
     </sql>
-    <select id="selectModel" resultType="com.school.food.model.OrderItemModel">
+    <select id="selectModel" resultType="edu.eat.order.model.OrderItemModel">
         SELECT o.*,
         f.id foodid,
         f.`name` foodname,f.icon foodicon ,

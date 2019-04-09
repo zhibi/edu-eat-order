@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.school.food.mapper.FoodMapper">
+<mapper namespace="edu.eat.order.mapper.FoodMapper">
 
     <sql id="Example_Where_Clause">
         <where>
@@ -35,7 +35,7 @@
         </where>
     </sql>
 
-    <select id="selectModel" resultType="com.school.food.model.FoodModel">
+    <select id="selectModel" resultType="edu.eat.order.model.FoodModel">
         SELECT f.*,b.name businessname,b.comment  from food f
         LEFT JOIN business b on b.id = f.businessid
         <if test="example != null">
