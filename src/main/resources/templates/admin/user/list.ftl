@@ -6,7 +6,7 @@
 <#include "../include/common-top.ftl"/>
 <div class="main-container" id="main-container">
     <div class="main-container-inner">
-    <#include "../include/common-menu.ftl"/>
+        <#include "../include/common-menu.ftl"/>
         <div class="main-content">
             <div class="page-content">
                 <div class="row">
@@ -14,8 +14,12 @@
                         <div class="form-search">
                             <form role="form" class="form-inline clearfix" id="form" action="">
                                 <div class="input-group col-xs-3">
-                                    <span class="input-group-addon">名字</span>
+                                    <span class="input-group-addon">用户名</span>
                                     <input type="text" class="form-control" name="username" value="${username!}">
+                                </div>
+                                <div class="input-group col-xs-3">
+                                    <span class="input-group-addon">名字</span>
+                                    <input type="text" class="form-control" name="name" value="${name!}">
                                 </div>
                             </form>
                             <div class="form-tool btn-group">
@@ -29,29 +33,35 @@
                                 <thead>
                                 <tr>
                                     <th>用户名</th>
+                                    <th>名字</th>
                                     <th>手机号</th>
+                                    <th>邮箱</th>
+                                    <th>微信</th>
                                     <th>注册时间</th>
                                     <th>操作</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <#list pageInfo.list as item>
-                                <tr>
+                                    <tr>
                                     <td>${item.username}</td>
+                                    <td>${item.name}</td>
                                     <td>${item.phone}</td>
+                                    <td>${item.email}</td>
+                                    <td>${item.wx}</td>
                                     <td>${item.addtime?string('yyyy-MM-dd HH:mm:ss')}</td>
                                     <td>
-                                        <div class="visible-md visible-lg hidden-sm hidden-xs btn-group">
-                                            <a class="btn btn-xs btn-info" href="/admin/user/detail/${item.id}">
-                                                <i class="icon-edit bigger-120"></i>
-                                            </a>
-                                        </div>
+                                    <div class="visible-md visible-lg hidden-sm hidden-xs btn-group">
+                                <a class="btn btn-xs btn-info" href="/admin/user/detail/${item.id}">
+                                    <i class="icon-edit bigger-120"></i>
+                                    </a>
+                                    </div>
                                     </td>
-                                </tr>
+                                    </tr>
                                 </#list>
                                 </tbody>
                             </table>
-                        <#include "../include/table-page.ftl"/>
+                            <#include "../include/table-page.ftl"/>
                         </div>
                     </div>
                 </div>

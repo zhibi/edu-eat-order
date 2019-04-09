@@ -34,7 +34,18 @@ public class User extends BasePageDTO implements Serializable {
     private String password;
 
     /**
-     * 1正常  0 锁定
+     * 邮箱
+     */
+    private String email;
+
+    /**
+     * 微信
+     */
+    private String wx;
+
+
+    /**
+     * SUCCESS
      */
     private String status;
 
@@ -44,4 +55,6 @@ public class User extends BasePageDTO implements Serializable {
      * admin user
      */
     private String role;
+
+
 }

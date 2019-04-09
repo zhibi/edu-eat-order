@@ -38,7 +38,9 @@ public class AdminUserController extends BaseAdminController {
     @RequestMapping("list")
     public String list(Model model, User user) {
         MybatisCondition example = new MybatisCondition()
+                .eqNot("role","admin")
                 .like("username", user.getUsername())
+                .like("name", user.getName())
                 .page(user);
         PageInfo<User> pageInfo = userService.selectPage(example);
         setModelAttribute(model, pageInfo);
