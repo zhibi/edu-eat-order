@@ -2,8 +2,6 @@ package edu.eat.order.controller;
 
 import com.github.pagehelper.PageInfo;
 import edu.eat.order.base.base.controller.BaseController;
-import edu.eat.order.base.example.Example;
-import edu.eat.order.base.example.ExampleType;
 import edu.eat.order.base.exception.MessageException;
 import edu.eat.order.base.mybatis.condition.MybatisCondition;
 import edu.eat.order.domain.*;
@@ -49,7 +47,7 @@ public class IndexController extends BaseController {
                 .condition("(f.name like '%" + name + "%' or b.name like '%" + name + "%')")
                 .eq("f.category", category)
                 .page(1, 40);
-        PageInfo<FoodModel> pageInfo = foodService.selectModel(example);
+        PageInfo<FoodModel> pageInfo = foodService.selectModelPage(example);
         model.addAttribute("list", pageInfo.getList());
         List<Category> categoryList = categoryMapper.selectAll();
         session.setAttribute("categoryList", categoryList);
@@ -119,10 +117,9 @@ public class IndexController extends BaseController {
         Business business = businessMapper.selectByPrimaryKey(id);
         model.addAttribute(business);
 
-        Example example = Example.getInstance()
-                .addOrder("sort", ExampleType.OrderType.DESC);
-        example.addParam("businessid", id);
-        example.addParam("status", 1);
+        MybatisCondition example = new MybatisCondition()
+                .order("sort", false).eq("businessid", id)
+                .eq("status", 1);
         List<Food> foodList = foodMapper.selectByExample(example);
 
         model.addAttribute("foodList", foodList);
@@ -134,7 +131,7 @@ public class IndexController extends BaseController {
         Business business = businessMapper.selectByPrimaryKey(id);
         model.addAttribute(business);
 
-        Example example = Example.getInstance().addParam("businessid", id).addOrder("addtime", ExampleType.OrderType.DESC);
+        MybatisCondition example = new MybatisCondition().eq("businessid", id).order("addtime", false);
 
         List<Comment> commentList = commentMapper.selectByExample(example);
 

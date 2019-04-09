@@ -1,4 +1,4 @@
-package edu.eat.order.base;
+package edu.eat.order.base.utils;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -6,9 +6,9 @@ import org.slf4j.LoggerFactory;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class StringUtil {
+public class StringUtils {
 
-    private final static Logger logger = LoggerFactory.getLogger(StringUtil.class);
+    private final static Logger logger = LoggerFactory.getLogger(StringUtils.class);
 
     /**
      * 对象是否为空

@@ -2,10 +2,9 @@ package edu.eat.order.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import edu.eat.order.base.StringUtil;
 import edu.eat.order.base.base.service.BaseServiceImpl;
-import edu.eat.order.base.example.Example;
 import edu.eat.order.base.mybatis.condition.MybatisCondition;
+import edu.eat.order.base.utils.StringUtils;
 import edu.eat.order.domain.Order;
 import edu.eat.order.domain.OrderItem;
 import edu.eat.order.mapper.FoodMapper;
@@ -37,16 +36,16 @@ public class OrderServiceImpl extends BaseServiceImpl<OrderMapper, Order> implem
 
     @Override
     public void pay(Order order) {
-        Example example = Example.getInstance()
-                .addParam("o.user_id", order.getUserId())
-                .addParam("o.status", 0);
+        MybatisCondition example = new MybatisCondition()
+                .eq("o.user_id", order.getUserId())
+                .eq("o.status", 0);
         List<OrderItemModel> modelList = orderItemMapper.selectModel(example);
 
         Double total = 0d;
         StringBuilder ids = new StringBuilder();
         if (modelList.size() > 0) {
             for (OrderItem orderItem : modelList) {
-                orderItem.setStatus(1);
+                orderItem.setStatus("1");
                 orderItemMapper.updateByPrimaryKeySelective(orderItem);
                 total += orderItem.getPrice();
                 ids.append(orderItem.getId()).append(",");
@@ -69,11 +68,11 @@ public class OrderServiceImpl extends BaseServiceImpl<OrderMapper, Order> implem
         List<OrderModel> list = orderMapper.selectModel(condition);
         for (OrderModel orderModel : list) {
             String ids = orderModel.getIds();
-            if (!StringUtil.isEmpty(ids)) {
+            if (!StringUtils.isEmpty(ids)) {
                 if (ids.endsWith(",")) {
                     ids = ids.substring(0, ids.length() - 1);
                 }
-                Example example1 = Example.getInstance().addParam("o.id in(" + ids + ")");
+                MybatisCondition example1 = new MybatisCondition().condition("o.id in(" + ids + ")");
                 orderModel.setOrderItemModelList(orderItemMapper.selectModel(example1));
             }
         }

@@ -1,7 +1,7 @@
 package edu.eat.order.controller.admin;
 
 import com.github.pagehelper.PageInfo;
-import edu.eat.order.base.StringUtil;
+import edu.eat.order.base.utils.StringUtils;
 import edu.eat.order.base.base.controller.BaseAdminController;
 import edu.eat.order.base.mybatis.condition.MybatisCondition;
 import edu.eat.order.base.utils.MD5Utils;
@@ -67,7 +67,7 @@ public class AdminUserController extends BaseAdminController {
      */
     @RequestMapping("update")
     public String update(User user) {
-        if (StringUtil.isEmpty(user.getPassword())) {
+        if (StringUtils.isEmpty(user.getPassword())) {
             user.setPassword(null);
         } else {
             user.setPassword(MD5Utils.encrypt(user.getPassword()));

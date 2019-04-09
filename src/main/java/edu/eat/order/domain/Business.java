@@ -1,5 +1,6 @@
 package edu.eat.order.domain;
 
+import edu.eat.order.base.base.dto.BasePageDTO;
 import lombok.Data;
 
 import javax.persistence.GeneratedValue;
@@ -14,7 +15,7 @@ import java.util.Date;
  */
 @Data
 @Table(name = "business")
-public class Business implements Serializable {
+public class Business extends BasePageDTO implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

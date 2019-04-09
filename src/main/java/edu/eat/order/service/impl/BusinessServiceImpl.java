@@ -9,14 +9,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 
+
 @Service
-@Transactional
-public class BusinessServiceImpl extends BaseServiceImpl<Business> implements BusinessService {
+public class BusinessServiceImpl extends BaseServiceImpl<BusinessMapper,Business> implements BusinessService {
 
     @Autowired
-    public BusinessServiceImpl(BusinessMapper mapper) {
-        super(mapper);
-        this.businessMapper = mapper;
-    }
     private BusinessMapper businessMapper;
 }

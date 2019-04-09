@@ -18,6 +18,6 @@ public interface FoodService extends BaseService<Food> {
      * @param example
      * @return
      */
-    PageInfo<FoodModel> selectModel(MybatisCondition example);
+    PageInfo<FoodModel> selectModelPage(MybatisCondition example);
 
 }
