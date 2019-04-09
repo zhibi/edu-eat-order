@@ -6,7 +6,7 @@
 <#include "../include/common-top.ftl"/>
 <div class="main-container" id="main-container">
     <div class="main-container-inner">
-    <#include "../include/common-menu.ftl"/>
+        <#include "../include/common-menu.ftl"/>
         <div class="main-content">
             <div class="page-content">
                 <div class="col-xs-12">
@@ -20,25 +20,49 @@
                             <div class="widget-body">
                                 <div class="widget-main">
                                     <div class="step-content row-fluid position-relative">
-                                        <form class="form-horizontal" action="/admin/user/update" method="post" >
+                                        <form class="form-horizontal" action="/admin/user/update" method="post">
                                             <input type="hidden" name="id" value="${user.id!}"/>
                                             <div class="form-group has-info">
                                                 <label
                                                         class="col-xs-12 col-sm-3 control-label no-padding-right">手机号</label>
                                                 <div class="col-xs-12 col-sm-5">
-                                                    <input type="text" class="width-100"  readonly value="${user.phone}"/>
+                                                    <input type="text" class="width-100" readonly
+                                                           value="${user.phone}"/>
                                                 </div>
                                             </div>
                                             <div class="form-group has-info">
-                                                <label class="col-xs-12 col-sm-3 control-label no-padding-right">名字</label>
+                                                <label class="col-xs-12 col-sm-3 control-label no-padding-right">用户名</label>
                                                 <div class="col-xs-12 col-sm-5">
-                                                    <input type="text" class="width-100" name="username" value="${user.username!}"/>
+                                                    <input type="text" class="width-100" name="username"
+                                                           value="${user.username!}"/>
                                                 </div>
                                             </div>
+                                            <div class="form-group has-info">
+                                                <label class="col-xs-12 col-sm-3 control-label no-padding-right">昵称</label>
+                                                <div class="col-xs-12 col-sm-5">
+                                                    <input type="text" class="width-100" name="name"
+                                                           value="${user.name!}"/>
+                                                </div>
+                                            </div>
+                                            <div class="form-group has-info">
+                                                <label class="col-xs-12 col-sm-3 control-label no-padding-right">邮箱</label>
+                                                <div class="col-xs-12 col-sm-5">
+                                                    <input type="text" class="width-100" name="email"
+                                                           value="${user.email!}"/>
+                                                </div>
+                                            </div>
+                                            <div class="form-group has-info">
+                                                <label class="col-xs-12 col-sm-3 control-label no-padding-right">微信</label>
+                                                <div class="col-xs-12 col-sm-5">
+                                                    <input type="text" class="width-100" name="wx"
+                                                           value="${user.wx!}"/>
+                                                </div>
+                                            </div>
+
                                             <div class="form-group has-info">
                                                 <label class="col-xs-12 col-sm-3 control-label no-padding-right">密码</label>
                                                 <div class="col-xs-12 col-sm-5">
-                                                    <input type="password" class="width-100" name="password" />
+                                                    <input type="password" class="width-100" name="password"/>
                                                 </div>
                                             </div>
 

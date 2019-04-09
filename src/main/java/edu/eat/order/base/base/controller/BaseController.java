@@ -1,8 +1,8 @@
 package edu.eat.order.base.base.controller;
 
-import edu.eat.order.domain.User;
-import edu.eat.order.base.utils.ParamUtils;
 import edu.eat.order.base.context.Constant;
+import edu.eat.order.base.utils.ParamUtils;
+import edu.eat.order.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.multipart.MultipartFile;
@@ -13,7 +13,10 @@ import java.io.File;
 import java.io.IOException;
 import java.util.UUID;
 
-
+/**
+ * @author 执笔
+ * @date 2019/4/9 21:48
+ */
 public abstract class BaseController implements Constant {
 
     @Autowired
@@ -45,6 +48,7 @@ public abstract class BaseController implements Constant {
         System.out.println("上传文件: " + newFile.getAbsolutePath());
         return "/data/" + fileName;
     }
+
     /**
      * 将数据放在model里面
      *
@@ -81,4 +85,14 @@ public abstract class BaseController implements Constant {
         return "redirect:" + viewName;
     }
 
+    /**
+     * 提示
+     *
+     * @param message
+     * @return
+     */
+    protected String prompt(String message) {
+        request.setAttribute(Constant.ERROR_MESSAGE, message);
+        return "error";
+    }
 }

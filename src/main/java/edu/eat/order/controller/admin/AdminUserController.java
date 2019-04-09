@@ -1,10 +1,10 @@
 package edu.eat.order.controller.admin;
 
 import com.github.pagehelper.PageInfo;
-import edu.eat.order.base.utils.StringUtils;
 import edu.eat.order.base.base.controller.BaseAdminController;
 import edu.eat.order.base.mybatis.condition.MybatisCondition;
 import edu.eat.order.base.utils.MD5Utils;
+import edu.eat.order.base.utils.StringUtils;
 import edu.eat.order.domain.User;
 import edu.eat.order.mapper.UserMapper;
 import edu.eat.order.service.UserService;
@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
- *
  * @author 执笔
  * @date 2019/4/9 18:09
  */
@@ -38,7 +37,7 @@ public class AdminUserController extends BaseAdminController {
     @RequestMapping("list")
     public String list(Model model, User user) {
         MybatisCondition example = new MybatisCondition()
-                .eqNot("role","admin")
+                .eqNot("role", "admin")
                 .like("username", user.getUsername())
                 .like("name", user.getName())
                 .page(user);
@@ -75,6 +74,6 @@ public class AdminUserController extends BaseAdminController {
             user.setPassword(MD5Utils.encrypt(user.getPassword()));
         }
         userMapper.updateByPrimaryKeySelective(user);
-        return redirect("detail/" + user.getId());
+        return prompt("修改成功");
     }
 }
