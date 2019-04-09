@@ -1,5 +1,8 @@
 package edu.eat.order.domain;
 
+import edu.eat.order.base.base.dto.BasePageDTO;
+import lombok.Data;
+
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -8,9 +11,14 @@ import java.io.Serializable;
 import java.util.Date;
 
 
-
+/**
+ *
+ * @author 执笔
+ * @date 2019/4/9 18:29
+ */
+@Data
 @Table(name = "food")
-public class Food implements Serializable {
+public class Food extends BasePageDTO implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -39,121 +47,9 @@ public class Food implements Serializable {
     private Double oldprice;
     private Integer businessid;
 
-    private Double aver;//平均分
-
-
-    public Double getAver() {
-        return aver;
-    }
-
-    public void setAver(Double aver) {
-        this.aver = aver;
-    }
-
-
-    public Integer getBusinessid() {
-        return businessid;
-    }
-
-    public void setBusinessid(Integer businessid) {
-        this.businessid = businessid;
-    }
-
-    public Double getOldprice() {
-        return oldprice;
-    }
-
-    public void setOldprice(Double oldprice) {
-        this.oldprice = oldprice;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
-    }
-
-    public String getDescript() {
-        return descript;
-    }
-
-    public void setDescript(String descript) {
-        this.descript = descript;
-    }
-
-    public String getCategory() {
-        return category;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
-    }
-
-    public Integer getSort() {
-        return sort;
-    }
-
-    public void setSort(Integer sort) {
-        this.sort = sort;
-    }
-
-    public Date getAddtime() {
-        return addtime;
-    }
-
-    public void setAddtime(Date addtime) {
-        this.addtime = addtime;
-    }
-
-    public Integer getStatus() {
-        return status;
-    }
-
-    public void setStatus(Integer status) {
-        this.status = status;
-    }
-
-    public String getIcon() {
-        return icon;
-    }
-
-    public void setIcon(String icon) {
-        this.icon = icon;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Double getPrice() {
-        return price;
-    }
-
-    public void setPrice(Double price) {
-        this.price = price;
-    }
-
-    public Integer getTimes() {
-        return times;
-    }
-
-    public void setTimes(Integer times) {
-        this.times = times;
-    }
-
+    /**
+     * 平均分
+     */
+    private Double aver;
 
 }

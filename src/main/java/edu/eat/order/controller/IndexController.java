@@ -1,18 +1,17 @@
 package edu.eat.order.controller;
 
 import com.github.pagehelper.PageInfo;
+import edu.eat.order.base.base.controller.BaseController;
+import edu.eat.order.base.example.Example;
+import edu.eat.order.base.example.ExampleType;
+import edu.eat.order.base.exception.MessageException;
+import edu.eat.order.base.mybatis.condition.MybatisCondition;
 import edu.eat.order.domain.*;
-import edu.eat.order.mapper.CategoryMapper;
-import edu.eat.order.mapper.CommentMapper;
+import edu.eat.order.mapper.*;
 import edu.eat.order.model.FoodModel;
 import edu.eat.order.service.BusinessService;
 import edu.eat.order.service.FoodService;
 import edu.eat.order.service.UserService;
-import edu.eat.order.base.base.controller.BaseController;
-import edu.eat.order.base.base.Page;
-import edu.eat.order.base.example.Example;
-import edu.eat.order.base.example.ExampleType;
-import edu.eat.order.base.exception.MessageException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -35,17 +34,23 @@ public class IndexController extends BaseController {
     private BusinessService businessService;
     @Autowired
     private CommentMapper commentMapper;
+    @Autowired
+    private UserMapper userMapper;
+    @Autowired
+    private BusinessMapper businessMapper;
+    @Autowired
+    private FoodMapper foodMapper;
 
     @RequestMapping({"/", "index"})
     public String index(Model model, @RequestParam(defaultValue = "") String name, String category) {
-        Example example = Example.getInstance()
-                .addOrder("sort", ExampleType.OrderType.DESC);
-        example.addParam("f.status", 1);
-        example.addParam("(f.name like '%" + name + "%' or b.name like '%" + name + "%')");
-        example.addParam("f.category", category);
-        PageInfo<FoodModel> pageInfo = foodService.selectModel(example, new Page(40));
+        MybatisCondition example = new MybatisCondition()
+                .order("sort", false)
+                .eq("f.status", 1)
+                .condition("(f.name like '%" + name + "%' or b.name like '%" + name + "%')")
+                .eq("f.category", category)
+                .page(1, 40);
+        PageInfo<FoodModel> pageInfo = foodService.selectModel(example);
         model.addAttribute("list", pageInfo.getList());
-
         List<Category> categoryList = categoryMapper.selectAll();
         session.setAttribute("categoryList", categoryList);
         return "index";
@@ -90,8 +95,8 @@ public class IndexController extends BaseController {
         }
         user.setUsername(user.getPhone());
         user.setAddtime(new Date());
-        user.setStatus(1);
-        userService.insertSelective(user);
+        user.setStatus("success");
+        userMapper.insertSelective(user);
         session.setAttribute(SESSION_USER, user);
         return redirect("index");
     }
@@ -111,14 +116,14 @@ public class IndexController extends BaseController {
      */
     @RequestMapping("detail/{id}")
     public String detail(@PathVariable Integer id, Model model) {
-        Business business = businessService.selectByPK(id);
+        Business business = businessMapper.selectByPrimaryKey(id);
         model.addAttribute(business);
 
         Example example = Example.getInstance()
                 .addOrder("sort", ExampleType.OrderType.DESC);
         example.addParam("businessid", id);
         example.addParam("status", 1);
-        List<Food> foodList = foodService.selectByExample(example);
+        List<Food> foodList = foodMapper.selectByExample(example);
 
         model.addAttribute("foodList", foodList);
         return "business";
@@ -126,7 +131,7 @@ public class IndexController extends BaseController {
 
     @RequestMapping("comment/{id}")
     public String comment(@PathVariable Integer id, Model model) {
-        Business business = businessService.selectByPK(id);
+        Business business = businessMapper.selectByPrimaryKey(id);
         model.addAttribute(business);
 
         Example example = Example.getInstance().addParam("businessid", id).addOrder("addtime", ExampleType.OrderType.DESC);
