@@ -2,8 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="edu.eat.order.mapper.OrderMapper">
     <select id="selectModel" resultType="edu.eat.order.model.OrderModel">
-        SELECT o.*,u.USERNAME FROM orders o
+        SELECT o.*,u.name username,b.name businessname FROM orders o
         LEFT JOIN user u on u.ID = o.user_id
+        left join business b on b.id = o.business_id
         <include refid="BaseMapper.Example_Where_Clause"/>
         <include refid="BaseMapper.Order_Sql_Clause"/>
     </select>

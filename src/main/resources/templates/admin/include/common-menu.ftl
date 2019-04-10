@@ -46,6 +46,19 @@
         <li>
             <a href="#" class="dropdown-toggle">
                 <i class="icon-desktop"></i>
+                <span class="menu-text">订单管理</span>
+                <b class="arrow icon-angle-down"></b>
+            </a>
+            <ul class="submenu">
+                <li id="orderList">
+                    <a href="/admin/order/list"><i class="icon-leaf"></i>预约订单</a>
+                </li>
+            </ul>
+        </li>
+
+        <li>
+            <a href="#" class="dropdown-toggle">
+                <i class="icon-desktop"></i>
                 <span class="menu-text">商家管理</span>
                 <b class="arrow icon-angle-down"></b>
             </a>
@@ -104,18 +117,7 @@
         </li>
 
 
-        <li>
-            <a href="#" class="dropdown-toggle">
-                <i class="icon-desktop"></i>
-                <span class="menu-text">订单管理</span>
-                <b class="arrow icon-angle-down"></b>
-            </a>
-            <ul class="submenu">
-                <li id="orderList">
-                    <a href="/admin/order/list"><i class="icon-leaf"></i>所有订单</a>
-                </li>
-            </ul>
-        </li>
+
 
 
     </ul><!-- /.nav-list -->

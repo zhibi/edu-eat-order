@@ -1,6 +1,7 @@
 package edu.eat.order.domain;
 
 import edu.eat.order.base.base.dto.BasePageDTO;
+import lombok.Data;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -12,6 +13,7 @@ import java.util.Date;
  * @date 2019/4/9 18:11
  */
 @Table(name = "orders")
+@Data
 public class Order extends BasePageDTO implements Serializable {
 
     @Id
@@ -19,164 +21,49 @@ public class Order extends BasePageDTO implements Serializable {
     @Column(name = "ID")
     private Long id;
 
-    @Column(name = "ORDERNO")
-    private String orderno;
-
-    @Column(name = "ADDTIME")
-    private Date addtime;
+    private String orderNo;
 
     /**
-     * 总价格
+     * 添加时间
      */
-    @Column(name = "TOTAL")
+    private Date addTime;
+
     private Double total;
 
     /**
-     * 1支付
+     * 状态 预约  已支付 预约完成  取消
      */
-    @Column(name = "STATUS")
-    private Integer status;
+    private String status;
 
-    @Column(name = "REMARK")
+    /**
+     * 备注
+     */
     private String remark;
 
-    @Column(name = "user_id")
     private Integer userId;
 
-    private Date paytime;
+    /**
+     * 预约商家
+     */
+    private Integer businessId;
 
-    @Column(name = "Receiveuser")
-    private String receiveuser;
+    private Date payTime;
 
-    @Column(name = "Receiveaddress")
-    private String receiveaddress;
+    /**
+     * 预约时间
+     */
+    private String orderTime;
+
+    /**
+     * 预约人数
+     */
+    private Integer num;
+
     private String phone;
 
-    private Date sendtime;
-
-    private Date receivetime;
-
-    private String ids;
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    public String getIds() {
-        return ids;
-    }
-
-    public void setIds(String ids) {
-        this.ids = ids;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getOrderno() {
-        return orderno;
-    }
-
-    public void setOrderno(String orderno) {
-        this.orderno = orderno;
-    }
-
-    public Date getAddtime() {
-        return addtime;
-    }
-
-    public void setAddtime(Date addtime) {
-        this.addtime = addtime;
-    }
-
     /**
-     * 总价格
+     * 优惠券Id
      */
-    public Double getTotal() {
-        return total;
-    }
-
-    /**
-     * 总价格
-     */
-    public void setTotal(Double total) {
-        this.total = total;
-    }
-
-
-    public Integer getStatus() {
-        return status;
-    }
-
-
-    public void setStatus(Integer status) {
-        this.status = status;
-    }
-
-    public String getRemark() {
-        return remark;
-    }
-
-    public void setRemark(String remark) {
-        this.remark = remark;
-    }
-
-    public Integer getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Integer userId) {
-        this.userId = userId;
-    }
-
-    public Date getPaytime() {
-        return paytime;
-    }
-
-    public void setPaytime(Date paytime) {
-        this.paytime = paytime;
-    }
-
-    public String getReceiveuser() {
-        return receiveuser;
-    }
-
-    public void setReceiveuser(String receiveuser) {
-        this.receiveuser = receiveuser;
-    }
-
-    public String getReceiveaddress() {
-        return receiveaddress;
-    }
-
-    public void setReceiveaddress(String receiveaddress) {
-        this.receiveaddress = receiveaddress;
-    }
-
-    public Date getSendtime() {
-        return sendtime;
-    }
-
-    public void setSendtime(Date sendtime) {
-        this.sendtime = sendtime;
-    }
-
-    public Date getReceivetime() {
-        return receivetime;
-    }
-
-    public void setReceivetime(Date receivetime) {
-        this.receivetime = receivetime;
-    }
-
+    private Integer couponId;
 
 }

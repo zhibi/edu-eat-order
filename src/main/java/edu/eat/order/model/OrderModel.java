@@ -1,29 +1,22 @@
 package edu.eat.order.model;
 
 import edu.eat.order.domain.Order;
+import lombok.Data;
 
 import java.util.List;
 
-
+/**
+ *
+ * @author 执笔
+ * @date 2019/4/10 13:18
+ */
+@Data
 public class OrderModel extends Order {
 
-    private String username;
-    private List<OrderItemModel> orderItemModelList;
-
-    public List<OrderItemModel> getOrderItemModelList() {
-        return orderItemModelList;
-    }
-
-    public void setOrderItemModelList(List<OrderItemModel> orderItemModelList) {
-        this.orderItemModelList = orderItemModelList;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
+    private String userName;
+    /**
+     *
+     */
+    private String businessName;
 
 }

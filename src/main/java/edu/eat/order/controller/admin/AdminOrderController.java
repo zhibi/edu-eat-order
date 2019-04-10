@@ -10,7 +10,6 @@ import edu.eat.order.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
@@ -26,29 +25,37 @@ public class AdminOrderController extends BaseAdminController {
     @Autowired
     private OrderMapper orderMapper;
 
+    /**
+     * 预约列表
+     *
+     * @param model
+     * @param orderModel
+     * @return
+     */
     @RequestMapping("list")
     public String list(Model model, OrderModel orderModel) {
         MybatisCondition example = new MybatisCondition()
-                .like("o.orderNo", orderModel.getOrderno())
+                .like("o.order_No", orderModel.getOrderNo())
+                .like("u.name", orderModel.getUserName())
+                .like("b.name", orderModel.getBusinessName())
                 .order("o.status", false)
+                .order("o.add_time", false)
                 .page(orderModel);
         PageInfo<OrderModel> pageInfo = orderService.selectModelPage(example);
         setModelAttribute(model, pageInfo);
         return "admin/order/list";
     }
 
-    @RequestMapping("sendGoods/{id}")
-    public String sendGoods(@PathVariable Long id) {
-        Order order = orderMapper.selectByPrimaryKey(id);
-        order.setStatus(3);
+    /**
+     * 修改订单状态
+     *
+     * @param order
+     * @return
+     */
+    @RequestMapping("update")
+    public String update(Order order) {
         orderMapper.updateByPrimaryKeySelective(order);
-        return redirect("list");
+        return refresh();
     }
 
-    @RequestMapping("detail/{id}")
-    public String detail(@PathVariable Long id, Model model) {
-        OrderModel orderModel = orderService.selectModelById(id);
-        model.addAttribute(orderModel);
-        return "admin/order/detail";
-    }
 }
