@@ -30,6 +30,18 @@
                 </li>
             </ul>
         </li>
+        <li>
+            <a href="#" class="dropdown-toggle">
+                <i class="icon-desktop"></i>
+                <span class="menu-text">优惠券管理</span>
+                <b class="arrow icon-angle-down"></b>
+            </a>
+            <ul class="submenu">
+                <li id="couponList">
+                    <a href="/admin/coupon/list"><i class="icon-leaf"></i>优惠券列表</a>
+                </li>
+            </ul>
+        </li>
 
         <li>
             <a href="#" class="dropdown-toggle">
@@ -101,22 +113,6 @@
             <ul class="submenu">
                 <li id="orderList">
                     <a href="/admin/order/list"><i class="icon-leaf"></i>所有订单</a>
-                </li>
-            </ul>
-        </li>
-
-        <li>
-            <a href="#" class="dropdown-toggle">
-                <i class="icon-desktop"></i>
-                <span class="menu-text">分类管理</span>
-                <b class="arrow icon-angle-down"></b>
-            </a>
-            <ul class="submenu">
-                <li id="categoryList">
-                    <a href="/admin/category/list"><i class="icon-leaf"></i>分类列表</a>
-                </li>
-                <li id="categoryAdd">
-                    <a href="/admin/category/add"><i class="icon-leaf"></i>添加分类</a>
                 </li>
             </ul>
         </li>

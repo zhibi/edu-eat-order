@@ -97,4 +97,17 @@ public abstract class BaseController implements Constant {
         request.setAttribute(Constant.BACK_RUL, request.getHeader("Referer"));
         return "error";
     }
+
+    /**
+     * 提示
+     *
+     * @param message
+     * @param backUrl
+     * @return
+     */
+    protected String prompt(String message, String backUrl) {
+        request.setAttribute(Constant.ERROR_MESSAGE, message);
+        request.setAttribute(Constant.BACK_RUL, backUrl);
+        return "error";
+    }
 }

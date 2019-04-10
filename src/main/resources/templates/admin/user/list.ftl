@@ -44,19 +44,22 @@
                                 <tbody>
                                 <#list pageInfo.list as item>
                                     <tr>
-                                    <td>${item.username}</td>
-                                    <td>${item.name}</td>
-                                    <td>${item.phone}</td>
-                                    <td>${item.email}</td>
-                                    <td>${item.wx}</td>
-                                    <td>${item.addtime?string('yyyy-MM-dd HH:mm:ss')}</td>
-                                    <td>
-                                    <div class="visible-md visible-lg hidden-sm hidden-xs btn-group">
-                                <a class="btn btn-xs btn-info" href="/admin/user/detail/${item.id}">
-                                    <i class="icon-edit bigger-120"></i>
-                                    </a>
-                                    </div>
-                                    </td>
+                                        <td>${item.username}</td>
+                                        <td>${item.name}</td>
+                                        <td>${item.phone}</td>
+                                        <td>${item.email}</td>
+                                        <td>${item.wx}</td>
+                                        <td>${item.addtime?string('yyyy-MM-dd HH:mm:ss')}</td>
+                                        <td>
+                                            <div class="visible-md visible-lg hidden-sm hidden-xs btn-group">
+                                                <a class="btn btn-xs btn-info" href="/admin/user/detail/${item.id}">
+                                                    <i class="icon-edit bigger-120"></i>
+                                                </a>
+                                                <a class="btn btn-xs btn-info" href="/admin/coupon/add/${item.id}">
+                                                    发送优惠券
+                                                </a>
+                                            </div>
+                                        </td>
                                     </tr>
                                 </#list>
                                 </tbody>
