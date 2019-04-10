@@ -4,10 +4,10 @@
     <meta charset="utf-8">
     <title>登录</title>
     <!-- CSS -->
-    <link rel="stylesheet" href="/themes/front/assets/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/themes/front/assets/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="/themes/front/assets/css/form-elements.css">
-    <link rel="stylesheet" href="/themes/front/assets/css/style.css">
+    <link rel="stylesheet" href="/front/assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/front/assets/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/front/assets/css/form-elements.css">
+    <link rel="stylesheet" href="/front/assets/css/style.css">
 
 </head>
 
@@ -20,7 +20,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-8 col-sm-offset-2 text">
-                    <h1><strong>在线点餐</strong> 登录</h1>
+                    <h1><strong>在线预定</strong> 登录</h1>
                     <div class="description">
                         <p>
                             
@@ -62,8 +62,8 @@
 </div>
 
 </body>
-<script src="/themes/front/assets/js/jquery-1.11.1.min.js"></script>
-<script src="/themes/front/assets/bootstrap/js/bootstrap.min.js"></script>
-<script src="/themes/front/assets/js/jquery.backstretch.min.js"></script>
-<script src="/themes/front/assets/js/scripts.js"></script>
+<script src="/front/assets/js/jquery-1.11.1.min.js"></script>
+<script src="/front/assets/bootstrap/js/bootstrap.min.js"></script>
+<script src="/front/assets/js/jquery.backstretch.min.js"></script>
+<script src="/front/assets/js/scripts.js"></script>
 </html>

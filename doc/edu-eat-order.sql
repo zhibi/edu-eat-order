@@ -1,177 +1,192 @@
 /*
-Navicat MySQL Data Transfer
+ Navicat Premium Data Transfer
 
-Source Server         : 本地连接
-Source Server Version : 50525
-Source Host           : localhost:3306
-Source Database       : orderfood
+ Source Server         : localhost_3306
+ Source Server Type    : MySQL
+ Source Server Version : 100109
+ Source Host           : localhost:3306
+ Source Schema         : edu-eat-order
 
-Target Server Type    : MYSQL
-Target Server Version : 50525
-File Encoding         : 65001
+ Target Server Type    : MySQL
+ Target Server Version : 100109
+ File Encoding         : 65001
 
-Date: 2018-05-30 10:42:32
+ Date: 10/04/2019 22:57:55
 */
 
-SET FOREIGN_KEY_CHECKS=0;
+SET NAMES utf8mb4;
+SET FOREIGN_KEY_CHECKS = 0;
 
 -- ----------------------------
 -- Table structure for business
 -- ----------------------------
 DROP TABLE IF EXISTS `business`;
-CREATE TABLE `business` (
+CREATE TABLE `business`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `username` varchar(20) DEFAULT NULL,
-  `password` varchar(60) DEFAULT NULL,
-  `notice` varchar(255) DEFAULT NULL,
-  `name` varchar(255) DEFAULT NULL,
-  `addtime` datetime DEFAULT NULL,
-  `phone` varchar(255) DEFAULT NULL,
-  `free` varchar(255) DEFAULT NULL,
-  `address` varchar(255) DEFAULT NULL,
-  `icon` varchar(255) DEFAULT NULL,
-  `comment` int(255) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+  `username` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '',
+  `password` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '',
+  `phone` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '',
+  `address` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '',
+  `notice` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '',
+  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '',
+  `addtime` datetime(0) NULL DEFAULT NULL,
+  `free` double(255, 2) NULL DEFAULT 0.00,
+  `icon` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '',
+  `comment` int(11) NULL DEFAULT 0,
+  `category` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '',
+  `point_X` double(255, 2) NULL DEFAULT 0.00,
+  `point_Y` double(255, 2) NULL DEFAULT 0.00,
+  `content` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '',
+  `commend_num` int(11) NULL DEFAULT 0,
+  `order_num` int(11) NULL DEFAULT 0,
+  `start_num` int(11) NULL DEFAULT 0,
+  `sort` int(11) NULL DEFAULT 0,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = MyISAM AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of business
 -- ----------------------------
-INSERT INTO `business` VALUES ('1', 'admin', '1234', null, null, null, null, null, null, null, null);
-INSERT INTO `business` VALUES ('2', 'b1', '1234', '1.sddd\r\n2.dasdas\r\n3。打撒所多', '测试商家', '2018-05-02 03:23:37', '15302074359', '20.0', '北京小胡同', null, null);
+INSERT INTO `business` VALUES (1, '', '', '', '', '', 'dasda', NULL, 0.00, '', 0, '', 0.00, 0.00, '', 0, 0, 0, 0);
 
 -- ----------------------------
 -- Table structure for category
 -- ----------------------------
 DROP TABLE IF EXISTS `category`;
-CREATE TABLE `category` (
+CREATE TABLE `category`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of category
--- ----------------------------
-INSERT INTO `category` VALUES ('1', '盖饭');
-INSERT INTO `category` VALUES ('3', '稀饭');
-INSERT INTO `category` VALUES ('4', '饮料');
+  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for comment
 -- ----------------------------
 DROP TABLE IF EXISTS `comment`;
-CREATE TABLE `comment` (
+CREATE TABLE `comment`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `userid` int(11) DEFAULT NULL,
-  `businessid` int(11) DEFAULT NULL,
-  `content` varchar(255) DEFAULT NULL,
-  `addtime` datetime DEFAULT NULL,
-  `user` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+  `userid` int(11) NULL DEFAULT 0,
+  `businessid` int(11) NULL DEFAULT 0,
+  `content` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL,
+  `addtime` datetime(0) NULL DEFAULT NULL,
+  `user` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '',
+  `user_id` int(11) NULL DEFAULT 0,
+  `business_id` int(11) NULL DEFAULT 0,
+  `flag` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '',
+  `start` int(11) NULL DEFAULT 0,
+  `dining_advice` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '',
+  `serve` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '',
+  `environment` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '',
+  `taste` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = MyISAM AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
--- Records of comment
+-- Table structure for coupon
 -- ----------------------------
-INSERT INTO `comment` VALUES ('4', '10', '2', 'vxfgsdgfgdfgdfgdf', '2018-05-30 10:41:04', '执笔2');
-INSERT INTO `comment` VALUES ('5', '10', '2', 'dasdasdasdadsa', '2018-05-30 10:42:02', '执笔2');
-INSERT INTO `comment` VALUES ('6', '10', '2', 'dasdasczxdfsdsdfsdfs', '2018-05-30 10:42:07', '执笔2');
+DROP TABLE IF EXISTS `coupon`;
+CREATE TABLE `coupon`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NULL DEFAULT 0,
+  `money` double(255, 2) NULL DEFAULT 0.00,
+  `species` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '',
+  `add_time` datetime(0) NULL DEFAULT NULL,
+  `status` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for food
 -- ----------------------------
 DROP TABLE IF EXISTS `food`;
-CREATE TABLE `food` (
+CREATE TABLE `food`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `content` text,
-  `oldprice` decimal(10,0) DEFAULT NULL,
-  `descript` varchar(255) DEFAULT NULL,
-  `category` varchar(255) DEFAULT NULL,
-  `sort` varchar(255) DEFAULT NULL,
-  `addtime` datetime DEFAULT NULL,
-  `status` int(255) DEFAULT '1',
-  `icon` varchar(255) DEFAULT NULL,
-  `name` varchar(255) DEFAULT NULL,
-  `price` decimal(10,2) DEFAULT NULL,
-  `times` int(11) DEFAULT '0',
-  `businessid` int(11) DEFAULT NULL,
-  `aver` double(255,0) DEFAULT '0',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of food
--- ----------------------------
-INSERT INTO `food` VALUES ('4', null, '99', null, '稀饭', '13', '2018-05-02 03:56:54', '1', '/data/c6e2fc9b-421e-44a0-a0f1-59d60bdad308.JPG', '测试', '888.00', '0', '2', '0');
-
--- ----------------------------
--- Table structure for orders
--- ----------------------------
-DROP TABLE IF EXISTS `orders`;
-CREATE TABLE `orders` (
-  `ID` bigint(20) NOT NULL AUTO_INCREMENT,
-  `ORDERNO` varchar(64) DEFAULT NULL,
-  `ADDTIME` datetime DEFAULT NULL,
-  `TOTAL` decimal(65,2) DEFAULT NULL COMMENT '总价格',
-  `STATUS` int(11) DEFAULT '1' COMMENT '0取消 1发起 2代付款 3待评价 4订单完成',
-  `REMARK` varchar(255) DEFAULT NULL,
-  `user_id` bigint(20) DEFAULT '0',
-  `paytime` datetime DEFAULT NULL,
-  `Receiveuser` varchar(255) DEFAULT NULL,
-  `Receiveaddress` varchar(255) DEFAULT NULL,
-  `sendtime` datetime DEFAULT NULL,
-  `receivetime` datetime DEFAULT NULL,
-  `ids` varchar(255) DEFAULT NULL,
-  `phone` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of orders
--- ----------------------------
-INSERT INTO `orders` VALUES ('12', '0816730d-4549-42a7-bf80-0cc0dd9a03ca', '2018-05-02 05:35:21', '1778.00', '1', '4', '8', '2018-05-02 05:35:21', '1', '3', null, null, '7,', '2');
-INSERT INTO `orders` VALUES ('13', 'fa89f69a-cbb0-46c1-9c06-47c4890fc6f5', '2018-05-07 10:13:35', '888.00', '1', '2222222', '11', '2018-05-07 10:13:35', '123', '22222', null, null, '8,', '2222');
+  `content` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '',
+  `descript` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '',
+  `category` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '',
+  `sort` int(11) NULL DEFAULT 0,
+  `addtime` datetime(0) NULL DEFAULT NULL,
+  `status` int(11) NULL DEFAULT 0,
+  `icon` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '',
+  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '',
+  `price` double(255, 2) NULL DEFAULT 0.00,
+  `times` int(11) NULL DEFAULT 0,
+  `oldprice` double(255, 2) NULL DEFAULT 0.00,
+  `businessid` int(11) NULL DEFAULT 0,
+  `aver` double(255, 2) NULL DEFAULT 0.00,
+  `description` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '',
+  `old_price` double(255, 2) NULL DEFAULT 0.00,
+  `business_id` int(11) NULL DEFAULT 0,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for order_item
 -- ----------------------------
 DROP TABLE IF EXISTS `order_item`;
-CREATE TABLE `order_item` (
+CREATE TABLE `order_item`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `food_id` int(11) DEFAULT NULL,
-  `price` decimal(10,0) DEFAULT NULL,
-  `count` int(11) DEFAULT NULL,
-  `user_id` int(11) DEFAULT NULL,
-  `status` int(255) DEFAULT '0',
-  `addtime` datetime DEFAULT NULL,
-  `score` int(255) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+  `food_id` int(11) NULL DEFAULT 0,
+  `price` double(255, 2) NULL DEFAULT 0.00,
+  `count` int(11) NULL DEFAULT 0,
+  `user_id` int(11) NULL DEFAULT 0,
+  `status` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '',
+  `addtime` datetime(0) NULL DEFAULT NULL,
+  `score` int(11) NULL DEFAULT 0,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
--- Records of order_item
+-- Table structure for orders
 -- ----------------------------
-INSERT INTO `order_item` VALUES ('7', '4', '1776', '2', '8', '1', '2018-05-02 05:12:31', '0');
-INSERT INTO `order_item` VALUES ('8', '4', '888', '1', '11', '1', '2018-05-07 10:13:21', '0');
+DROP TABLE IF EXISTS `orders`;
+CREATE TABLE `orders`  (
+  `ID` bigint(20) NOT NULL AUTO_INCREMENT,
+  `ORDERNO` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '',
+  `ADDTIME` datetime(0) NULL DEFAULT NULL,
+  `TOTAL` double(255, 2) NULL DEFAULT 0.00,
+  `status` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '',
+  `REMARK` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '',
+  `user_id` int(11) NULL DEFAULT 0,
+  `paytime` datetime(0) NULL DEFAULT NULL,
+  `Receiveuser` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '',
+  `Receiveaddress` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '',
+  `phone` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '',
+  `sendtime` datetime(0) NULL DEFAULT NULL,
+  `receivetime` datetime(0) NULL DEFAULT NULL,
+  `ids` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '',
+  `order_no` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '',
+  `add_time` datetime(0) NULL DEFAULT NULL,
+  `business_id` int(11) NULL DEFAULT 0,
+  `pay_time` datetime(0) NULL DEFAULT NULL,
+  `order_time` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '',
+  `num` int(11) NULL DEFAULT 0,
+  `coupon_id` int(11) NULL DEFAULT 0,
+  PRIMARY KEY (`ID`) USING BTREE
+) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for user
 -- ----------------------------
 DROP TABLE IF EXISTS `user`;
-CREATE TABLE `user` (
-  `ID` int(20) NOT NULL AUTO_INCREMENT,
-  `PHONE` varchar(11) DEFAULT NULL,
-  `USERNAME` varchar(25) DEFAULT NULL COMMENT '别名',
-  `PASSWORD` varchar(32) NOT NULL,
-  `STATUS` int(11) DEFAULT '1' COMMENT '1正常  0 锁定 ',
-  `ADDTIME` datetime DEFAULT NULL,
-  PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+CREATE TABLE `user`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `phone` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '',
+  `username` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '',
+  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '',
+  `password` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '',
+  `status` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '',
+  `addtime` datetime(0) NULL DEFAULT NULL,
+  `role` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '',
+  `email` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '',
+  `wx` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = MyISAM AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES ('8', '15302074359', 'test', '1234', '1', '2017-03-09 08:41:26');
-INSERT INTO `user` VALUES ('10', '17346512586', '执笔2', '1234', '1', '2018-04-14 04:54:41');
-INSERT INTO `user` VALUES ('11', 'qqqq', '123', 'qqqq', '1', '2018-05-07 09:52:51');
+INSERT INTO `user` VALUES (1, '', 'admin', '管理员', 'E10ADC3949BA59ABBE56E057F20F883E', 'SUCCESS', '2019-04-09 21:01:02', 'admin', '', '');
+INSERT INTO `user` VALUES (2, '123', 'test12', '测试用户12', '5705E1164A8394AACE6018E27D20D237', 'SUCCESS', '2019-04-09 21:42:57', 'user', '12', '1111112');
+
+SET FOREIGN_KEY_CHECKS = 1;

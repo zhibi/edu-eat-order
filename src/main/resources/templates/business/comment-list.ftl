@@ -59,14 +59,14 @@
 
                     <form action="/comment/send" method="post">
                         <input type="hidden" name="businessId" value="${business.id}">
-                        <textarea name="content" cols="150" rows="8"></textarea>
-                        <input type="submit" style="    padding: 9px 20px;
+                        <script id="container" name="content" type="text/plain"></script>
+                        <input type="submit" style="    padding: 9px 10px;
     font-size: 20px;
     color: white;
 
     font-weight: bolder;
     background-color: #ff2d4b;
-    margin-top: 89px;" value="发表">
+    margin-top: 39px;" value="发表">
                     </form>
 
             </section>
@@ -76,4 +76,19 @@
 
 </div>
 </body>
+<script type="text/javascript" src="/webjars/ueditor-bower/ueditor.config.js"></script>
+<!-- 编辑器源码文件 -->
+<script type="text/javascript" src="/webjars/ueditor-bower/ueditor.all.js"></script>
+<!-- 实例化编辑器 -->
+<script type="text/javascript">
+    var ue = UE.getEditor('container', {
+        autoHeightEnabled: true,
+        // 服务器统一请求接口路径
+        serverUrl: "http://localhost/ueditor/server"
+    });
+
+    function formSubmit() {
+        $("#content").val(ue.getContent());
+    }
+</script>
 </html>

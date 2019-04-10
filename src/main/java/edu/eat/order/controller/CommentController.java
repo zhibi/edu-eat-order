@@ -24,7 +24,7 @@ import java.util.List;
  */
 @RequestMapping("comment")
 @Controller
-@RequestLogin
+
 public class CommentController extends BaseController {
 
     @Autowired
@@ -40,6 +40,7 @@ public class CommentController extends BaseController {
      */
     @Transactional
     @RequestMapping("send")
+    @RequestLogin
     public String send(Comment comment) {
         comment.setAddtime(new Date());
         comment.setUserId(sessionUser().getId());
