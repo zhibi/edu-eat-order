@@ -7,7 +7,6 @@ import edu.eat.order.base.mybatis.condition.MybatisCondition;
 import edu.eat.order.base.utils.MD5Utils;
 import edu.eat.order.domain.Business;
 import edu.eat.order.domain.Comment;
-import edu.eat.order.domain.Food;
 import edu.eat.order.domain.User;
 import edu.eat.order.mapper.BusinessMapper;
 import edu.eat.order.mapper.CommentMapper;
@@ -147,17 +146,6 @@ public class IndexController extends BaseController {
     }
 
 
-    @RequestMapping("comment/{id}")
-    public String comment(@PathVariable Integer id, Model model) {
-        Business business = businessMapper.selectByPrimaryKey(id);
-        model.addAttribute(business);
 
-        MybatisCondition example = new MybatisCondition().eq("businessid", id).order("addtime", false);
-
-        List<Comment> commentList = commentMapper.selectByExample(example);
-
-        model.addAttribute("commentList", commentList);
-        return "business-comment";
-    }
 
 }

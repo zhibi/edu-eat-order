@@ -4,7 +4,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-    <title>在线预约</title>
+    <title>在线点餐</title>
 
     <link rel="stylesheet" type="text/css" href="/front/index_files/main_a79c03f.css">
     <link rel="stylesheet" type="text/css" href="/front/index_files/cartAlert_69d76b3.css">
@@ -42,48 +42,38 @@
         <div class="main-l">
             <section class="menu-tab clearfix">
                 <ul>
-                    <li class="txt curr"><a href="/">菜单</a></li>
-                    <li class="txt  "><a href="/comment/${business.id}">评论</a></li>
+                    <li class="txt "><a href="/business/detail/${business.id!}">菜单</a></li>
+                    <li class="txt  curr"><a href="/">评论</a></li>
                 </ul>
             </section>
-            <section class="menu-list">
-                <div class="list-wrap" id="menu_2">
-                    <div class="list-status">
-                        <span class="title">热销</span></div>
-                    <div class="list clearfix">
-                        <ul>
-                            <#list foodList as item>
-                                <li class="list-item">
-                                    <figure class="headimg fl">
-                                        <div class="bg-img"
-                                             style="background: url('${item.icon}') center center no-repeat;background-size:cover;-webkit-background-size:cover;-o-background-size:cover;-moz-background-size:cover;-ms-background-size:cover;"></div>
-                                    </figure>
-                                    <div class="info fl">
-                                        <h3 data-title="${item.name}">${item.name}</h3>
-                                        <div class="info-desc">
-                                            <p class="m-hot-value">
-                                                <span class="sales-count">人推荐</span><span class="divider"></span>
-                                                <span class="sales-count">月售47份</span>
-                                            </p>
-                                            <p class="m-hot-value">
-                                                <span class="stock-count">库存9996份</span></p>
-                                        </div>
-                                        <div class="m-price">
-                                            <span class="activityprice"><strong>¥${item.price}</strong></span>&nbsp;&nbsp;<del>
-                                                <strong>¥${item.oldPrice}</strong></del>&nbsp;&nbsp;
-                                        </div>
-                                    </div>
-                                </li>
+            <section class="comment-list" id="comment-list">
+                <div class="comment-con" data-node="commCon">
 
-                            </#list>
+                    <#list commentList as item>
+                        <div class="list clearfix">
+                            <div class="top-section"><span class="user-name">${item.userName!}</span>
+                                <span class="fr">${item.addtime?string('yyyy-MM-dd HH:mm:ss')}</span></div>
+                            <div class="mid-section"><p>${item.content!}</p></div>
+                        </div>
+                    </#list>
 
-                        </ul>
-                    </div>
-                </div>
+                    <form action="/comment/send" method="post">
+                        <input type="hidden" name="businessId" value="${business.id}">
+                        <textarea name="content" cols="150" rows="8"></textarea>
+                        <input type="submit" style="    padding: 9px 20px;
+    font-size: 20px;
+    color: white;
+
+    font-weight: bolder;
+    background-color: #ff2d4b;
+    margin-top: 89px;" value="发表">
+                    </form>
+
             </section>
         </div>
         <#include "notice.ftl"/>
     </div>
+
 </div>
 </body>
 </html>
