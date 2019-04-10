@@ -41,63 +41,72 @@
         <div class="filter-category clearfix">
             <div class="acrossLine"></div>
             <ul class="clearfix">
-                <li class="active">商家</li>
+                <li class="active">金牌商家</li>
             </ul>
         </div>
-        <section id="f_panel" class="filter-section clearfix">
-            <div class="filter-up clearfix">
-                <ul class="filter-cates clearfix">
-                    <li class="cate-item  item-index-0 <#if !category??>f-selected</#if>"  onclick="location.href='/index'">
-                        <div class="item-text">全部</div>
-                    </li>
-                    <#list categoryList as item>
-                        <li class="cate-item  item-index-1 <#if category?? && category==item.name?string>f-selected</#if> " onclick="location.href='/index?category=${item.name}'">
-                            <div class="item-text">${item.name!}</div>
-                        </li>
-                    </#list>
-                </ul>
-            </div>
-        </section>
         <section class="shop-list" id="shop-list">
             <div class="list-wrap">
                 <div class="list clearfix">
                     <ul class="shopcards-list">
-                        <#list list as item>
-                            <li class="list-item shopcard  online" onclick="location.href='/detail/${item.businessid}'">
+                        <#list businessList as item>
+                            <li class="list-item shopcard  online" onclick="location.href='/business/detail/${item.id}'">
                                 <div class="shopimg">
                                     <img width="228" height="140"
                                          src="${item.icon!}">
                                 </div>
-                                <div class="title" >${item.name}<span class="cert-icon"><img
-                                        src="/themes/front/index_files/certificated_s.png"></span>
-
-                                    <span class="f-col f-sale">&nbsp;&nbsp;${item.businessName!}</span>
+                                <div class="title">${item.name}
+                                    <span class="cert-icon"><img src="/front/index_files/certificated_s.png"></span>
                                 </div>
                                 <div class="info f-info clearfix">
-                                    <div class="f-col f-price" style="    width: 90px;">
-                                        <span class="item-label">平均评分:</span> <span class="item-value">${(item.aver!0)?string("#0.00")}分</span>
-                                    </div>
-
-                                    <div class="f-col f-cost" style="    width: 90px;">
-                                        <span class="item-label">&nbsp;&nbsp;&nbsp;&nbsp;评论条数:</span> <span class="item-value">${item.comment!0}条</span>
-                                    </div>
-
+                                    <div class="f-col"><span class="item-value">${item.address!}</span></div>
                                 </div>
                                 <div class="info f-info clearfix">
-                                    <div class="f-col f-price"><span class="item-label">原价:</span> <span class="item-value">¥${item.oldprice!}</span>
-                                    </div>
-                                    <div class="f-col f-cost"><span class="item-label">现价:</span> <span class="item-value">¥${item.price!}</span>
-                                    </div>
+                                    <div class="f-col"><span class="item-value">${item.phone!}</span></div>
                                 </div>
                                 <div class="feature"></div>
                             </li>
                         </#list>
-
                     </ul>
                 </div>
             </div>
         </section>
 
+
+        <div class="filter-category clearfix">
+            <div class="acrossLine"></div>
+            <ul class="clearfix">
+                <li class="active">推荐菜品</li>
+            </ul>
+        </div>
+        <section class="shop-list" id="shop-list">
+            <div class="list-wrap">
+                <div class="list clearfix">
+                    <ul class="shopcards-list">
+                        <#list foodList as item>
+                            <li class="list-item shopcard  online" onclick="location.href='/business/detail/${item.businessId}'">
+                                <div class="shopimg">
+                                    <img width="228" height="140"
+                                         src="${item.icon!}">
+                                </div>
+                                <div class="title">${item.name}
+                                    <span class="cert-icon"><img src="/front/index_files/certificated_s.png"></span>
+                                    <span class="f-col f-sale">&nbsp;&nbsp;${item.businessName!}</span>
+                                </div>
+                                <div class="info f-info clearfix">
+                                    <div class="f-col f-price"><span class="item-label">原价:</span> <span
+                                                class="item-value">¥${item.oldPrice!}</span>
+                                    </div>
+                                    <div class="f-col f-cost"><span class="item-label">现价:</span> <span
+                                                class="item-value">¥${item.price!}</span>
+                                    </div>
+                                </div>
+                                <div class="feature"></div>
+                            </li>
+                        </#list>
+                    </ul>
+                </div>
+            </div>
+        </section>
     </div>
 
 </div>

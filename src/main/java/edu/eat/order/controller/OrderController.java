@@ -31,15 +31,6 @@ public class OrderController extends BaseController {
     @Autowired
     private FoodMapper foodMapper;
 
-    @RequestMapping("saveItem")
-    @ResponseBody
-    public JsonResponse<String> saveItem(Integer footId) throws Exception {
-        Food food = foodMapper.selectByPrimaryKey(footId);
-        if (null == food || food.getStatus() == 0) {
-            throw new MessageException("该餐品不存在或者已下架");
-        }
-        return JsonResponse.ok("");
-    }
 
     @RequestMapping("myCar")
     public String myCar(Model model) {
@@ -81,19 +72,5 @@ public class OrderController extends BaseController {
         return "order";
     }
 
-    /**
-     * 为食物打分
-     *
-     * @return
-     */
-    @RequestMapping("score")
-    public String score(Integer orderItemId, Integer score) {
-        Food food = null;
-        food.setTimes(food.getTimes() + 1);//评论次数
-        food.setSort(food.getSort() + score);
-        food.setAver((double) (food.getSort() / food.getTimes()));
-        foodMapper.updateByPrimaryKeySelective(food);
-        return refresh();
-    }
 
 }

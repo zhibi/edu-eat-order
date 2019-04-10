@@ -12,7 +12,6 @@ import java.util.Date;
 
 
 /**
- *
  * @author 执笔
  * @date 2019/4/9 18:29
  */
@@ -26,30 +25,38 @@ public class Food extends BasePageDTO implements Serializable {
 
     private String content;
 
-    private String descript;
+    /**
+     * 描述
+     */
+    private String description;
 
+    /**
+     * 分类
+     */
     private String category;
 
     private Integer sort;
 
     private Date addtime;
 
-    private Integer status;
-
+    /**
+     * 图片
+     */
     private String icon;
 
+    /**
+     * 名字
+     */
     private String name;
 
+    /**
+     * 价格
+     */
     private Double price;
 
-    private Integer times;
-
-    private Double oldprice;
-    private Integer businessid;
-
     /**
-     * 平均分
+     * 原价
      */
-    private Double aver;
-
+    private Double oldPrice;
+    private Integer businessId;
 }

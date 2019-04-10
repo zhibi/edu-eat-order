@@ -3,10 +3,7 @@ package edu.eat.order.domain;
 import edu.eat.order.base.base.dto.BasePageDTO;
 import lombok.Data;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
 
 /**
@@ -39,10 +36,12 @@ public class Business extends BasePageDTO implements Serializable {
     /**
      * 横坐标
      */
+    @Column(name = "point_X")
     private Double pointX;
     /**
      * 竖坐标
      */
+    @Column(name = "point_Y")
     private Double pointY;
 
     /**
@@ -64,4 +63,14 @@ public class Business extends BasePageDTO implements Serializable {
      * 点赞数量
      */
     private Integer startNum;
+
+    /**
+     * 排序
+     */
+    private Integer sort;
+
+    /**
+     * 头像
+     */
+    private String icon;
 }

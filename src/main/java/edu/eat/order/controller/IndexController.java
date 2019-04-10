@@ -4,8 +4,15 @@ import com.github.pagehelper.PageInfo;
 import edu.eat.order.base.base.controller.BaseController;
 import edu.eat.order.base.exception.MessageException;
 import edu.eat.order.base.mybatis.condition.MybatisCondition;
-import edu.eat.order.domain.*;
-import edu.eat.order.mapper.*;
+import edu.eat.order.base.utils.MD5Utils;
+import edu.eat.order.domain.Business;
+import edu.eat.order.domain.Comment;
+import edu.eat.order.domain.Food;
+import edu.eat.order.domain.User;
+import edu.eat.order.mapper.BusinessMapper;
+import edu.eat.order.mapper.CommentMapper;
+import edu.eat.order.mapper.FoodMapper;
+import edu.eat.order.mapper.UserMapper;
 import edu.eat.order.model.FoodModel;
 import edu.eat.order.service.BusinessService;
 import edu.eat.order.service.FoodService;
@@ -27,8 +34,6 @@ public class IndexController extends BaseController {
     @Autowired
     private UserService userService;
     @Autowired
-    private CategoryMapper categoryMapper;
-    @Autowired
     private BusinessService businessService;
     @Autowired
     private CommentMapper commentMapper;
@@ -39,18 +44,29 @@ public class IndexController extends BaseController {
     @Autowired
     private FoodMapper foodMapper;
 
+    /**
+     * 首页展示
+     *
+     * @param model
+     * @param name
+     * @return
+     */
     @RequestMapping({"/", "index"})
-    public String index(Model model, @RequestParam(defaultValue = "") String name, String category) {
+    public String index(Model model, @RequestParam(defaultValue = "") String name) {
+        // 展示商家
         MybatisCondition example = new MybatisCondition()
                 .order("sort", false)
-                .eq("f.status", 1)
-                .condition("(f.name like '%" + name + "%' or b.name like '%" + name + "%')")
-                .eq("f.category", category)
-                .page(1, 40);
-        PageInfo<FoodModel> pageInfo = foodService.selectModelPage(example);
-        model.addAttribute("list", pageInfo.getList());
-        List<Category> categoryList = categoryMapper.selectAll();
-        session.setAttribute("categoryList", categoryList);
+                .like("name", name)
+                .page(1, 16);
+        PageInfo<Business> businessPageInfo = businessService.selectPage(example);
+        model.addAttribute("businessList", businessPageInfo.getList());
+        // 展示菜品
+        example = new MybatisCondition()
+                .order("f.sort", false)
+                .like("f.name", name)
+                .page(1, 16);
+        PageInfo<FoodModel> foodModelPageInfo = foodService.selectModelPage(example);
+        model.addAttribute("foodList", foodModelPageInfo.getList());
         return "index";
     }
 
@@ -137,5 +153,9 @@ public class IndexController extends BaseController {
 
         model.addAttribute("commentList", commentList);
         return "business-comment";
+    }
+
+    public static void main(String[] args) {
+        System.out.println(MD5Utils.encrypt("123456"));
     }
 }

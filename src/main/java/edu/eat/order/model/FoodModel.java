@@ -1,26 +1,17 @@
 package edu.eat.order.model;
 
 import edu.eat.order.domain.Food;
+import lombok.Data;
 
 
+/**
+ *
+ * @author 执笔
+ * @date 2019/4/10 16:06
+ */
+@Data
 public class FoodModel extends Food {
 
     private String  businessName;
-    private Integer comment;
 
-    public Integer getComment() {
-        return comment;
-    }
-
-    public void setComment(Integer comment) {
-        this.comment = comment;
-    }
-
-    public String getBusinessName() {
-        return businessName;
-    }
-
-    public void setBusinessName(String businessName) {
-        this.businessName = businessName;
-    }
 }
