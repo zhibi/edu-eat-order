@@ -71,6 +71,8 @@ public class IndexController extends BaseController {
     }
 
     /**
+     * 登录
+     *
      * @return
      */
     @GetMapping(value = "login")
@@ -81,12 +83,24 @@ public class IndexController extends BaseController {
         return "/login";
     }
 
+    /**
+     * 跳转注册页
+     *
+     * @return
+     */
     @RequestMapping(value = "register", method = RequestMethod.GET)
     public String register() {
         return "/register";
     }
 
 
+    /**
+     * 登录
+     *
+     * @param phone
+     * @param password
+     * @return
+     */
     @PostMapping(value = "login")
     public String login(String phone, String password) {
         User user = userService.selectByPhone(phone);
@@ -101,46 +115,37 @@ public class IndexController extends BaseController {
     }
 
 
+    /**
+     * 注册
+     *
+     * @param user
+     * @return
+     */
     @RequestMapping(value = "register", method = RequestMethod.POST)
     public String register(User user) {
         User temp = userService.selectByPhone(user.getPhone());
         if (null != temp) {
             throw new MessageException("该手机号已经注册");
         }
+        user.setPassword(MD5Utils.encrypt(user.getPassword()));
         user.setUsername(user.getPhone());
         user.setAddtime(new Date());
-        user.setStatus("success");
+        user.setStatus("SUCCESS");
         userMapper.insertSelective(user);
         session.setAttribute(SESSION_USER, user);
         return redirect("index");
     }
 
+    /**
+     * 退出登录
+     * @return
+     */
     @RequestMapping("logout")
     public String logout() {
         session.removeAttribute(SESSION_USER);
         return redirect("index");
     }
 
-    /**
-     * 详情
-     *
-     * @param id
-     * @param model
-     * @return
-     */
-    @RequestMapping("detail/{id}")
-    public String detail(@PathVariable Integer id, Model model) {
-        Business business = businessMapper.selectByPrimaryKey(id);
-        model.addAttribute(business);
-
-        MybatisCondition example = new MybatisCondition()
-                .order("sort", false).eq("businessid", id)
-                .eq("status", 1);
-        List<Food> foodList = foodMapper.selectByExample(example);
-
-        model.addAttribute("foodList", foodList);
-        return "business";
-    }
 
     @RequestMapping("comment/{id}")
     public String comment(@PathVariable Integer id, Model model) {
@@ -155,7 +160,4 @@ public class IndexController extends BaseController {
         return "business-comment";
     }
 
-    public static void main(String[] args) {
-        System.out.println(MD5Utils.encrypt("123456"));
-    }
 }
