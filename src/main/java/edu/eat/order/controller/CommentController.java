@@ -29,7 +29,7 @@ public class CommentController extends BaseController {
         comment.setUserId(sessionUser().getId());
         commentMapper.insertSelective(comment);
         Business business = businessMapper.selectByPrimaryKey(comment.getBusinessId());
-        business.setComment(business.getComment() + 1);
+       // business.setComment(business.getComment() + 1);
         businessMapper.updateByPrimaryKeySelective(business);
         return refresh();
     }
