@@ -8,10 +8,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import java.io.Serializable;
-import java.util.Date;
 
 /**
- * 商家
+ * @author 执笔
+ * @date 2019/4/10 13:41
  */
 @Data
 @Table(name = "business")
@@ -21,17 +21,47 @@ public class Business extends BasePageDTO implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    private String username;
+    /**
+     * 名字
+     */
+    private String name;
 
-    private String password;
+    /**
+     * 分类
+     */
+    private String category;
+    /**
+     * 电话
+     */
     private String phone;
     private String address;
-    private String notice;
-    private String name;
-    private Date addtime;
-    private Double free;
-    private String icon;
-    private Integer comment;
 
+    /**
+     * 横坐标
+     */
+    private Double pointX;
+    /**
+     * 竖坐标
+     */
+    private Double pointY;
 
+    /**
+     * 商家介绍
+     */
+    private String content;
+
+    /**
+     * 评论数量
+     */
+    private Integer commendNum;
+
+    /**
+     * 预约次数
+     */
+    private Integer orderNum;
+
+    /**
+     * 点赞数量
+     */
+    private Integer startNum;
 }
