@@ -122,7 +122,6 @@
             <version>1.4.3</version>
         </dependency>
 
-
         <!-- 其它配置 -->
         <dependency>
             <groupId>org.projectlombok</groupId>
