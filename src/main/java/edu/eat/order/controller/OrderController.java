@@ -74,7 +74,7 @@ public class OrderController extends BaseController {
         Business business = businessMapper.selectByPrimaryKey(order.getBusinessId());
         business.setCommendNum(business.getOrderNum() + 1);
         businessMapper.updateByPrimaryKeySelective(business);
-        return redirect("预约成功", "order/myOrder");
+        return redirect("预约成功", "/order/myOrder");
     }
 
     /**

@@ -67,7 +67,7 @@
                 <img src="${item.icon}" width="100%">
             </div>
             <div class="mui-card-footer">
-                <a class="mui-card-link">预定 ${item.orderNum} </a>
+                <a class="mui-card-link" href="/order/send/${item.id!}">预定 ${item.orderNum} </a>
                 <a class="mui-card-link" href="/comment/${item.id!}">评论 ${item.commendNum} </a>
                 <a class="mui-card-link" href="/business/detail/${item.id}">详情</a>
             </div>

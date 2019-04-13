@@ -11,15 +11,15 @@
         </div>
         <div class="mui-input-row">
             <label>昵称</label>
-            <input name="name" type="text" class="mui-input-clear mui-input" placeholder="请输入昵称">
+            <input name="name" v type="text" class="mui-input-clear mui-input" placeholder="请输入昵称">
         </div>
         <div class="mui-input-row">
             <label>密码</label>
-            <input name='password' type="password" class="mui-input-clear mui-input" placeholder="请输入密码">
+            <input name='password' v type="password" class="mui-input-clear mui-input" placeholder="请输入密码">
         </div>
         <div class="mui-input-row">
             <label>确认密码</label>
-            <input name='password2' type="password" class="mui-input-clear mui-input" placeholder="请输入确认密码">
+            <input name='password2' required type="password" class="mui-input-clear mui-input" placeholder="请输入确认密码">
         </div>
     </form>
 
@@ -33,4 +33,10 @@
 
 
 </body>
+<script>
+    var err = "${errorMessage!}";
+    if (err.length > 0) {
+        mui.alert(err, '提示');
+    }
+</script>
 </html>

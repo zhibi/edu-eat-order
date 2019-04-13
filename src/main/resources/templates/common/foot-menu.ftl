@@ -3,11 +3,11 @@
         <span class="mui-icon mui-icon-home"></span>
         <span class="mui-tab-label">首页</span>
     </a>
-    <a class="mui-tab-item <#if (menuAct!'') == 'order'>mui-active</#if>" href="#">
+    <a class="mui-tab-item <#if (menuAct!'') == 'order'>mui-active</#if>" onclick="location.href='/order/myOrder'">
         <span class="mui-icon-extra mui-icon-extra-cart"></span>
         <span class="mui-tab-label">订单</span>
     </a>
-    <a class="mui-tab-item <#if (menuAct!'') == 'user'>mui-active</#if>" href="#">
+    <a class="mui-tab-item <#if (menuAct!'') == 'user'>mui-active</#if>" onclick="location.href='/user/index'">
         <span class="mui-icon mui-icon-contact"></span>
         <span class="mui-tab-label">个人中心</span>
     </a>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <#include "../common/head.ftl"/>
-<#assign menuAct="rder"/>
+<#assign menuAct="order"/>
 <#assign navTitle= '我的预约'/>
 <body class="mui-android mui-android-6 mui-android-6-0">
 <#include "../common/foot-menu.ftl"/>

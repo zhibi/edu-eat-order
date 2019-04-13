@@ -49,7 +49,7 @@ public class CommentController extends BaseController {
         Business business = businessMapper.selectByPrimaryKey(comment.getBusinessId());
         business.setCommendNum(business.getCommendNum() + 1);
         businessMapper.updateByPrimaryKeySelective(business);
-        return refresh("评论成功");
+        return redirect("评论成功","/comment/"+business.getId());
     }
 
     /**

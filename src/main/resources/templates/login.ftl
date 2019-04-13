@@ -7,11 +7,11 @@
     <form id="login" class="mui-input-group" action="/login" method="post">
         <div class="mui-input-row">
             <label>手机号</label>
-            <input name="phone" type="text" class="mui-input-clear mui-input" placeholder="请输入账号">
+            <input name="phone" required type="text" class="mui-input-clear mui-input" placeholder="请输入账号">
         </div>
         <div class="mui-input-row">
             <label>密码</label>
-            <input name='password' type="password" class="mui-input-clear mui-input" placeholder="请输入密码">
+            <input name='password' required type="password" class="mui-input-clear mui-input" placeholder="请输入密码">
         </div>
     </form>
 
@@ -24,5 +24,10 @@
 
 
 </body>
-
+<script>
+    var err = "${errorMessage!}";
+    if (err.length > 0) {
+        mui.alert(err, '提示');
+    }
+</script>
 </html>

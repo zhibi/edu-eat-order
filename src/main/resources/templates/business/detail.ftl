@@ -41,7 +41,7 @@
     </ul>
     <div id="allmap" style="height: 200px"></div>
     <div class="mui-card-footer">
-        <button type="button" class="mui-btn mui-btn-primary">预定</button>
+        <button type="button" class="mui-btn mui-btn-primary" onclick="location.href='/order/send/${business.id!}'">预定</button>
         <button type="button" class="mui-btn mui-btn-warning" onclick="location.href='/comment/send/${business.id!}'">评论
         </button>
         <button type="button" class="mui-btn mui-btn-success" onclick="location.href='/comment/${business.id!}'">用户评论

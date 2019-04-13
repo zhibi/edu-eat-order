@@ -30,13 +30,14 @@
         <li class="mui-table-view-cell">用餐人数：${order.num!}</li>
         <li class="mui-table-view-cell">下单时间：${order.addTime?string("yyyy-MM-dd HH:mm:ss")}</li>
         <li class="mui-table-view-cell">订单金额：${order.total!}</li>
-        <#if order.status == '待支付'>
+        <#if order.status == '预约'>
             <li class="mui-table-view-cell">
                 优惠券：<#if coupon??>${coupon.species + '--' + coupon.money}元<#else>暂无优惠券</#if></li>
             <li class="mui-table-view-cell">
                 待支付金额：<#if coupon??>${order.total - coupon.money}元<#else>${order.total!}元</#if></li>
             <li class="mui-table-view-cell">
-                <button type="button" class="mui-btn mui-btn-primary" onclick="location.href='/order/pay/${order.id}'">
+                去支付
+                <button style="padding: 5px" type="button" class="mui-btn mui-btn-primary" onclick="location.href='/order/pay/${order.id}'">
                     支付
                 </button>
             </li>
@@ -44,5 +45,10 @@
     </ul>
 </div>
 </body>
-
+<script>
+    var err = "${errorMessage!}";
+    if (err.length > 0) {
+        mui.alert(err, '提示');
+    }
+</script>
 </html>

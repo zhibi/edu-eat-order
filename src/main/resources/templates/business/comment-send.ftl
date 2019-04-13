@@ -8,7 +8,7 @@
 <#include "../common/header.ftl"/>
 
 <div class="mui-content">
-    <form class="mui-input-group" style="margin-top: 8px" action="/comment/send" method="post" onsubmit="formSubmit()" >
+    <form class="mui-input-group" style="margin-top: 8px" action="/comment/send" method="post" onsubmit="formSubmit()">
         <input type="hidden" name="businessId" value="${business.id}">
         <input type="hidden" name="content" id="content">
         <div class="mui-input-row">
@@ -23,28 +23,33 @@
         </div>
         <div class="mui-input-row">
             <label>服务态度：</label>
-            <input type="text" name="serve" class="mui-input-clear" required  data-input-clear="5"><span class="mui-icon mui-icon-clear mui-hidden"></span>
+            <input type="text" name="serve" class="mui-input-clear" required data-input-clear="5"><span
+                    class="mui-icon mui-icon-clear mui-hidden"></span>
         </div>
         <div class="mui-input-row">
             <label>就餐建议：</label>
-            <input type="text" name="diningAdvice" class="mui-input-clear" required data-input-clear="5"><span class="mui-icon mui-icon-clear mui-hidden"></span>
+            <input type="text" name="diningAdvice" class="mui-input-clear" required data-input-clear="5"><span
+                    class="mui-icon mui-icon-clear mui-hidden"></span>
         </div>
         <div class="mui-input-row">
             <label>就餐环境：</label>
-            <input type="text" name="environment" class="mui-input-clear" required data-input-clear="5"><span class="mui-icon mui-icon-clear mui-hidden"></span>
+            <input type="text" name="environment" class="mui-input-clear" required data-input-clear="5"><span
+                    class="mui-icon mui-icon-clear mui-hidden"></span>
         </div>
         <div class="mui-input-row">
             <label>菜品味道：</label>
-            <input type="text" name="taste" class="mui-input-clear" required data-input-clear="5"><span class="mui-icon mui-icon-clear mui-hidden"></span>
+            <input type="text" name="taste" class="mui-input-clear" required data-input-clear="5"><span
+                    class="mui-icon mui-icon-clear mui-hidden"></span>
         </div>
         <div class="mui-input-row">
             <label>标签：</label>
-            <input type="text" name="tag" class="mui-input-clear" required data-input-clear="5"><span class="mui-icon mui-icon-clear mui-hidden"></span>
+            <input type="text" name="tag" class="mui-input-clear" required data-input-clear="5"><span
+                    class="mui-icon mui-icon-clear mui-hidden"></span>
         </div>
         <script id="container" name="content" type="text/plain"></script>
 
         <div class="mui-button-row">
-            <button type="submit" class="mui-btn mui-btn-primary" >发布</button>&nbsp;&nbsp;
+            <button type="submit" class="mui-btn mui-btn-primary">发布</button>&nbsp;&nbsp;
         </div>
     </form>
 </div>
@@ -59,8 +64,15 @@
         // 服务器统一请求接口路径
         serverUrl: "http://localhost/ueditor/server"
     });
+
     function formSubmit() {
         $("#content").val(ue.getContent());
     }
+
+    var err = "${errorMessage!}";
+    if (err.length > 0) {
+        mui.alert(err, '提示');
+    }
+
 </script>
 </html>
