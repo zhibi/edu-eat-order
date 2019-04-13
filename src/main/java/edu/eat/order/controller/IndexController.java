@@ -6,24 +6,28 @@ import edu.eat.order.base.exception.MessageException;
 import edu.eat.order.base.mybatis.condition.MybatisCondition;
 import edu.eat.order.base.utils.MD5Utils;
 import edu.eat.order.domain.Business;
-import edu.eat.order.domain.Comment;
 import edu.eat.order.domain.User;
 import edu.eat.order.mapper.BusinessMapper;
 import edu.eat.order.mapper.CommentMapper;
 import edu.eat.order.mapper.FoodMapper;
 import edu.eat.order.mapper.UserMapper;
-import edu.eat.order.model.FoodModel;
 import edu.eat.order.service.BusinessService;
 import edu.eat.order.service.FoodService;
 import edu.eat.order.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.Date;
-import java.util.List;
 
+/**
+ * @author 执笔
+ * @date 2019/4/13 16:46
+ */
 @Controller
 @RequestMapping
 public class IndexController extends BaseController {
@@ -47,25 +51,16 @@ public class IndexController extends BaseController {
      * 首页展示
      *
      * @param model
-     * @param name
      * @return
      */
     @RequestMapping({"/", "index"})
-    public String index(Model model, @RequestParam(defaultValue = "") String name) {
+    public String index(Model model) {
         // 展示商家
         MybatisCondition example = new MybatisCondition()
                 .order("sort", false)
-                .like("name", name)
-                .page(1, 16);
+                .page(1, 50);
         PageInfo<Business> businessPageInfo = businessService.selectPage(example);
         model.addAttribute("businessList", businessPageInfo.getList());
-        // 展示菜品
-        example = new MybatisCondition()
-                .order("f.sort", false)
-                .like("f.name", name)
-                .page(1, 16);
-        PageInfo<FoodModel> foodModelPageInfo = foodService.selectModelPage(example);
-        model.addAttribute("foodList", foodModelPageInfo.getList());
         return "index";
     }
 
@@ -137,6 +132,7 @@ public class IndexController extends BaseController {
 
     /**
      * 退出登录
+     *
      * @return
      */
     @RequestMapping("logout")
@@ -144,8 +140,6 @@ public class IndexController extends BaseController {
         session.removeAttribute(SESSION_USER);
         return redirect("index");
     }
-
-
 
 
 }

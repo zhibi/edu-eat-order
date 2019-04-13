@@ -7,7 +7,7 @@ spring:
     driver-class-name: com.mysql.jdbc.Driver
     type: com.alibaba.druid.pool.DruidDataSource
   application:
-    name: edu-home-making
+    name: edu-eat-order
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
     locale: zh_CN
