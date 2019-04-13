@@ -54,10 +54,11 @@ public class IndexController extends BaseController {
      * @return
      */
     @RequestMapping({"/", "index"})
-    public String index(Model model) {
+    public String index(Model model,String name) {
         // 展示商家
         MybatisCondition example = new MybatisCondition()
                 .order("sort", false)
+                .like("name",name)
                 .page(1, 50);
         PageInfo<Business> businessPageInfo = businessService.selectPage(example);
         model.addAttribute("businessList", businessPageInfo.getList());

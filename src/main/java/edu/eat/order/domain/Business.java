@@ -73,4 +73,9 @@ public class Business extends BasePageDTO implements Serializable {
      * 头像
      */
     private String icon;
+
+    /**
+     * 营业时间
+     */
+    private String tradeTime;
 }
