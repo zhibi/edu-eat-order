@@ -24,7 +24,8 @@
     </form>
 
     <div class="mui-content-padded">
-        <button style="padding:8px" form="register" type="submit" class="mui-btn mui-btn-block mui-btn-primary">注册</button>
+        <button style="padding:8px" form="register" type="submit" class="mui-btn mui-btn-block mui-btn-primary">注册
+        </button>
         <div class="link-area"><a href="/login">登录</a></div>
     </div>
 
@@ -32,10 +33,4 @@
 
 
 </body>
-<script>
-    var err = "${errorMessage!}";
-    if (err.length > 0) {
-        mui.alert(err, '警告');
-    }
-</script>
 </html>

@@ -24,10 +24,5 @@
 
 
 </body>
-<script>
-    var err = "${errorMessage!}";
-    if (err.length > 0) {
-        mui.alert(err, '警告');
-    }
-</script>
+
 </html>

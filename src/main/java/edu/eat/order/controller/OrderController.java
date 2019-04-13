@@ -4,11 +4,14 @@ import edu.eat.order.base.annocation.RequestLogin;
 import edu.eat.order.base.base.controller.BaseController;
 import edu.eat.order.base.mybatis.condition.MybatisCondition;
 import edu.eat.order.domain.Business;
+import edu.eat.order.domain.Coupon;
 import edu.eat.order.domain.Order;
 import edu.eat.order.mapper.BusinessMapper;
+import edu.eat.order.mapper.CouponMapper;
 import edu.eat.order.mapper.OrderMapper;
 import edu.eat.order.model.OrderModel;
 import edu.eat.order.service.OrderService;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,9 +24,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.Date;
 import java.util.List;
 
-
+/**
+ * @author 执笔
+ * @date 2019/4/13 23:16
+ */
 @RequestMapping("order")
 @Controller
+@RequestLogin
 public class OrderController extends BaseController {
 
     @Autowired
@@ -32,6 +39,8 @@ public class OrderController extends BaseController {
     private BusinessMapper businessMapper;
     @Autowired
     private OrderMapper orderMapper;
+    @Autowired
+    private CouponMapper couponMapper;
 
 
     /**
@@ -41,7 +50,6 @@ public class OrderController extends BaseController {
      * @param model
      * @return
      */
-    @RequestLogin
     @GetMapping("send/{businessId}")
     public String send(@PathVariable Integer businessId, Model model) {
         Business business = businessMapper.selectByPrimaryKey(businessId);
@@ -57,23 +65,50 @@ public class OrderController extends BaseController {
      */
     @Transactional
     @PostMapping("send")
-    @RequestLogin
     public String send(Order order) {
         order.setAddTime(new Date());
         order.setUserId(sessionUser().getId());
+        order.setStatus("预约");
+        order.setOrderNo(RandomStringUtils.randomAlphabetic(9));
         orderMapper.insertSelective(order);
         Business business = businessMapper.selectByPrimaryKey(order.getBusinessId());
         business.setCommendNum(business.getOrderNum() + 1);
         businessMapper.updateByPrimaryKeySelective(business);
-        return redirect("预约成功","order/myOrder");
+        return redirect("预约成功", "order/myOrder");
+    }
+
+    /**
+     * 订单详情
+     *
+     * @param id
+     * @param model
+     * @return
+     */
+    @GetMapping("detail/{id}")
+    public String detail(@PathVariable Integer id, Model model) {
+        Order order = orderMapper.selectByPrimaryKey(id);
+        Business business = businessMapper.selectByPrimaryKey(order.getBusinessId());
+        List<Coupon> coupons = couponMapper.selectByExample(new MybatisCondition().eq("user_id", sessionUser().getId()).eq("status", "待使用"));
+        model.addAttribute(business);
+        model.addAttribute(order);
+        if (coupons.size() > 0) {
+            model.addAttribute("coupon", coupons.get(0));
+        }
+        return "user/order-detail";
     }
 
 
-    @RequestMapping("pay")
-    public String pay(Order order) {
-        order.setUserId(sessionUser().getId());
+    /**
+     * 订单支付
+     *
+     * @param orderId
+     * @return
+     */
+    @RequestMapping("pay/{orderId}")
+    public String pay(@PathVariable Integer orderId) {
+        Order order = orderMapper.selectByPrimaryKey(orderId);
         orderService.pay(order);
-        return "redirect:myOrder";
+        return refresh("支付成功，商家处理中");
     }
 
     /**
@@ -85,12 +120,11 @@ public class OrderController extends BaseController {
     @RequestMapping("myOrder")
     public String myOrder(Model model) {
         MybatisCondition example = new MybatisCondition()
-                .order("o.addtime", false)
-                .eq("o.user_id", sessionUser().getId())
-                .order("o.status");
-        List<OrderModel> modelList = orderService.selectModel(example);
-        model.addAttribute("modelList", modelList);
-        return "order";
+                .order("o.id", false)
+                .eq("o.user_id", sessionUser().getId());
+        List<OrderModel> orderList = orderService.selectModel(example);
+        model.addAttribute("orderList", orderList);
+        return "user/order-list";
     }
 
 
