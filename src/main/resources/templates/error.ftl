@@ -22,10 +22,4 @@
     </div>
 </div>
 </body>
-<script>
-    Vue.use(antd);
-    new Vue({
-        el: '#app'
-    });
-</script>
 </html>

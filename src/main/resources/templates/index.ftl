@@ -6,15 +6,15 @@
 <div class="mui-content">
     <#list businessList as item>
         <div class="mui-card">
-        <div class="mui-card-header">${item.name}</div>
-        <div class="mui-card-content">
-    <img src="${item.icon}" width="100%">
-        </div>
-        <div class="mui-card-footer">
-        <a class="mui-card-link">预定 ${item.orderNum} </a>
-        <a class="mui-card-link">评论 ${item.commendNum} </a>
-    <a class="mui-card-link"  href="/business/detail/${item.id}">详情</a>
-        </div>
+            <div class="mui-card-header">${item.name}</div>
+            <div class="mui-card-content">
+                <img src="${item.icon}" width="100%">
+            </div>
+            <div class="mui-card-footer">
+                <a class="mui-card-link">预定 ${item.orderNum} </a>
+                <a class="mui-card-link">评论 ${item.commendNum} </a>
+                <a class="mui-card-link" href="/business/detail/${item.id}">详情</a>
+            </div>
         </div>
     </#list>
 
