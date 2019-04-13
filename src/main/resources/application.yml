@@ -51,3 +51,5 @@ zhibi:
       sync: entity_to_database
     global:
       generatorFile: false
+    dataSource:
+      delOverColumn: true

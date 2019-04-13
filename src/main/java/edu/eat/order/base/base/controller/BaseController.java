@@ -5,6 +5,7 @@ import edu.eat.order.base.utils.ParamUtils;
 import edu.eat.order.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
@@ -87,6 +88,18 @@ public abstract class BaseController implements Constant {
     }
 
     /**
+     * 重定向
+     *
+     * @param viewName
+     * @param message
+     * @return
+     */
+    protected String redirect(String message, String viewName) {
+        session.setAttribute(ERROR_MESSAGE, message);
+        return "redirect:" + viewName;
+    }
+
+    /**
      * 提示
      *
      * @param message
@@ -109,5 +122,12 @@ public abstract class BaseController implements Constant {
         request.setAttribute(Constant.ERROR_MESSAGE, message);
         request.setAttribute(Constant.BACK_RUL, backUrl);
         return "error";
+    }
+
+    @ModelAttribute
+    public void init() {
+        Object errorMessage = session.getAttribute(ERROR_MESSAGE);
+        request.setAttribute(ERROR_MESSAGE, errorMessage);
+        session.removeAttribute(ERROR_MESSAGE);
     }
 }

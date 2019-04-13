@@ -58,6 +58,7 @@ public class CommentController extends BaseController {
      * @param model
      * @return
      */
+    @RequestLogin
     @GetMapping("send/{businessId}")
     public String send(@PathVariable Integer businessId, Model model) {
         Business business = businessMapper.selectByPrimaryKey(businessId);

@@ -54,11 +54,11 @@ public class IndexController extends BaseController {
      * @return
      */
     @RequestMapping({"/", "index"})
-    public String index(Model model,String name) {
+    public String index(Model model, String name) {
         // 展示商家
         MybatisCondition example = new MybatisCondition()
                 .order("sort", false)
-                .like("name",name)
+                .like("name", name)
                 .page(1, 50);
         PageInfo<Business> businessPageInfo = businessService.selectPage(example);
         model.addAttribute("businessList", businessPageInfo.getList());
@@ -72,10 +72,7 @@ public class IndexController extends BaseController {
      */
     @GetMapping(value = "login")
     public String login() {
-        if (null != sessionUser()) {
-            throw new MessageException("请先退出当前登录用户");
-        }
-        return "/login";
+        return "login";
     }
 
     /**
@@ -85,7 +82,7 @@ public class IndexController extends BaseController {
      */
     @RequestMapping(value = "register", method = RequestMethod.GET)
     public String register() {
-        return "/register";
+        return "register";
     }
 
 
@@ -98,12 +95,9 @@ public class IndexController extends BaseController {
      */
     @PostMapping(value = "login")
     public String login(String phone, String password) {
-        User user = userService.selectByPhone(phone);
+        User user = userService.login(phone,password,"user");
         if (null == user) {
-            throw new MessageException("该用户不存在");
-        }
-        if (!user.getPassword().equalsIgnoreCase(password)) {
-            throw new MessageException("用户名或密码错误");
+            return redirect("用户名或密码错误", "login");
         }
         session.setAttribute(SESSION_USER, user);
         return redirect("/");
@@ -117,18 +111,21 @@ public class IndexController extends BaseController {
      * @return
      */
     @RequestMapping(value = "register", method = RequestMethod.POST)
-    public String register(User user) {
+    public String register(User user,String password2) {
+        if(!user.getPassword().equals(password2)){
+            return redirect("两次密码不一样", "register");
+        }
         User temp = userService.selectByPhone(user.getPhone());
         if (null != temp) {
-            throw new MessageException("该手机号已经注册");
+            return redirect("该手机号已经注册", "register");
         }
         user.setPassword(MD5Utils.encrypt(user.getPassword()));
         user.setUsername(user.getPhone());
         user.setAddtime(new Date());
         user.setStatus("SUCCESS");
+        user.setRole("user");
         userMapper.insertSelective(user);
-        session.setAttribute(SESSION_USER, user);
-        return redirect("index");
+        return redirect("注册成功，请登录", "login");
     }
 
     /**
@@ -139,7 +136,7 @@ public class IndexController extends BaseController {
     @RequestMapping("logout")
     public String logout() {
         session.removeAttribute(SESSION_USER);
-        return redirect("index");
+        return redirect("login");
     }
 
 
