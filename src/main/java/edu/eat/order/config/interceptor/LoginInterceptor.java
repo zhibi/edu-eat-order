@@ -30,7 +30,7 @@ public class LoginInterceptor implements HandlerInterceptor {
             }
         }
         if (flag && null == attribute) {
-            response.sendRedirect(contextPath + "/index");
+            response.sendRedirect(contextPath + "/login");
             return false;
         }
         return true;

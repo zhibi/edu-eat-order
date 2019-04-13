@@ -49,11 +49,12 @@ public class CommentController extends BaseController {
         Business business = businessMapper.selectByPrimaryKey(comment.getBusinessId());
         business.setCommendNum(business.getCommendNum() + 1);
         businessMapper.updateByPrimaryKeySelective(business);
-        return refresh();
+        return refresh("评论成功");
     }
 
     /**
      * 跳转发布评论页面
+     *
      * @param businessId
      * @param model
      * @return

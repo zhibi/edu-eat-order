@@ -2,17 +2,12 @@ package edu.eat.order.controller;
 
 import com.github.pagehelper.PageInfo;
 import edu.eat.order.base.base.controller.BaseController;
-import edu.eat.order.base.exception.MessageException;
 import edu.eat.order.base.mybatis.condition.MybatisCondition;
 import edu.eat.order.base.utils.MD5Utils;
 import edu.eat.order.domain.Business;
 import edu.eat.order.domain.User;
-import edu.eat.order.mapper.BusinessMapper;
-import edu.eat.order.mapper.CommentMapper;
-import edu.eat.order.mapper.FoodMapper;
 import edu.eat.order.mapper.UserMapper;
 import edu.eat.order.service.BusinessService;
-import edu.eat.order.service.FoodService;
 import edu.eat.order.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -33,19 +28,12 @@ import java.util.Date;
 public class IndexController extends BaseController {
 
     @Autowired
-    private FoodService foodService;
-    @Autowired
     private UserService userService;
     @Autowired
     private BusinessService businessService;
     @Autowired
-    private CommentMapper commentMapper;
-    @Autowired
     private UserMapper userMapper;
-    @Autowired
-    private BusinessMapper businessMapper;
-    @Autowired
-    private FoodMapper foodMapper;
+
 
     /**
      * 首页展示
@@ -95,7 +83,7 @@ public class IndexController extends BaseController {
      */
     @PostMapping(value = "login")
     public String login(String phone, String password) {
-        User user = userService.login(phone,password,"user");
+        User user = userService.login(phone, password, "user");
         if (null == user) {
             return redirect("用户名或密码错误", "login");
         }
@@ -111,8 +99,8 @@ public class IndexController extends BaseController {
      * @return
      */
     @RequestMapping(value = "register", method = RequestMethod.POST)
-    public String register(User user,String password2) {
-        if(!user.getPassword().equals(password2)){
+    public String register(User user, String password2) {
+        if (!user.getPassword().equals(password2)) {
             return redirect("两次密码不一样", "register");
         }
         User temp = userService.selectByPhone(user.getPhone());

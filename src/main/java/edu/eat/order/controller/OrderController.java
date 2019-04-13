@@ -1,22 +1,24 @@
 package edu.eat.order.controller;
 
+import edu.eat.order.base.annocation.RequestLogin;
 import edu.eat.order.base.base.controller.BaseController;
-import edu.eat.order.base.exception.MessageException;
 import edu.eat.order.base.mybatis.condition.MybatisCondition;
-import edu.eat.order.base.response.JsonResponse;
-import edu.eat.order.domain.Food;
+import edu.eat.order.domain.Business;
 import edu.eat.order.domain.Order;
-import edu.eat.order.mapper.FoodMapper;
+import edu.eat.order.mapper.BusinessMapper;
+import edu.eat.order.mapper.OrderMapper;
 import edu.eat.order.model.OrderModel;
-import edu.eat.order.service.FoodService;
 import edu.eat.order.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.Date;
 import java.util.List;
 
 
@@ -27,26 +29,45 @@ public class OrderController extends BaseController {
     @Autowired
     private OrderService orderService;
     @Autowired
-    private FoodService foodService;
+    private BusinessMapper businessMapper;
     @Autowired
-    private FoodMapper foodMapper;
+    private OrderMapper orderMapper;
 
 
-    @RequestMapping("myCar")
-    public String myCar(Model model) {
-        MybatisCondition example = new MybatisCondition()
-                .order("o.addtime", false)
-                .eq("o.user_id", sessionUser().getId())
-                .eq("o.status", 0);
-        double money = 0;
-        model.addAttribute("money", money);
-        return "pay";
+    /**
+     * 发布预约页面
+     *
+     * @param businessId
+     * @param model
+     * @return
+     */
+    @RequestLogin
+    @GetMapping("send/{businessId}")
+    public String send(@PathVariable Integer businessId, Model model) {
+        Business business = businessMapper.selectByPrimaryKey(businessId);
+        model.addAttribute(business);
+        return "business/order-send";
     }
 
-    @RequestMapping("delItem/{id}")
-    public String delItem(@PathVariable Integer id) {
-        return refresh();
+    /**
+     * 发布评论
+     *
+     * @param order
+     * @return
+     */
+    @Transactional
+    @PostMapping("send")
+    @RequestLogin
+    public String send(Order order) {
+        order.setAddTime(new Date());
+        order.setUserId(sessionUser().getId());
+        orderMapper.insertSelective(order);
+        Business business = businessMapper.selectByPrimaryKey(order.getBusinessId());
+        business.setCommendNum(business.getOrderNum() + 1);
+        businessMapper.updateByPrimaryKeySelective(business);
+        return redirect("预约成功","order/myOrder");
     }
+
 
     @RequestMapping("pay")
     public String pay(Order order) {

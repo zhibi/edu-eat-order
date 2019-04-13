@@ -23,23 +23,23 @@
         </div>
         <div class="mui-input-row">
             <label>服务态度：</label>
-            <input type="text" name="serve" class="mui-input-clear"  data-input-clear="5"><span class="mui-icon mui-icon-clear mui-hidden"></span>
+            <input type="text" name="serve" class="mui-input-clear" required  data-input-clear="5"><span class="mui-icon mui-icon-clear mui-hidden"></span>
         </div>
         <div class="mui-input-row">
             <label>就餐建议：</label>
-            <input type="text" name="diningAdvice" class="mui-input-clear"  data-input-clear="5"><span class="mui-icon mui-icon-clear mui-hidden"></span>
+            <input type="text" name="diningAdvice" class="mui-input-clear" required data-input-clear="5"><span class="mui-icon mui-icon-clear mui-hidden"></span>
         </div>
         <div class="mui-input-row">
             <label>就餐环境：</label>
-            <input type="text" name="environment" class="mui-input-clear"  data-input-clear="5"><span class="mui-icon mui-icon-clear mui-hidden"></span>
+            <input type="text" name="environment" class="mui-input-clear" required data-input-clear="5"><span class="mui-icon mui-icon-clear mui-hidden"></span>
         </div>
         <div class="mui-input-row">
             <label>菜品味道：</label>
-            <input type="text" name="taste" class="mui-input-clear"  data-input-clear="5"><span class="mui-icon mui-icon-clear mui-hidden"></span>
+            <input type="text" name="taste" class="mui-input-clear" required data-input-clear="5"><span class="mui-icon mui-icon-clear mui-hidden"></span>
         </div>
         <div class="mui-input-row">
             <label>标签：</label>
-            <input type="text" name="tag" class="mui-input-clear"  data-input-clear="5"><span class="mui-icon mui-icon-clear mui-hidden"></span>
+            <input type="text" name="tag" class="mui-input-clear" required data-input-clear="5"><span class="mui-icon mui-icon-clear mui-hidden"></span>
         </div>
         <script id="container" name="content" type="text/plain"></script>
 

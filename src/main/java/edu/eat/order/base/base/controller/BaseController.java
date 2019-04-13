@@ -77,6 +77,11 @@ public abstract class BaseController implements Constant {
         return "redirect:" + request.getHeader("Referer");
     }
 
+    protected String refresh(String message) {
+        session.setAttribute(ERROR_MESSAGE, message);
+        return "redirect:" + request.getHeader("Referer");
+    }
+
     /**
      * 重定向
      *
