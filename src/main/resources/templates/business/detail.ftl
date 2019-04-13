@@ -35,14 +35,16 @@
             <span class="mui-icon mui-icon-phone"></span>${business.phone!}</li>
         </li>
         <li class="mui-table-view-cell">
-            <span class="mui-icon-extra mui-icon-extra-outline"></span>${business.tradeTime!}999</li>
+            <span class="mui-icon-extra mui-icon-extra-outline"></span>${business.tradeTime!}999
+        </li>
         </li>
     </ul>
     <div id="allmap" style="height: 200px"></div>
     <div class="mui-card-footer">
         <button type="button" class="mui-btn mui-btn-primary">预定</button>
         <button type="button" class="mui-btn mui-btn-warning ">评论</button>
-        <button type="button" class="mui-btn mui-btn-success ">用户评论</button>
+        <button type="button" class="mui-btn mui-btn-success" onclick="location.href='/comment/${business.id!}'">用户评论
+        </button>
     </div>
     <h5 style="background-color:#efeff4">热销菜</h5>
     <ul class="mui-table-view mui-grid-view">
@@ -66,12 +68,12 @@
 <script type="text/javascript">
     // 百度地图API功能
     var map = new BMap.Map("allmap");
-    var point = new BMap.Point(${business.pointX!},${business.pointY});
+    var point = new BMap.Point(${business.pointX!}, ${business.pointY});
     map.centerAndZoom(point, 12);
     var marker = new BMap.Marker(point);  // 创建标注
     map.addOverlay(marker);              // 将标注添加到地图中
 
-    var label = new BMap.Label("${business.name!}",{offset:new BMap.Size(20,-10)});
+    var label = new BMap.Label("${business.name!}", {offset: new BMap.Size(20, -10)});
     marker.setLabel(label);
 </script>
 </html>

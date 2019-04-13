@@ -3,6 +3,7 @@
 <#include "common/head.ftl"/>
 <body class="mui-android mui-android-6 mui-android-6-0">
 <#include "common/foot-menu.ftl"/>
+<#include "common/header.ftl"/>
 <div class="mui-content">
     <div class="mui-content-padded" style="margin: 5px;">
         <div class="mui-input-row mui-search mui-active">

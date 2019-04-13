@@ -24,7 +24,6 @@ import java.util.List;
  */
 @RequestMapping("comment")
 @Controller
-
 public class CommentController extends BaseController {
 
     @Autowired
@@ -65,6 +64,7 @@ public class CommentController extends BaseController {
         MybatisCondition example = new MybatisCondition().eq("business_id", businessId).order("id", false);
         List<CommentModel> commentList = commentMapper.selectModel(example);
         model.addAttribute("commentList", commentList);
+        model.addAttribute("business", business);
         return "business/comment-list";
     }
 }

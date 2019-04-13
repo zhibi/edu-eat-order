@@ -56,5 +56,4 @@ public class User extends BasePageDTO implements Serializable {
      */
     private String role;
 
-
 }
