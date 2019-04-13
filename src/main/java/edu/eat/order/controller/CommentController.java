@@ -12,7 +12,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.Date;
@@ -38,7 +40,7 @@ public class CommentController extends BaseController {
      * @return
      */
     @Transactional
-    @RequestMapping("send")
+    @PostMapping("send")
     @RequestLogin
     public String send(Comment comment) {
         comment.setAddtime(new Date());
@@ -48,6 +50,19 @@ public class CommentController extends BaseController {
         business.setCommendNum(business.getCommendNum() + 1);
         businessMapper.updateByPrimaryKeySelective(business);
         return refresh();
+    }
+
+    /**
+     * 跳转发布评论页面
+     * @param businessId
+     * @param model
+     * @return
+     */
+    @GetMapping("send/{businessId}")
+    public String send(@PathVariable Integer businessId, Model model) {
+        Business business = businessMapper.selectByPrimaryKey(businessId);
+        model.addAttribute(business);
+        return "business/comment-send";
     }
 
     /**

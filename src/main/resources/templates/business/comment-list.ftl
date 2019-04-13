@@ -3,7 +3,6 @@
 <#include "../common/head.ftl"/>
 <#assign menuAct="home"/>
 <#assign navTitle=business.name + '的评论'/>
-<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=irzL4Yr34RmfCLCwqd70amzr5EBIGTw0"></script>
 <body class="mui-android mui-android-6 mui-android-6-0">
 <#include "../common/foot-menu.ftl"/>
 <#include "../common/header.ftl"/>

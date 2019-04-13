@@ -6,7 +6,7 @@
 <#include "common/header.ftl"/>
 <div class="mui-content">
     <div class="mui-content-padded" style="margin: 5px;">
-        <div class="mui-input-row mui-search mui-active">
+        <div class="mui-input-row mui-search">
             <form>
                 <input type="search" class="mui-input-clear" placeholder="" data-input-clear="1" name="name"
                        data-input-search="1"><span class="mui-icon mui-icon-clear mui-hidden"></span><span
@@ -68,7 +68,7 @@
             </div>
             <div class="mui-card-footer">
                 <a class="mui-card-link">预定 ${item.orderNum} </a>
-                <a class="mui-card-link">评论 ${item.commendNum} </a>
+                <a class="mui-card-link" href="/comment/${item.id!}">评论 ${item.commendNum} </a>
                 <a class="mui-card-link" href="/business/detail/${item.id}">详情</a>
             </div>
         </div>
@@ -79,7 +79,7 @@
     //获得slider插件对象
     var gallery = mui('.mui-slider');
     gallery.slider({
-        interval:5000//自动轮播周期，若为0则不自动播放，默认为0；
+        interval: 5000//自动轮播周期，若为0则不自动播放，默认为0；
     });
 </script>
 </body>
