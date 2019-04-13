@@ -1,9 +1,9 @@
 spring:
   #datasource
   datasource:
-    username: root
-    password:
-    url: jdbc:mysql://127.0.0.1:3306/edu-eat-order?useUnicode=true&characterEncoding=utf-8&useSSL=false&allowPublicKeyRetrieval=true&allowMultiQueries=true
+    username: ENC(Gx6RJkmSAi0m2tereEDuyg==)
+    password: ENC(l3/1Rn5LVtnR55aoP3Q0MQ==)
+    url: jdbc:mysql://120.27.24.193:3306/edu-eat-order?useUnicode=true&characterEncoding=utf-8&useSSL=false&allowPublicKeyRetrieval=true&allowMultiQueries=true
     driver-class-name: com.mysql.jdbc.Driver
     type: com.alibaba.druid.pool.DruidDataSource
   application:
@@ -36,6 +36,11 @@ mybatis:
 # mapper
 mapper:
   enum-as-simple-type: true
+
+# 加密配置
+jasypt:
+  encryptor:
+    password: /NNiLvve/n/1LF5ol7dZdA==asdawcsdgsdsdasfw
 
 ## 自定义配置
 zhibi:
