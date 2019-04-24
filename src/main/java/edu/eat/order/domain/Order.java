@@ -66,4 +66,9 @@ public class Order extends BasePageDTO implements Serializable {
      */
     private Integer couponId;
 
+
+    /**
+     * 点的菜
+     */
+    private String foods;
 }

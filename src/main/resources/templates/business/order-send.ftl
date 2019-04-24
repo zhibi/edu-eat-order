@@ -32,6 +32,13 @@
             <textarea name="remark" rows="5" placeholder="就餐备注"></textarea>
         </div>
 
+        <#list foodList as item>
+            <div class="mui-input-row mui-checkbox mui-right">
+                <label>${item.name}</label>
+                <input name="foods" value="${item.id}" type="checkbox">
+            </div>
+        </#list>
+
         <div class="mui-button-row">
             <button type="submit" class="mui-btn mui-btn-primary">发布</button>&nbsp;&nbsp;
         </div>

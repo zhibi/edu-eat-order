@@ -5,9 +5,11 @@ import edu.eat.order.base.base.controller.BaseController;
 import edu.eat.order.base.mybatis.condition.MybatisCondition;
 import edu.eat.order.domain.Business;
 import edu.eat.order.domain.Coupon;
+import edu.eat.order.domain.Food;
 import edu.eat.order.domain.Order;
 import edu.eat.order.mapper.BusinessMapper;
 import edu.eat.order.mapper.CouponMapper;
+import edu.eat.order.mapper.FoodMapper;
 import edu.eat.order.mapper.OrderMapper;
 import edu.eat.order.model.OrderModel;
 import edu.eat.order.service.OrderService;
@@ -34,13 +36,15 @@ import java.util.List;
 public class OrderController extends BaseController {
 
     @Autowired
-    private OrderService orderService;
+    private OrderService   orderService;
     @Autowired
     private BusinessMapper businessMapper;
     @Autowired
-    private OrderMapper orderMapper;
+    private OrderMapper    orderMapper;
     @Autowired
-    private CouponMapper couponMapper;
+    private CouponMapper   couponMapper;
+    @Autowired
+    private FoodMapper     foodMapper;
 
 
     /**
@@ -54,6 +58,12 @@ public class OrderController extends BaseController {
     public String send(@PathVariable Integer businessId, Model model) {
         Business business = businessMapper.selectByPrimaryKey(businessId);
         model.addAttribute(business);
+        // 菜品
+        MybatisCondition example = new MybatisCondition()
+                .order("sort", false)
+                .eq("business_id", businessId);
+        List<Food> foodList = foodMapper.selectByExample(example);
+        model.addAttribute(foodList);
         return "business/order-send";
     }
 
@@ -70,6 +80,16 @@ public class OrderController extends BaseController {
         order.setUserId(sessionUser().getId());
         order.setStatus("预约");
         order.setOrderNo(RandomStringUtils.randomAlphabetic(9));
+        // 计算价格
+        double   money = 0;
+        String[] split = order.getFoods().split(",");
+        for (String s : split) {
+            Food food = foodMapper.selectByPrimaryKey(s);
+            if (null != food) {
+                money += food.getPrice();
+            }
+        }
+        order.setTotal(money);
         orderMapper.insertSelective(order);
         Business business = businessMapper.selectByPrimaryKey(order.getBusinessId());
         business.setCommendNum(business.getOrderNum() + 1);
@@ -86,9 +106,9 @@ public class OrderController extends BaseController {
      */
     @GetMapping("detail/{id}")
     public String detail(@PathVariable Integer id, Model model) {
-        Order order = orderMapper.selectByPrimaryKey(id);
-        Business business = businessMapper.selectByPrimaryKey(order.getBusinessId());
-        List<Coupon> coupons = couponMapper.selectByExample(new MybatisCondition().eq("user_id", sessionUser().getId()).eq("status", "待使用"));
+        Order        order    = orderMapper.selectByPrimaryKey(id);
+        Business     business = businessMapper.selectByPrimaryKey(order.getBusinessId());
+        List<Coupon> coupons  = couponMapper.selectByExample(new MybatisCondition().eq("user_id", sessionUser().getId()).eq("status", "待使用"));
         model.addAttribute(business);
         model.addAttribute(order);
         if (coupons.size() > 0) {
