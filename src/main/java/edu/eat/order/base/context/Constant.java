@@ -3,12 +3,12 @@ package edu.eat.order.base.context;
 /**
  * 环境变量
  */
-public interface Constant{
+public interface Constant {
 
     /**
      * session 用户
      */
-    String SESSION_USER = "sessionUser";
+    String SESSION_USER  = "sessionUser";
     /**
      * session 管理员
      */
@@ -21,5 +21,10 @@ public interface Constant{
     /**
      * 返回页面
      */
-    String BACK_RUL = "backUrl";
+    String BACK_RUL      = "backUrl";
+
+    /**
+     * 验证码
+     */
+    String VERIFY_CODE = "verifyCode";
 }

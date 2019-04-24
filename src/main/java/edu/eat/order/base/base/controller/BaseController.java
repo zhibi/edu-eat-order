@@ -23,7 +23,7 @@ public abstract class BaseController implements Constant {
     @Autowired
     protected HttpSession session;
     @Autowired
-    private HttpServletRequest request;
+    protected HttpServletRequest request;
 
     protected User sessionUser() {
         return (User) session.getAttribute(SESSION_USER);

@@ -6,6 +6,7 @@ import edu.eat.order.base.utils.MD5Utils;
 import edu.eat.order.domain.User;
 import edu.eat.order.mapper.UserMapper;
 import edu.eat.order.service.UserService;
+import edu.eat.order.service.VerifyCodeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,6 +19,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestLogin
 public class UserController extends BaseController {
+
+
 
     @Autowired
     private UserService userService;

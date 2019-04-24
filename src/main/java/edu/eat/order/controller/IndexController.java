@@ -9,6 +9,7 @@ import edu.eat.order.domain.User;
 import edu.eat.order.mapper.UserMapper;
 import edu.eat.order.service.BusinessService;
 import edu.eat.order.service.UserService;
+import edu.eat.order.service.VerifyCodeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,11 +29,14 @@ import java.util.Date;
 public class IndexController extends BaseController {
 
     @Autowired
-    private UserService userService;
+    private UserService     userService;
     @Autowired
     private BusinessService businessService;
     @Autowired
-    private UserMapper userMapper;
+    private UserMapper      userMapper;
+
+    @Autowired
+    private VerifyCodeService verifyCodeService;
 
 
     /**
@@ -99,7 +103,12 @@ public class IndexController extends BaseController {
      * @return
      */
     @RequestMapping(value = "register", method = RequestMethod.POST)
-    public String register(User user, String password2) {
+    public String register(User user, String password2, String verifyCode) {
+        String code = verifyCodeService.getCode(request);
+        if (!code.equalsIgnoreCase(verifyCode)) {
+            return redirect("验证码错误", "register");
+        }
+        verifyCodeService.removeCode(request);
         if (!user.getPassword().equals(password2)) {
             return redirect("两次密码不一样", "register");
         }
