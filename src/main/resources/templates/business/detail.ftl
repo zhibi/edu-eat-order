@@ -37,7 +37,8 @@
       <span class="mui-icon mui-icon-phone"></span>${business.phone!}</li>
     </li>
     <li class="mui-table-view-cell">
-      <span class="mui-icon-extra mui-icon-extra-outline"></span>${business.tradeTime!}999
+      <span class="mui-icon-extra mui-icon-extra-outline"></span>${business.tradeTime!}
+      <span style="float: right" class="mui-icon-extra mui-icon-extra-share "></span>
     </li>
     </li>
   </ul>
@@ -47,7 +48,7 @@
     </button>
     <button type="button" class="mui-btn mui-btn-warning" onclick="location.href='/comment/send/${business.id!}'">评论
     </button>
-    <button type="button" class="mui-btn mui-btn-success" onclick="location.href='/comment/${business.id!}'">用户评论
+    <button type="button" class="mui-btn mui-btn-success" onclick="location.href='/comment/${business.id!}'">查看评论
     </button>
   </div>
   <h5 style="background-color:#efeff4">热销菜</h5>
