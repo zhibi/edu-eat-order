@@ -53,7 +53,7 @@
                                         <td>
                                             <div class="visible-md visible-lg hidden-sm hidden-xs btn-group">
                                                 <a class="btn btn-xs btn-info" href="/admin/user/detail/${item.id}">
-                                                    <i class="icon-edit bigger-120"></i>
+                                                    <i class="icon-edit bigger-120"></i>查看详情
                                                 </a>
                                                 <a class="btn btn-xs btn-info" href="/admin/coupon/add/${item.id}">
                                                     发送优惠券

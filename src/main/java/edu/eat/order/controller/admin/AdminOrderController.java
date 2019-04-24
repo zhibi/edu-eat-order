@@ -38,7 +38,6 @@ public class AdminOrderController extends BaseAdminController {
                 .like("o.order_No", orderModel.getOrderNo())
                 .like("u.name", orderModel.getUserName())
                 .like("b.name", orderModel.getBusinessName())
-                .order("o.status", false)
                 .order("o.add_time", false)
                 .page(orderModel);
         PageInfo<OrderModel> pageInfo = orderService.selectModelPage(example);
