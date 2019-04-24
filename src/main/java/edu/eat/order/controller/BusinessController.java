@@ -1,15 +1,19 @@
 package edu.eat.order.controller;
 
+import edu.eat.order.base.annocation.RequestLogin;
 import edu.eat.order.base.base.controller.BaseAdminController;
 import edu.eat.order.base.mybatis.condition.MybatisCondition;
 import edu.eat.order.domain.Business;
 import edu.eat.order.domain.Food;
+import edu.eat.order.domain.Start;
 import edu.eat.order.mapper.BusinessMapper;
 import edu.eat.order.mapper.FoodMapper;
+import edu.eat.order.mapper.StartMapper;
 import edu.eat.order.service.BusinessService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -26,9 +30,11 @@ public class BusinessController extends BaseAdminController {
     @Autowired
     private BusinessService businessService;
     @Autowired
-    private BusinessMapper businessMapper;
+    private BusinessMapper  businessMapper;
     @Autowired
-    private FoodMapper foodMapper;
+    private FoodMapper      foodMapper;
+    @Autowired
+    private StartMapper     startMapper;
 
     /**
      * 详情
@@ -46,6 +52,26 @@ public class BusinessController extends BaseAdminController {
         List<Food> foodList = foodMapper.selectByExample(example);
         model.addAttribute("business", business);
         model.addAttribute("foodList", foodList);
+        if (sessionUser() != null) {
+            Start start = startMapper.selectOne(new Start().setUserId(sessionUser().getId()).setBusinessId(id));
+            model.addAttribute("start", start);
+        }
         return "business/detail";
+    }
+
+    /**
+     * 点赞操作
+     */
+    @GetMapping("start/{id}")
+    @RequestLogin
+    public String start(@PathVariable Integer id) {
+        Start start1 = new Start().setUserId(sessionUser().getId()).setBusinessId(id);
+        Start start  = startMapper.selectOne(start1);
+        if (start == null) {
+            startMapper.insertSelective(start1);
+        } else {
+            startMapper.delete(start);
+        }
+        return refresh();
     }
 }
