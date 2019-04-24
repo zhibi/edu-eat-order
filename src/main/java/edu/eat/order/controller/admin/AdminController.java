@@ -66,7 +66,7 @@ public class AdminController extends BaseAdminController {
             throw new TipException("用户名或者密码错误", "/admin/login");
         }
         session.setAttribute(SESSION_ADMIN, user);
-        return redirect("/admin/", "login");
+        return redirect("/admin/");
     }
 
     /**

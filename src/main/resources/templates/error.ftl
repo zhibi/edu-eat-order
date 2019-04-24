@@ -15,7 +15,7 @@
     </div>
     <div class="content">
         <h1>出错了</h1>
-        <div class="desc">${errorMesssage!}</div>
+        <div class="desc">${errorMessage!}${tipMesssage!}</div>
         <div class="action">
             <a type="primary" href="/index">返回上页</a>
         </div>

@@ -41,7 +41,7 @@ public class CustomErrorController extends BasicErrorController {
     public ModelAndView errorHtml(HttpServletRequest request, HttpServletResponse response) {
         Throwable error = errorAttributes.getError(new ServletWebRequest(request));
         Map<String, Object> model = this.getErrorAttributes(request, true);
-        model.put(Constant.ERROR_MESSAGE, error.getMessage());
+        model.put(Constant.ERROR_MESSAGE, model.get("message"));
         model.put(Constant.BACK_RUL, request.getHeader("Referer"));
         if (error instanceof TipException) {
             model.put(Constant.BACK_RUL, ((TipException) error).getBackUrl());
