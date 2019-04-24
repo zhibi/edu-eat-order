@@ -30,6 +30,7 @@
 
     <div class="mui-content-padded">
         <button style="padding:8px" form="user" type="submit" class="mui-btn mui-btn-block mui-btn-primary">修改</button>
+        <a href="/user/modifyPwd">修改密码</a>
     </div>
 </div>
 </body>
