@@ -1,5 +1,6 @@
 package edu.eat.order.controller.admin;
 
+import com.alibaba.druid.support.json.JSONUtils;
 import com.github.pagehelper.PageInfo;
 import edu.eat.order.base.base.controller.BaseAdminController;
 import edu.eat.order.base.mybatis.condition.MybatisCondition;
@@ -14,6 +15,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.List;
+import java.util.Map;
+
 /**
  * @author 执笔
  * @date 2019/4/9 18:09
@@ -25,7 +29,7 @@ public class AdminUserController extends BaseAdminController {
     @Autowired
     private UserService userService;
     @Autowired
-    private UserMapper userMapper;
+    private UserMapper  userMapper;
 
     /**
      * 用户列表
@@ -57,6 +61,9 @@ public class AdminUserController extends BaseAdminController {
     public String detail(@PathVariable Integer id, Model model) {
         User user = userMapper.selectByPrimaryKey(id);
         model.addAttribute(user);
+        // 统计
+        List<Map<String, Integer>> map = userService.count(id);
+        model.addAttribute("map",JSONUtils.toJSONString(map));
         return "admin/user/detail";
     }
 

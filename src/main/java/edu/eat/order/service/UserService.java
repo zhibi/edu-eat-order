@@ -3,6 +3,9 @@ package edu.eat.order.service;
 import edu.eat.order.base.base.service.BaseService;
 import edu.eat.order.domain.User;
 
+import java.util.List;
+import java.util.Map;
+
 
 public interface UserService extends BaseService<User> {
     /**
@@ -23,4 +26,11 @@ public interface UserService extends BaseService<User> {
      */
     User login(String username, String password, String role);
 
+    /**
+     * 统计
+     *
+     * @param id
+     * @return
+     */
+    List<Map<String, Integer>> count(Integer id);
 }

@@ -8,6 +8,9 @@ import edu.eat.order.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Map;
+
 /**
  * @author 执笔
  */
@@ -31,5 +34,10 @@ public class UserServiceImpl extends BaseServiceImpl<UserMapper, User> implement
         user.setUsername(username);
         user.setPassword(MD5Utils.encrypt(password));
         return userMapper.selectOne(user);
+    }
+
+    @Override
+    public List<Map<String, Integer>> count(Integer id) {
+        return userMapper.count(id);
     }
 }

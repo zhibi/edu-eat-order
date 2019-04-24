@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.eat.order.mapper.UserMapper">
+    <select id="count" resultType="java.util.Map">
+        SELECT b.NAME        name,
+               count(b.NAME) count
+        FROM orders o
+                 LEFT JOIN business b ON b.id = o.business_id
+        WHERE o.user_id = #{id}
+        GROUP BY b.id
+    </select>
+</mapper>
