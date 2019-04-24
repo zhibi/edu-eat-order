@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -68,7 +69,7 @@ public class OrderController extends BaseController {
     }
 
     /**
-     * 发布评论
+     * 发布预约
      *
      * @param order
      * @return
@@ -114,6 +115,14 @@ public class OrderController extends BaseController {
         if (coupons.size() > 0) {
             model.addAttribute("coupon", coupons.get(0));
         }
+        // 菜
+        String[]   ids      = order.getFoods().split(",");
+        List<Food> foodList = new ArrayList<>();
+        for (String s : ids) {
+            Food food = foodMapper.selectByPrimaryKey(s);
+            foodList.add(food);
+        }
+        model.addAttribute(foodList);
         return "user/order-detail";
     }
 
