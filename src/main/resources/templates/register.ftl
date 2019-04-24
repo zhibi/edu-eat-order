@@ -23,7 +23,7 @@
     </div>
     <div class="mui-input-row">
       <label>验证码</label>
-      <input name='verfiyCode' required type="text" class="mui-input" style="    width: 100px;float: left;">
+      <input name='verifyCode' required type="text" class="mui-input" style="    width: 100px;float: left;">
       <img src="/helper/verify" width="90px" height="40px" style="float: right" onclick="$(this).attr('src',$(this).attr('src')+'?ss='+Math.random())">
     </div>
   </form>
