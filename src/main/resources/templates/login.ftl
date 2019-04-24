@@ -17,7 +17,10 @@
 
     <div class="mui-content-padded">
         <button style="padding:8px" form="login" type="submit" class="mui-btn mui-btn-block mui-btn-primary">登录</button>
-        <div class="link-area"><a href="/register">注册账号</a></div>
+        <div class="link-area">
+            <a href="/register">注册账号</a>
+            <a href="#" onclick="mui.alert('请联系管理员','提示')">忘记密码</a>
+        </div>
     </div>
 
 </div>

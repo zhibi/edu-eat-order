@@ -30,6 +30,7 @@
 
     <div class="mui-content-padded">
         <button style="padding:8px" form="user" type="submit" class="mui-btn mui-btn-block mui-btn-primary">修改</button>
+        <a  href="/logout" style="padding:8px"  type="button" class="mui-btn mui-btn-block mui-btn-primary">退出登录</a>
         <a href="/user/modifyPwd">修改密码</a>
     </div>
 </div>
