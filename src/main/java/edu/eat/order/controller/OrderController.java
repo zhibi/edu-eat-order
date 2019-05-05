@@ -80,7 +80,6 @@ public class OrderController extends BaseController {
         order.setAddTime(new Date());
         order.setUserId(sessionUser().getId());
         order.setStatus("预约");
-        order.setOrderNo(RandomStringUtils.randomAlphanumeric(9));
         // 计算价格
         double   money = 0;
         String[] split = order.getFoods().split(",");
@@ -92,6 +91,8 @@ public class OrderController extends BaseController {
         }
         order.setTotal(money);
         orderMapper.insertSelective(order);
+        order.setOrderNo(order.getId() + 100000 + "");
+        orderMapper.updateByPrimaryKeySelective(order);
         Business business = businessMapper.selectByPrimaryKey(order.getBusinessId());
         business.setCommendNum(business.getOrderNum() + 1);
         businessMapper.updateByPrimaryKeySelective(business);
