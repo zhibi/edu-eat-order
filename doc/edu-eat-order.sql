@@ -11,7 +11,7 @@
  Target Server Version : 50173
  File Encoding         : 65001
 
- Date: 24/04/2019 14:47:36
+ Date: 05/05/2019 17:28:14
 */
 
 SET NAMES utf8mb4;
@@ -42,7 +42,7 @@ CREATE TABLE `business`  (
 -- ----------------------------
 -- Records of business
 -- ----------------------------
-INSERT INTO `business` VALUES (1, '测试商家', '川菜', '456788', '北京大桥', 116.40, 39.93, '', 3223, 3222, 0, 0, 'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3590849871,3724521821&fm=27&gp=0.jpg', '');
+INSERT INTO `business` VALUES (1, '测试商家', '川菜', '456788', '北京大桥', 116.40, 39.93, '', 3224, 3223, 0, 0, 'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3590849871,3724521821&fm=27&gp=0.jpg', '');
 
 -- ----------------------------
 -- Table structure for comment
@@ -61,13 +61,12 @@ CREATE TABLE `comment`  (
   `environment` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '',
   `taste` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 7 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = MyISAM AUTO_INCREMENT = 10 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of comment
 -- ----------------------------
-INSERT INTO `comment` VALUES (1, 1, 1, 'fdfsdfs', '2019-04-13 21:06:35', 'dd fds fsdgs', 5, '121213', '131', '323214', '2413');
-INSERT INTO `comment` VALUES (2, 3, 1, '', '2019-04-13 22:40:15', '', 5, '', '', '', '');
+INSERT INTO `comment` VALUES (9, 5, 1, '', '2019-05-05 17:02:21', '', 5, 'asdas', 'sa', '文分', '发色');
 INSERT INTO `comment` VALUES (3, 3, 1, '', '2019-04-13 22:40:19', '', 5, '', '', '', '');
 INSERT INTO `comment` VALUES (4, 3, 1, '<p>gsgfcvbcvbcvbcvb<img src=\"/upload/2019-04-14/00-1555171436413-078086.jpg\" title=\"00-1555171436413-078086.jpg\" alt=\"333 - 副本.jpg\"/></p>,<p>gsgfcvbcvbcvbcvb<img src=\"/upload/2019-04-14/00-1555171436413-078086.jpg\" title=\"00-1555171436413-078086.jpg\" alt=\"333 - 副本.jpg\"/></p>', '2019-04-14 00:03:58', '', 5, 'fdg', 'fgdfgd', 'vxgdfg', 'fgdfgdf');
 INSERT INTO `comment` VALUES (5, 3, 1, '<ul class=\" list-paddingleft-2\" style=\"list-style-type: disc;\"><li><p>xcx<br/></p></li></ul>,<ul class=\" list-paddingleft-2\" style=\"list-style-type: disc;\"><li><p>xcx<br/></p></li></ul>', '2019-04-14 00:06:25', '', 5, 'cvx', 'fdfs', 'vcxcbx', 'bxcbx');
@@ -85,7 +84,12 @@ CREATE TABLE `coupon`  (
   `add_time` datetime NULL DEFAULT NULL,
   `status` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = MyISAM AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of coupon
+-- ----------------------------
+INSERT INTO `coupon` VALUES (1, 1, 5.00, '1', '2019-05-05 15:56:51', '待使用');
 
 -- ----------------------------
 -- Table structure for food
@@ -133,7 +137,7 @@ CREATE TABLE `orders`  (
   `coupon_id` int(11) NULL DEFAULT 0,
   `foods` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`ID`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 9 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = MyISAM AUTO_INCREMENT = 13 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of orders
@@ -141,11 +145,15 @@ CREATE TABLE `orders`  (
 INSERT INTO `orders` VALUES (1, 'mQmyQfcAg', '2019-04-14 00:05:40', 0.00, '预约', 'dfsdfscvxcxbxcxb', 3, 1, NULL, '2019-04-14 上午', 1, '555', 0, NULL);
 INSERT INTO `orders` VALUES (2, 'ChlqFJDFI', '2019-04-14 00:07:59', 0.00, '已支付', 'fsdsdf', 3, 1, '2019-04-14 00:14:09', '2019-04-14 上午', 1, 'ffff', 0, NULL);
 INSERT INTO `orders` VALUES (3, 'NfQEcMKta', '2019-04-21 18:57:50', 0.00, '已支付', 'cxczxcz', 4, 1, '2019-04-21 18:57:56', '2019-04-21 上午', 1, '123', 0, NULL);
-INSERT INTO `orders` VALUES (4, 'ftYgbNrKr', '2019-04-22 16:51:28', 0.00, '预约', '', 5, 1, NULL, '2019-04-22 上午', 1, '18686120827', 0, NULL);
+INSERT INTO `orders` VALUES (4, 'ftYgbNrKr', '2019-04-22 16:51:28', 0.00, '已支付', '', 5, 1, NULL, '2019-04-22 上午', 1, '18686120827', 0, NULL);
 INSERT INTO `orders` VALUES (5, 'ucTyMVcrq', '2019-04-24 13:38:30', 123.00, '预约', '111313133', 4, 1, NULL, '2019-04-24 上午', 111, '123455', 0, NULL);
 INSERT INTO `orders` VALUES (6, 'PGAFxZReZ', '2019-04-24 13:47:32', 0.00, '预约', '111', 4, 1, NULL, '2019-04-24 上午', 1, '111', 0, NULL);
 INSERT INTO `orders` VALUES (7, 'QKzBQjFVF', '2019-04-24 13:48:33', 0.00, '预约', '11', 4, 1, NULL, '2019-04-24 上午', 1, '212212', 0, '1,2');
-INSERT INTO `orders` VALUES (8, 'ctoPpJHdC', '2019-04-24 13:49:21', 134.00, '预约', 'dasd', 4, 1, NULL, '2019-04-24 上午', 1, 'dasdad', 0, '1,2,3');
+INSERT INTO `orders` VALUES (8, 'ctoPpJHdC', '2019-04-24 13:49:21', 134.00, '取消', 'dasd', 4, 1, NULL, '2019-04-24 上午', 1, 'dasdad', 0, '1,2,3');
+INSERT INTO `orders` VALUES (9, 'rmnbyQYcr', '2019-05-05 15:11:45', 6.00, '预约完成', '', 9, 1, '2019-05-05 15:11:54', '2019-05-05 上午', 2, '17152072827', 0, '2');
+INSERT INTO `orders` VALUES (10, '100010', '2019-05-05 16:56:09', 5.00, '预约', '', 5, 1, NULL, '2019-05-05 上午', 1, '12344', 0, '1');
+INSERT INTO `orders` VALUES (11, '100011', '2019-05-05 17:01:03', 134.00, '已支付', '', 5, 1, '2019-05-05 17:01:27', '2019-05-05 上午', 1, 'qqfr', 0, '1,2,3');
+INSERT INTO `orders` VALUES (12, '100012', '2019-05-05 17:09:31', 134.00, '预约', '', 5, 1, NULL, '2019-05-05 上午', 1, '12345', 0, '1,2,3');
 
 -- ----------------------------
 -- Table structure for start
@@ -156,7 +164,12 @@ CREATE TABLE `start`  (
   `user_id` int(11) NULL DEFAULT 0,
   `business_id` int(11) NULL DEFAULT 0,
   PRIMARY KEY (`ID`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Fixed;
+) ENGINE = MyISAM AUTO_INCREMENT = 6 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Fixed;
+
+-- ----------------------------
+-- Records of start
+-- ----------------------------
+INSERT INTO `start` VALUES (5, 5, 1);
 
 -- ----------------------------
 -- Table structure for user
@@ -174,7 +187,7 @@ CREATE TABLE `user`  (
   `addtime` datetime NULL DEFAULT NULL,
   `role` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 8 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = MyISAM AUTO_INCREMENT = 11 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of user
@@ -186,5 +199,8 @@ INSERT INTO `user` VALUES (4, 'qqqq', 'qqqq', 'qqqq', '3BAD6AF0FA4B8B330D162E199
 INSERT INTO `user` VALUES (5, '18686120827', '18686120827', 'chao', '202CB962AC59075B964B07152D234B70', '', '', 'SUCCESS', '2019-04-21 20:00:27', 'user');
 INSERT INTO `user` VALUES (6, 'admin', 'admin', '管理员', 'E10ADC3949BA59ABBE56E057F20F883E', '', '', 'SUCCESS', '2019-04-22 16:46:20', 'admin');
 INSERT INTO `user` VALUES (7, '666', '666', '666', 'FAE0B27C451C728867A567E8C1BB4E53', '', '', 'SUCCESS', '2019-04-24 12:04:25', 'user');
+INSERT INTO `user` VALUES (8, 'chao', 'chao', 'chao', '202CB962AC59075B964B07152D234B70', '', '', 'SUCCESS', '2019-04-26 03:26:38', 'user');
+INSERT INTO `user` VALUES (9, '17152072827', '17152072827', 'chao', '202CB962AC59075B964B07152D234B70', '', '', 'SUCCESS', '2019-05-05 15:11:09', 'user');
+INSERT INTO `user` VALUES (10, '13320040827', '13320040827', '测试评论3', '202CB962AC59075B964B07152D234B70', '', '', 'SUCCESS', '2019-05-05 15:47:12', 'user');
 
 SET FOREIGN_KEY_CHECKS = 1;
