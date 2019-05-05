@@ -32,7 +32,6 @@
                             <table id="sample-table-1" class="table table-striped table-bordered table-hover">
                                 <thead>
                                 <tr>
-                                    <th>用户名</th>
                                     <th>名字</th>
                                     <th>手机号</th>
                                     <th>邮箱</th>
@@ -44,7 +43,6 @@
                                 <tbody>
                                 <#list pageInfo.list as item>
                                     <tr>
-                                        <td>${item.username}</td>
                                         <td>${item.name}</td>
                                         <td>${item.phone}</td>
                                         <td>${item.email}</td>
