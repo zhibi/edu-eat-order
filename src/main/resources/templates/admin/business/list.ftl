@@ -44,7 +44,7 @@
                     <td>${item.address!}</td>
                     <td>${item.orderNum!0}</td>
                     <td>${item.startNum!0}</td>
-                    <td>${item.commentNum!0}</td>
+                    <td>${item.commendNum!0}</td>
                   </tr>
                 </#list>
                 </tbody>
