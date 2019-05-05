@@ -65,13 +65,17 @@ public class BusinessController extends BaseAdminController {
     @GetMapping("start/{id}")
     @RequestLogin
     public String start(@PathVariable Integer id) {
-        Start start1 = new Start().setUserId(sessionUser().getId()).setBusinessId(id);
-        Start start  = startMapper.selectOne(start1);
+        Start    start1   = new Start().setUserId(sessionUser().getId()).setBusinessId(id);
+        Start    start    = startMapper.selectOne(start1);
+        Business business = businessMapper.selectByPrimaryKey(id);
         if (start == null) {
+            business.setStartNum(business.getStartNum() + 1);
             startMapper.insertSelective(start1);
         } else {
+            business.setStartNum(business.getStartNum() - 1);
             startMapper.delete(start);
         }
+        businessMapper.updateByPrimaryKeySelective(business);
         return refresh();
     }
 }
