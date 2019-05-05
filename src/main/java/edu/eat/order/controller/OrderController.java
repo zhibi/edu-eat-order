@@ -80,7 +80,7 @@ public class OrderController extends BaseController {
         order.setAddTime(new Date());
         order.setUserId(sessionUser().getId());
         order.setStatus("预约");
-        order.setOrderNo(RandomStringUtils.randomAlphabetic(9));
+        order.setOrderNo(RandomStringUtils.randomAlphanumeric(9));
         // 计算价格
         double   money = 0;
         String[] split = order.getFoods().split(",");
