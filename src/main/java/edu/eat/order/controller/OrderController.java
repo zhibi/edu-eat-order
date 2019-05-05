@@ -13,7 +13,6 @@ import edu.eat.order.mapper.FoodMapper;
 import edu.eat.order.mapper.OrderMapper;
 import edu.eat.order.model.OrderModel;
 import edu.eat.order.service.OrderService;
-import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -94,7 +93,7 @@ public class OrderController extends BaseController {
         order.setOrderNo(order.getId() + 100000 + "");
         orderMapper.updateByPrimaryKeySelective(order);
         Business business = businessMapper.selectByPrimaryKey(order.getBusinessId());
-        business.setCommendNum(business.getOrderNum() + 1);
+        business.setOrderNum(business.getOrderNum() + 1);
         businessMapper.updateByPrimaryKeySelective(business);
         return redirect("预约成功", "/order/myOrder");
     }
